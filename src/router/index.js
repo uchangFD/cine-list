@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 
 import Home from '../components/Home.vue'
 import Login from '../components/Login.vue'
-import List from '../components/List.vue'
+import Lists from '../components/Lists.vue'
+import Movie from '../components/Movie.vue'
 import NotFound from '../components/NotFound.vue'
 
 
@@ -16,18 +17,18 @@ const router = new VueRouter({
   routes: [{
       path: '/',
       component: Home,
-      children: [
-        {
-          path: 'list/:listId',
-          component: List
-        },
-      ]
+      children: [{ path: 'lists/:lid', component: Lists }]
     },
+
+    {
+      path: '/movie/:mid',
+      component: Movie,
+    },
+
     {
       path: '/login',
       component: Login
     },
-
     {
       path: '*',
       component: NotFound

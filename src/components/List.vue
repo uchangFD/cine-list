@@ -1,34 +1,29 @@
 <template>
-
   <div v-if="loading"></div>
   <div v-else>
-    list id: {{listId}}
-  </div>
+    <div class="movie">
+      <div class="movie-header">
+         <router-link :to="`/movie/${data.id}`">
+          <img 
+            style="width:200px"
+            :src="`https://image.tmdb.org/t/p/w500${data.poster_path}`" 
+            :alt="`${data.original_title}`"
+          >
+          <p>{{data.title}}</p>
+        </router-link>
+      </div>
+    </div>
+  </div>  
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
+  props:['data'],
   data() {
     return {
-      listId: 0,
       loading: false
-    }
-  },
-
-  watch: {
-    '$route': {
-      handler :'fetchData',
-      immediate: true
-    }
-  },
-  
-  methods: {
-    fetchData() {
-      this.loading = true
-      setTimeout(() => {
-        this.listId = this.$route.params.listId
-        this.loading = false
-      }, 500);
     }
   }
 }
