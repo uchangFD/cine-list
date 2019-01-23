@@ -1,18 +1,20 @@
 <template>
   <div>
-    <h1>{{movieItems.id}}</h1>
-    <pre>
-      {{movieItems}}
-    </pre>
+    <hr />
+    <pre>{{lists}}</pre>
+    <pre>{{casts}}</pre>
   </div>
 </template>
 
 <script>
+import Modal from './Modal.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
   props:['data'],
-
+  components: {
+    Modal
+  },
   data() {
     return {
       mid: 0,
@@ -22,7 +24,8 @@ export default {
 
   computed: {
     ...mapState({
-      movieItems: 'movieItems',
+      lists: 'lists',
+      casts: 'casts'
     })
   },
 
@@ -35,16 +38,18 @@ export default {
   
   methods: {
     ...mapActions([
-      'FETCH_MOVIE'
+      'FETCH_MOVIE',
+      'FETCH_CREW'
     ]),
 
     fetchData() {
       this.loading = true
-      this.FETCH_MOVIE({
-        id: this.$route.params.mid
-      }).finally(_ =>{
-        this.loading = false
-      })
+
+      
+
+      this.FETCH_MOVIE({id: this.$route.params.mid})
+      .then(()=>{this.FETCH_CREW({id: this.$route.params.mid})})
+      .finally(_ =>{this.loading = false})
     }
   }
 }

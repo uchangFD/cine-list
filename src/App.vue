@@ -20,7 +20,10 @@ export default {
 </script>
 
 <style lang="scss">
-  html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, img, strong, dl, dt, dd, ol, ul, li, nav {
+  html, body, div, span, 
+  h1, h2, h3, h4, h5, h6, 
+  p, pre, a, img, strong, 
+  dl, dt, dd, ol, ul, li, nav {
     margin: 0;
 	  padding: 0;
 	  border: 0;
@@ -42,4 +45,5 @@ export default {
     text-decoration: none;
     color: #181818
   }
+
 </style>

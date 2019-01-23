@@ -1,11 +1,20 @@
 
 const mutations = {
-  SET_LISTS(state, movieLists, listPages) {
-    state.movieLists = movieLists
+  SET_MAIN(state, main) {
+    state.main = main
+  },
+
+  SET_LISTS(state, lists, listPages) {
+    state.lists = lists
     state.listPages = listPages
   },
-  SET_MOVIE(state, movieItems) {
-    state.movieItems = movieItems
+  
+  SET_ITEM(state, lists) {
+    state.lists = lists
+  },
+
+  SET_CAST(state, casts) {
+    state.casts = casts
   }
 }
 

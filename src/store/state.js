@@ -1,6 +1,7 @@
 const state = {
-  movieLists: [],
-  movieItems: {},
+  main: [],
+  lists: [],
+  casts: [],
   listPages: 1
 }
 

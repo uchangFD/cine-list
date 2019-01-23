@@ -1,17 +1,14 @@
 <template>
-  <div v-if="loading"></div>
-  <div v-else>
-    <div class="movie-wrapper">
-      <ul>
-        <li
-          style="display: inline-block"
-          v-for="(list, index) in movieLists"
-          :key="index"
-        >
-          <List :data="list" />
-        </li>
-      </ul>
-    </div>
+  <div class="movie-wrapper">
+    <ul>
+      <li
+        style="display: block"
+        v-for="(list, index) in lists"
+        :key="index"
+      >
+        <List :data="list"/>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -23,16 +20,16 @@ export default {
   components: {
     List
   },
+
   data() {
     return {
-      loading: false,
       page: 1
     }
   },
   computed: {
     ...mapState({
-      movieLists: 'movieLists',
-      listPages: 'listPages'
+      lists: 'lists',
+      listPages: 'listPages',
     })
   },
 
@@ -40,7 +37,7 @@ export default {
     '$route': {
       handler :'fetchData',
       immediate: true,
-    }
+    },
   },
   
   methods: {
@@ -56,10 +53,6 @@ export default {
       }).finally(_ =>{
         this.loading = false
       })
-    },
-
-    scroll() {
-
     }
   }
 }

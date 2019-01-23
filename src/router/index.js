@@ -12,17 +12,21 @@ import NotFound from '../components/NotFound.vue'
 Vue.use(VueRouter)
 
 
+
+
 const router = new VueRouter({
   mode: 'history',
   routes: [{
       path: '/',
       component: Home,
-      children: [{ path: 'lists/:lid', component: Lists }]
+      children: [{
+        path: 'lists/:lid',
+        component: Lists
+      }]
     },
-
     {
       path: '/movie/:mid',
-      component: Movie,
+      component: Movie
     },
 
     {
