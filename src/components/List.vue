@@ -2,7 +2,10 @@
   <div class="movie">
     <router-link :to="`/movie/${data.id}`">
       <img 
-        :src="`https://image.tmdb.org/t/p/w500${data.poster_path}`"  :alt="`${data.original_title}`">
+        class="poster-image"
+        :src="`https://image.tmdb.org/t/p/w500${data.poster_path}`"  
+        :alt="`${data.original_title}`"
+      >
     </router-link>
   </div>
 </template>
@@ -16,5 +19,7 @@ export default {
 </script>
 
 <style>
-
+.poster-image {
+  max-width: 100%;
+}
 </style>

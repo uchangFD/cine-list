@@ -7,14 +7,11 @@
 </template>
 
 <script>
-import Modal from './Modal.vue'
+// import Modal from './Modal.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
   props:['data'],
-  components: {
-    Modal
-  },
   data() {
     return {
       mid: 0,
@@ -38,18 +35,21 @@ export default {
   
   methods: {
     ...mapActions([
-      'FETCH_MOVIE',
-      'FETCH_CREW'
+      'FETCH_ITEM',
+      'FETCH_CAST'
     ]),
 
     fetchData() {
-      this.loading = true
-
       
-
-      this.FETCH_MOVIE({id: this.$route.params.mid})
-      .then(()=>{this.FETCH_CREW({id: this.$route.params.mid})})
-      .finally(_ =>{this.loading = false})
+      this.loading = true
+      
+      this.FETCH_ITEM({id: this.$route.params.mid})
+        .then(()=>{
+          this.FETCH_CAST({id: this.$route.params.mid})
+        })
+        .finally(_ =>{
+          this.loading = false
+        })
     }
   }
 }

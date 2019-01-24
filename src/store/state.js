@@ -2,7 +2,8 @@ const state = {
   main: [],
   lists: [],
   casts: [],
-  listPages: 1
+  listPages: 1,
+  sIdx: 0
 }
 
 
