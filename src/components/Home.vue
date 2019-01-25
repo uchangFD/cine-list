@@ -1,14 +1,13 @@
 <template>
   <div class="main-container">
-    <Carousel :data="main" />
+    <Carousel :data="slides" />
     <hr>
     <div  v-if="isMain" class="movie-list-wrapper">
       <div 
-        v-for="(item, index) in main"
+        v-for="(item, index) in slides"
         :key="index"
         class="movie-wrapper"
       >
-        <!-- <span>{{item.title}}</span> -->
         <ul>
           <li style="display: block">
             <div class="movie">
@@ -21,6 +20,7 @@
         </ul>
       </div>
     </div>
+
 
     <div
       v-else 
@@ -44,9 +44,10 @@ export default {
     }
   },
 
+
   computed: {
     ...mapState({
-      main: 'main',
+      slides: 'slides',
     })
   },
 
@@ -59,14 +60,14 @@ export default {
 
   methods: {
     ...mapActions([
-      'FETCH_MAIN'
+      'FETCH_SLIDES'
     ]),
 
     fetchData() {
-      this.loading = true
       this.isMain = window.location.pathname === '/'
-      this.FETCH_MAIN(1).finally(_ =>{
-        this.loading = false
+      this.FETCH_SLIDES({
+        id: 'trending', 
+        pages: 1
       })
     }
   }
@@ -76,49 +77,8 @@ export default {
 </script>
 
 <style lang="scss">
-
-.carousel__container {
-  position: relative;
-  height: auto;
-  overflow: auto;
-}
-
-
-.carousel__item {
-  display: none;
-}
-
-.carousel__backdrop-image {
-  width: 100%;
-  height: auto;
-}
-
-.carousel__title {
-  top: 10px
-}
-
-
-.carousel__btn {
-  position: absolute;
-  top: 40%;
-  width: 80px;
-  height: 80px;
-  &.prev-btn {
-    left: 30px;
-  }
-  &.next-btn {
-    right: 30px;
-  }
-}
-
-
 .movie-list-wrapper {
   position: relative;
-}
-
-
-.active {
-  display: block;
 }
 
 

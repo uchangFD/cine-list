@@ -1,17 +1,17 @@
 import * as api from '../api'
 
 const actions = {
-  FETCH_MAIN({ commit }, {index}) {    
-    return api.main.fetchTrending(index)
-      .then(data => {        
-        commit('SET_MAIN', data.results)
+  FETCH_SLIDES({ commit }, {id, pages}) {    
+    return api.main.fetch(id, pages)
+      .then(data => {
+        commit('SET_SLIDES', data.results)
       })
   },
 
-  FETCH_LISTS({ commit }, {id, listPages}) {    
-    return api.main.fetchList(id, listPages)
+  FETCH_LISTS({ commit }, {id, pages}) {    
+    return api.main.fetch(id, pages)
       .then(data => {        
-        commit('SET_LISTS', data.results, listPages)
+        commit('SET_LISTS', data.results, pages)
       })
   },
 

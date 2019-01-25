@@ -1,12 +1,13 @@
 <template>
   <div class="carousel__container">
+
     <ul class="carousel__list">
       <li 
         v-for="(item, index) in data" 
-        ref="sIdx"
         :key="index"
+        ref="slides"
         class="carousel__item"
-        :class="{active: index === sIdx ? isActive : ''}"
+        :class="{active: index === sIdx}"
       >
         <img 
           class="carousel__backdrop-image"
@@ -14,60 +15,87 @@
           :alt="`${item.original_title}`"
         />
         <p class="carousel__title">
-          {{item.title}}
-          {{index % data.length}}
         </p>
       </li>
     </ul>
+
     <button
       class="carousel__btn prev-btn"
       @click.prevent="onClickBtn"
-    >
-      prev
-    </button>
+    >prev</button>
+
     <button 
       class="carousel__btn next-btn"
       @click.prevent="onClickBtn"
-    >
-      next
-    </button>
+    >next</button>
+
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
 export default {
-  props: [
-    'data'
-  ],
+  props: ['data'],
   data() {
     return {
-      isActive: true
+      sIdx: 0,
+      mainSlides: []
     }
-  },
-  computed: {
-    ...mapState({
-      sIdx: 'sIdx',
-    })
   },
 
   updated() {
-    this.$refs.sIdx.forEach(el => {
-      this.$store.state.sIdx = this.$store.state.sIdx % this.$refs.sIdx.length
-    })
+    return this.sIdx = this.sIdx % this.data.length
   },
-
+  
   methods: {
-    onClickBtn(el) {
-      const {$store, $refs} = this
-      if($store.state.sIdx <= 0) $store.state.sIdx = $refs.sIdx.length
-      if (el.target.classList.contains('next-btn')) return $store.state.sIdx++;
-      return $store.state.sIdx--
+    onClickBtn(el) {      
+      if(this.sIdx <= 0) this.sIdx = this.data.length
+      if (el.target.classList.contains('next-btn')) return this.sIdx++;
+      return this.sIdx--
     }
   }
 }
 </script>
 
-<style>
+
+
+<style lang="scss">
+.carousel__container {
+  position: relative;
+  height: auto;
+  overflow: hidden;
+}
+
+
+.carousel__item {
+  display: none;
+}
+
+.carousel__backdrop-image {
+  width: 100%;
+  height: auto;
+}
+
+.carousel__title {
+  top: 10px
+}
+
+
+.carousel__btn {
+  position: absolute;
+  top: 40%;
+  width: 80px;
+  height: 80px;
+  &.prev-btn {
+    left: 30px;
+  }
+  &.next-btn {
+    right: 30px;
+  }
+}
+
+.active {
+  display: block;
+}
+
 
 </style>

@@ -1,12 +1,12 @@
 
 const mutations = {
-  SET_MAIN(state, main) {
-    state.main = main
+  SET_SLIDES(state, slides) {
+    state.slides = slides
   },
 
-  SET_LISTS(state, lists, listPages) {
+  SET_LISTS(state, lists, pages) {
     state.lists = lists
-    state.listPages = listPages
+    state.pages = pages
   },
   
   SET_ITEM(state, lists) {

@@ -1,9 +1,8 @@
 const state = {
-  main: [],
+  slides: [],
   lists: [],
   casts: [],
-  listPages: 1,
-  sIdx: 0
+  pages: 0
 }
 
 
