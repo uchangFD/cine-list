@@ -1,25 +1,33 @@
 <template>
   <header class="navbar-wrapper header">
-    <div class="nav__logo">
-      <router-link to="/">LOGO</router-link>
-    </div>
-    <div 
-      class="nav__categories"
-      @mouseover="isMouseOn = true"
-      @mouseout="isMouseOn = false"
-    >
-      <router-link class="categories-list" to="/lists/trending">Trend</router-link>
-      <router-link class="categories-list" to="/lists/scifi">Sci</router-link>
-      <router-link class="categories-list" to="/lists/pitt">Pitt</router-link>
-    </div>
+    <div class="navbar-container">
+      <div class="nav__logo">
+        <router-link 
+          to="/"
+          aria-label="CINE-LIST"
+          class="logo"
+        >LOGO</router-link>
+      </div>
+      <ul class="nav__categories">
+        <li class="nav__categories__tab">
+          <router-link class="categories-list" to="/lists/trending">Trend</router-link>
+        </li>
+        <li class="nav__categories__tab">
+          <router-link class="categories-list" to="/lists/scifi">Sci</router-link>
+        </li>
+        <li class="nav__categories__tab">
+          <router-link class="categories-list" to="/lists/pitt">Pitt</router-link>
+        </li>
+      </ul>
 
-    <!-- <div class="nav__search">
-      <input type="text" class="search-input" title="Search" placeholder="영화를 검색하세요">
-      <button class="search-btn">검색</button>
-    </div> -->
+      <!-- <div class="nav__search">
+        <input type="text" class="search-input" title="Search" placeholder="영화를 검색하세요">
+        <button class="search-btn">검색</button>
+      </div> -->
     
-    <div class="nav__login">
-      <router-link class="nav__login-btn" to="/login">Login</router-link>
+      <div class="nav__login">
+        <router-link class="nav__login-btn" to="/login">Login</router-link>
+      </div>
     </div>
   </header>
 </template>
@@ -41,8 +49,8 @@ export default {
 
 <style lang="scss">
 .navbar-wrapper {
-  display: flex;
-  background-color: #00c73c;
+  // display: flex;
+  height: 70px;
 }
 
 .nav__logo, .nav__categories, .nav__search, .nav__login {

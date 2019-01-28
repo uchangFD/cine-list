@@ -81,6 +81,12 @@ export default {
   position: relative;
 }
 
+.main-container {
+  position: relative;
+  min-height: 1000px;
+  z-index: 0;
+}
+
 
 </style>
 

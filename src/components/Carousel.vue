@@ -31,50 +31,40 @@
     <button 
       class="carousel__btn next-btn"
       ref="next"
-      @click.prevent="increaseIdx"
+      v-on:click.prevent="increaseIdx"
     >next</button>
 
   </div>
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   props: ['data'],
+
   data() {
     return {
-      sIdx: 0
+      sIdx: 0,
     }
   },
 
   updated() {
     return this.sIdx = this.sIdx % this.data.length
   },
-  
+
+
   methods: {
 
-    increaseIdx(el) {
-      if (this.sIdx > this.data.length) this.sIdx = 0
-      this.sIdx++
-    },
+    increaseIdx: _.debounce(function() {
+        if (this.sIdx > this.data.length) this.sIdx = 0; 
+        this.sIdx++
+      }, 300),
 
-    decreaseIdx() {
+    decreaseIdx: _.debounce(function() {
       if (this.sIdx <= 0) this.sIdx = this.data.length
-      this.sIdx--
-    },
-
-
-     onClickSlideBtn(callback, delay) {
-      var timer = null
-      return function() {
-        var context = this
-        var arg = arguments
-        clearTimeout(timer)
-        
-        timer = setTimeout(() => {
-          callback.apply(context, arg)
-        }, delay);
-      }
-    }
+        this.sIdx--
+      }, 300)
   }
 }
 </script>
@@ -84,7 +74,7 @@ export default {
 <style lang="scss">
 .carousel__container {
   position: relative;
-  padding: 28%;
+  padding-top: 40%;
   background: #191919;;
   height: auto;
   overflow: hidden;
@@ -122,14 +112,16 @@ export default {
 
 .carousel__btn {
   position: absolute;
-  top: 0;
-  width: 80px;
-  height: 80px;
+  top: 40%;
+  width: 40px;
+  height: 40px;
   &.prev-btn {
-    left: 30px;
+    left: 5vw;
+    background: #faa;
   }
   &.next-btn {
-    right: 30px;
+    right: 5vw;
+    background: #faa;
   }
 }
 
