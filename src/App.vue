@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <Navbar />    
-    <router-view></router-view>
+    <div class="base-board">
+      <Navbar />    
+      <router-view></router-view>
+    </div>
   </div>
   
 </template>
@@ -20,6 +22,7 @@ export default {
 </script>
 
 <style lang="scss">
+
   html, body, div, span, 
   h1, h2, h3, h4, h5, h6, 
   p, pre, a, img, strong, 
@@ -45,6 +48,12 @@ export default {
     text-decoration: none;
     color: #181818
   }
+
+  #base-board {
+    z-index: 0;
+    overflow-x: hidden
+  }
+
 
 
 </style>

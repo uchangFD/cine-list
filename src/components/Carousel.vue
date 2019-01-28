@@ -2,7 +2,6 @@
   <div class="carousel__container">
 
     <ul class="carousel__list">
-
       <li 
         v-for="(item, index) in data" 
         :key="index"
@@ -17,6 +16,7 @@
             :alt="`${item.original_title}`"
           />
           <p class="carousel__title">
+            {{item.title}}
           </p>
         </div>
       </li>
@@ -26,21 +26,24 @@
       class="carousel__btn prev-btn"
       ref="prev"
       @click.prevent="decreaseIdx"
-    >prev</button>
+    ></button>
 
     <button 
       class="carousel__btn next-btn"
       ref="next"
       v-on:click.prevent="increaseIdx"
-    >next</button>
+    ></button>
 
   </div>
 </template>
 
 <script>
+
 import _ from 'lodash'
 
 export default {
+
+  
   props: ['data'],
 
   data() {
@@ -52,7 +55,6 @@ export default {
   updated() {
     return this.sIdx = this.sIdx % this.data.length
   },
-
 
   methods: {
 
@@ -74,7 +76,7 @@ export default {
 <style lang="scss">
 .carousel__container {
   position: relative;
-  padding-top: 40%;
+  padding-top: 44%;
   background: #191919;;
   height: auto;
   overflow: hidden;
@@ -90,23 +92,29 @@ export default {
 .carousel__items {
   display: block;
   opacity: 0;
-  transition: all 500ms ease-in-out
+  transition: all 500ms ease-in-out;
+  position: relative;
 }
 
 .carousel__item__container {
   position: absolute;
   width: 100%;
   top: 0;
-  right: 0;
 }
 
 .carousel__backdrop-image {
   width: 100%;
   height: auto;
+  right: 0;
+
 }
 
 .carousel__title {
-  top: 10px
+  position: absolute;
+  bottom: 40%;
+  left: 20px;
+  color: #fff;
+
 }
 
 
@@ -117,11 +125,15 @@ export default {
   height: 40px;
   &.prev-btn {
     left: 5vw;
-    background: #faa;
+    &::before {
+      content: '\e802';
+    }
   }
   &.next-btn {
+    &::before {
+      content: '\e803';
+    }
     right: 5vw;
-    background: #faa;
   }
 }
 

@@ -1,8 +1,11 @@
 <template>
-  <div>
-    <hr />
-    <pre>{{lists}}</pre>
-    <pre>{{casts}}</pre>
+  <div class="main-container">
+    <div class="is-fullbleed">
+      <div class="movie-details">
+        <pre>{{lists}}</pre>
+        <pre>{{casts}}</pre>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,6 +58,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 
+.movie-details {
+  padding-top: 70px;
+  pre {
+    color: #fff;
+  }
+}
 </style>
