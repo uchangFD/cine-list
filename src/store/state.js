@@ -2,7 +2,7 @@ const state = {
   slides: [],
   lists: [],
   casts: [],
-  history: [],
+  results: [],
   pages: 0
 }
 

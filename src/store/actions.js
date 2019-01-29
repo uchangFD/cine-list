@@ -8,13 +8,6 @@ const actions = {
       })
   },
 
-  FETCH_SEARCH({commit}, {text}) {
-    return api.main.fetchSearch(text)
-      .then(data => {
-        commit('SET_SEARCH', data.results)
-      })
-  },
-
   FETCH_LISTS({ commit }, {id, pages}) {    
     return api.main.fetch(id, pages)
       .then(data => {        
@@ -32,6 +25,16 @@ const actions = {
     return api.main.fetchCast(id).then(data => {
       commit('SET_CAST', data)
     })
+  },
+
+  FETCH_SEARCH({commit}, {text}) {
+    return api.main.fetchSearch(text).then(data => {
+      commit('SET_SEARCH', data.results)
+    })
+  },
+
+  RESET_RESULTS({commit}) {
+    commit('RESET_STATES')
   }
 }
 

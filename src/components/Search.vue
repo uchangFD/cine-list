@@ -2,7 +2,7 @@
   <section class="search">
     <form 
       class="movie-search-form"
-      @submit.prevent="onSearched()"
+      @submit.prevent="onSubmit()"
     >
       <input 
         class="movie-search-input"
@@ -13,22 +13,30 @@
       />
       <button
         class="movie-search-btn"
-        :disabled="invalid"
+        @click="onReset"
       >
-        검색
+        &times;
       </button>
     </form>
-    <ul 
-      class="search-result-list"
-    >
-      <li
-        v-for="(item, index) in history" 
-        :key="index"
-        class="search-result-item"
+
+    <div v-if="results.length">
+      <ul 
+        class="search-result-list"
       >
-      {{item.title}}
-      </li>
-    </ul>
+        <li
+          v-for="(item, index) in results" 
+          :key="index"
+          class="search-result-item"
+        >
+        {{item.title}}
+        </li>
+      </ul>
+    </div>
+    <div v-else>
+      <p>NOTHING TO BE SHOWN</p>
+    </div>
+
+
   </section>
 </template>
 
@@ -38,6 +46,7 @@ import _ from 'lodash'
 
 
 export default {
+  
   data() {
     return {
       search: '',
@@ -45,54 +54,51 @@ export default {
     }
   },
 
-
   computed: {
     ...mapState({
-      history: 'history',
+      results: 'results',
     }),
-
     invalid() {
       return !this.search.trim()
     },
-
   },
 
   mounted() {
     this.$refs.searchInput.focus()
   },
 
-
   watch: {
     search: function(searchText) {
       this.searched = searchText
       this.onSearching(searchText)
-
-      if (!this.$refs.searchInput.value) {
-        console.log(history)
-        
-      }
+      this.onReset(searchText)
     }
   },
-
+  
   methods: {
     ...mapActions([
-      'FETCH_SEARCH'
+      'FETCH_SEARCH',
+      'RESET_RESULTS'
     ]),
 
     onSearching: _.debounce(
-      function(searchText) {
+      function(searchText) {        
         if (this.invalid) return
         this.FETCH_SEARCH({text: searchText})
       }, 300),
 
-
-    onSearched: function() {      
+    onSubmit: function() {      
         if (this.invalid) return
         this.FETCH_SEARCH({text: this.searched})
         this.$refs.searchInput.value = ''
-      }
-  }
+      },
 
+    onReset: function(searchText) {
+      if(!searchText) {
+        this.RESET_RESULTS()
+      }
+    }
+  }
 }
 </script>
 

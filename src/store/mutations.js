@@ -4,10 +4,10 @@ const mutations = {
     state.slides = slides
   },
 
-  SET_SEARCH(state, history) {
-    state.history = history
+  SET_SEARCH(state, results) {
+    state.results = results
   },
-  
+
   SET_LISTS(state, lists, pages) {
     state.lists = lists
     state.pages = pages
@@ -19,6 +19,10 @@ const mutations = {
 
   SET_CAST(state, casts) {
     state.casts = casts
+  },
+
+  RESET_STATES(state) {
+    state.results = []
   }
 }
 
