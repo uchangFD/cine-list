@@ -21,19 +21,19 @@
         </div>
       </li>
     </ul>
-
-    <button
+    
+    <FontAwesome
       class="carousel__btn prev-btn"
+      icon="angle-left"
       ref="prev"
       @click.prevent="decreaseIdx"
-    ></button>
-
-    <button 
+    ></FontAwesome>
+    <FontAwesome
       class="carousel__btn next-btn"
+      icon="angle-right"
       ref="next"
-      v-on:click.prevent="increaseIdx"
-    ></button>
-
+      @click.prevent="increaseIdx"
+    ></FontAwesome>
   </div>
 </template>
 
@@ -120,19 +120,21 @@ export default {
 
 .carousel__btn {
   position: absolute;
-  top: 40%;
-  width: 40px;
-  height: 40px;
+  top: 45%;
+  font-size: 4rem;
+  opacity: 0.5;
+  color: #e2e4df;
+  cursor: pointer;
+  height: 100px;
+  transition: 0.3s;
+  &:hover {
+    opacity: 1;
+    color: #e2e4df;
+  }
   &.prev-btn {
     left: 5vw;
-    &::before {
-      content: '\e802';
-    }
   }
   &.next-btn {
-    &::before {
-      content: '\e803';
-    }
     right: 5vw;
   }
 }

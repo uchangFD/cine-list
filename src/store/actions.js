@@ -8,6 +8,13 @@ const actions = {
       })
   },
 
+  FETCH_SEARCH({commit}, {text}) {
+    return api.main.fetchSearch(text)
+      .then(data => {
+        commit('SET_SEARCH', data.results)
+      })
+  },
+
   FETCH_LISTS({ commit }, {id, pages}) {    
     return api.main.fetch(id, pages)
       .then(data => {        

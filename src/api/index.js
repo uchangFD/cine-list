@@ -8,6 +8,7 @@ const DOMAIN = {
   topRated: `https://api.themoviedb.org/3/discover/movie${API_KEY}&sort_by=vote_average.desc&vote_count.gte=100&page=`
 }
 
+const SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko&vote_count.gte=100&query=`
 
 const request = (method, url, data) => {
   return axios({
@@ -19,10 +20,16 @@ const request = (method, url, data) => {
 }
 
 
+
+
 export const main = {
   
   fetch(id, index) {
     return request('get', `${DOMAIN[id] + index}`)
+  },
+
+  fetchSearch(text) {
+    return request('get', `${SEARCH + text}`)
   },
 
   fetchItem(movieId) {
@@ -31,4 +38,5 @@ export const main = {
   fetchCast(movieId) {
     return request('get', `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko&append_to_response=movie_credits`)
   }
+
 }

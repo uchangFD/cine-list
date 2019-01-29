@@ -4,6 +4,10 @@ const mutations = {
     state.slides = slides
   },
 
+  SET_SEARCH(state, history) {
+    state.history = history
+  },
+  
   SET_LISTS(state, lists, pages) {
     state.lists = lists
     state.pages = pages

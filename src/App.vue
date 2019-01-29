@@ -26,7 +26,8 @@ export default {
   html, body, div, span, 
   h1, h2, h3, h4, h5, h6, 
   p, pre, a, img, strong, 
-  dl, dt, dd, ol, ul, li, nav {
+  dl, dt, dd, ol, ul, li, nav, input,
+  button {
     margin: 0;
 	  padding: 0;
 	  border: 0;
