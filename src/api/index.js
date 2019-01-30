@@ -24,8 +24,8 @@ const request = (method, url, data) => {
 
 export const main = {
   
-  fetch(id, index) {
-    return request('get', `${DOMAIN[id] + index}`)
+  fetch(id) {
+    return request('get', `${DOMAIN[id] + 1}`)
   },
 
   fetchSearch(text) {

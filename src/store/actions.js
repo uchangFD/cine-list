@@ -11,7 +11,7 @@ const actions = {
   FETCH_LISTS({ commit }, {id, pages}) {    
     return api.main.fetch(id, pages)
       .then(data => {        
-        commit('SET_LISTS', data.results, pages)
+        commit('SET_LISTS', data.results)
       })
   },
 

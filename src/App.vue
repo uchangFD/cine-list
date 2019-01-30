@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <div class="base-board">
-      <Navbar />    
-      <router-view></router-view>
-    </div>
+    <Navbar />    
+    <router-view></router-view>
   </div>
   
 </template>
@@ -45,11 +43,6 @@ export default {
   a {
     text-decoration: none;
     color: #181818
-  }
-
-  #base-board {
-    z-index: 0;
-    overflow-x: hidden
   }
 
 

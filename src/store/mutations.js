@@ -8,11 +8,10 @@ const mutations = {
     state.results = results
   },
 
-  SET_LISTS(state, lists, pages) {
+  SET_LISTS(state, lists) {
     lists.forEach(list => {
       state.lists.push(list)
     })
-    state.pages = pages
   },
   
   SET_ITEM(state, list) {

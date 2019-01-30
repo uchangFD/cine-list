@@ -24,7 +24,7 @@
       </li>
     </ul>
     
-    <FontAwesome
+    <!-- <FontAwesome
       class="carousel__btn prev-btn"
       icon="angle-left"
       ref="prev"
@@ -35,7 +35,7 @@
       icon="angle-right"
       ref="next"
       @click.prevent="increaseIdx"
-    ></FontAwesome>
+    ></FontAwesome> -->
   </div>
 </template>
 
@@ -59,7 +59,6 @@ export default {
   },
 
   methods: {
-
     increaseIdx: _.debounce(function() {
         if (this.sIdx > this.data.length) this.sIdx = 0; 
         this.sIdx++

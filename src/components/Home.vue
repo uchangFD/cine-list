@@ -3,7 +3,7 @@
     class="main-container"
   >
     <div class="is-fullbleed">
-      <Carousel :data="slides" />
+      <!-- <Carousel :data="slides" /> -->
       <div 
         v-if="isMain" 
         class="movie-list-wrapper"
@@ -37,7 +37,6 @@ export default {
   computed: {
     ...mapState({
       slides: 'slides',
-      history: 'history',
     })
   },
 
@@ -52,7 +51,6 @@ export default {
       this.onSearching(searchText)
     }
   },
-
 
   methods: {
     ...mapActions([
@@ -69,24 +67,22 @@ export default {
   }
 }
 
-
 </script>
 
 <style lang="scss">
 .movie-list-wrapper {
   position: relative;
-  max-width: 960px;
-  margin: 2rem auto;
+  width: calc(100% - 250px);
+  height: 300px;
 }
 
 .main-container {
-  position: relative;
-  min-height: 1000px;
-  background: #e9ecef;
+  position: fixed;
+  width: 100%;
+  margin-left: 250px;
+  min-height: 100%;
   z-index: 0;
-  .is-fullbleed {
-    margin-top: -70px;
-  }
+  background: #292d3e;
 }
 
 </style>
