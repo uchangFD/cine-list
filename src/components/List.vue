@@ -1,6 +1,6 @@
 <template>
-  <div class="movie">
-    <router-link :to="`/movie/${data.id}`">
+  <div class="content">
+    <router-link :to="`/content/${data.id}`">
       <img 
         class="poster-image"
         :src="`https://image.tmdb.org/t/p/w500${data.poster_path}`"  

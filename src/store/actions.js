@@ -35,6 +35,10 @@ const actions = {
 
   RESET_RESULTS({commit}) {
     commit('RESET_STATES')
+  },
+
+  RESET_LISTS({commit}) {
+    commit('RESET_LISTS')
   }
 }
 

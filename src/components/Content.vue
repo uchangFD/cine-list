@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <div class="is-fullbleed">
-      <div class="movie-details">
+      <div class="content-details">
         <pre>{{lists}}</pre>
         <pre>{{casts}}</pre>
       </div>
@@ -10,14 +10,13 @@
 </template>
 
 <script>
-// import Modal from './Modal.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
   props:['data'],
   data() {
     return {
-      mid: 0,
+      cid: 0,
       loading: false
     }
   },
@@ -46,9 +45,9 @@ export default {
       
       this.loading = true
       
-      this.FETCH_ITEM({id: this.$route.params.mid})
+      this.FETCH_ITEM({id: this.$route.params.cid})
         .then(()=>{
-          this.FETCH_CAST({id: this.$route.params.mid})
+          this.FETCH_CAST({id: this.$route.params.cid})
         })
         .finally(_ =>{
           this.loading = false
@@ -60,7 +59,7 @@ export default {
 
 <style lang="scss">
 
-.movie-details {
+.content-details {
   padding-top: 70px;
   pre {
     color: #fff;

@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../components/Home.vue'
 import Login from '../components/Login.vue'
 import Lists from '../components/Lists.vue'
-import Movie from '../components/Movie.vue'
+import Content from '../components/Content.vue'
 import NotFound from '../components/NotFound.vue'
 
 
@@ -25,8 +25,8 @@ const router = new VueRouter({
       }]
     },
     {
-      path: '/movie/:mid',
-      component: Movie
+      path: '/content/:cid',
+      component: Content
     },
 
     {

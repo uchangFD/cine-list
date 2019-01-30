@@ -9,12 +9,14 @@ const mutations = {
   },
 
   SET_LISTS(state, lists, pages) {
-    state.lists = lists
+    lists.forEach(list => {
+      state.lists.push(list)
+    })
     state.pages = pages
   },
   
-  SET_ITEM(state, lists) {
-    state.lists = lists
+  SET_ITEM(state, list) {
+    state.list = list
   },
 
   SET_CAST(state, casts) {
@@ -23,6 +25,10 @@ const mutations = {
 
   RESET_STATES(state) {
     state.results = []
+  },
+
+  RESET_LISTS(state) {
+    state.lists = []
   }
 }
 

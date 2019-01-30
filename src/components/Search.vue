@@ -15,6 +15,7 @@
       />
 
       <div
+        v-show="search.length"
         type="remove"
         class="reset-btn"
         @click.prevent="onClickResetBtn"
@@ -92,7 +93,7 @@ export default {
       function(searchText) {        
         if (this.invalid) return
         this.FETCH_SEARCH({text: searchText})
-      }, 300),
+      }, 500),
 
 
     onSubmit: function() {
@@ -162,15 +163,15 @@ export default {
 }
 
 .search-result-wrapper {
-  max-width: 800px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
 .search-result-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 1em;
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 1.75rem;
 }
 
 .search-result-item {

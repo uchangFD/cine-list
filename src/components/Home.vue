@@ -1,8 +1,9 @@
 <template>
-  <div class="main-container">
+  <div 
+    class="main-container"
+  >
     <div class="is-fullbleed">
       <Carousel :data="slides" />
-      
       <div 
         v-if="isMain" 
         class="movie-list-wrapper"
@@ -20,7 +21,6 @@
 import {mapActions, mapState} from 'vuex'
 import Carousel from './Carousel.vue'
 import Search from './Search.vue'
-import _ from 'lodash'
 
 
 export default {
@@ -30,7 +30,7 @@ export default {
 
   data() {
     return {
-      isMain: true
+      isMain: true,
     }
   },
 
@@ -65,8 +65,7 @@ export default {
         id: 'trending', 
         pages: 1
       })
-    },
-
+    }
   }
 }
 
@@ -76,7 +75,8 @@ export default {
 <style lang="scss">
 .movie-list-wrapper {
   position: relative;
-  width: 100%;
+  max-width: 960px;
+  margin: 2rem auto;
 }
 
 .main-container {

@@ -9,10 +9,12 @@
         class="carousel__items"
         :class="{active: index === sIdx}"
       >
-        <div class="carousel__item__container">
+        <div 
+          class="carousel__item__container"
+        >
           <img 
             class="carousel__backdrop-image"
-            :src="`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`" 
+            :src="`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`"
             :alt="`${item.original_title}`"
           />
           <p class="carousel__title">
@@ -48,7 +50,7 @@ export default {
 
   data() {
     return {
-      sIdx: 0,
+      sIdx: 0
     }
   },
 
@@ -76,11 +78,13 @@ export default {
 <style lang="scss">
 .carousel__container {
   position: relative;
-  padding-top: 44%;
-  background: #191919;;
+  padding-top: 40%;
+  background: #191919;
   height: auto;
   overflow: hidden;
 }
+
+
 .carousel__list {
   position: absolute;
   top: 0;
@@ -92,7 +96,7 @@ export default {
 .carousel__items {
   display: block;
   opacity: 0;
-  transition: all 500ms ease-in-out;
+  transition: all 300ms ease-in-out;
   position: relative;
 }
 
@@ -105,8 +109,6 @@ export default {
 .carousel__backdrop-image {
   width: 100%;
   height: auto;
-  right: 0;
-
 }
 
 .carousel__title {
