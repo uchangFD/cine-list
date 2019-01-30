@@ -89,41 +89,5 @@ export default {
   }
 }
 
-.movie-search-form {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.movie-search-input {
-  border: none;
-  text-indent: 1rem;
-  border-radius: 4px;
-  width: 375px;
-  height: 40px;
-  box-shadow: 1px 2px 4px #dedede
-}
-
-.movie-search-btn {
-  height: 40px;
-  width: 60px;
-  border: none;
-  background: #3e3e3e;
-  color: #fff;
-  font-size: 1rem;
-  border-radius: 4px;
-  box-shadow: 1px 2px 4px #dedede
-}
-
-
-.search-result-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 1em;
-}
-
-.search-result-item {
-  background: #faa;
-}
 </style>
 
