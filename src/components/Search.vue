@@ -24,14 +24,17 @@
     </form>
 
 
-    <div v-if="results.length">
+    <div 
+      class="search-result-wrapper"
+      v-if="results.length"
+    >
       <ul class="search-result-list">
         <li
           v-for="(item, index) in results" 
           :key="index"
           class="search-result-item"
         >
-        {{item.title}}
+          <List :data="item" />
         </li>
       </ul>
     </div>
@@ -45,12 +48,15 @@
 </template>
 
 <script>
+import List from './List'
 import {mapActions, mapState} from 'vuex'
 import _ from 'lodash'
 
 
 export default {
-  
+  components: {
+    List
+  },
   data() {
     return {
       search: ''
@@ -155,6 +161,10 @@ export default {
   }
 }
 
+.search-result-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
 
 .search-result-list {
   display: grid;
