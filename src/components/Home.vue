@@ -1,16 +1,15 @@
 <template>
-  <div 
-    class="main-container"
-  >
+  <div class="main__container">
     <div class="is-fullbleed">
-      <!-- <Carousel :data="slides" /> -->
-      <div 
-        v-if="isMain" 
-        class="movie-list-wrapper"
-      >
-        <Search />
+      <div v-if="isMain">
+        <div class="main__slides">
+          <Slides :data="mains" />
+        </div>
+        <div class="main__slides">
+          <Slides :data="rates" />
+        </div>
       </div>
-      <div v-else class="movie-list-wrapper">
+      <div v-else>
         <router-view></router-view>
       </div>
     </div>
@@ -18,49 +17,52 @@
 </template>
 
 <script>
+import Slides from './Slides.vue'
 import {mapActions, mapState} from 'vuex'
-import Carousel from './Carousel.vue'
-import Search from './Search.vue'
 
 
 export default {
   components:{
-    Carousel, Search
+    Slides
   },
 
   data() {
     return {
-      isMain: true,
+      isMain: true
     }
   },
 
   computed: {
     ...mapState({
-      slides: 'slides',
+      mains: 'mains',
+      rates: 'rates',
     })
   },
 
-  watch: {
-    '$route': {
-      handler :'fetchData',
-      immediate: true
+   watch: {
+      '$route': {
+        handler :'fetches',
+        immediate: true
+      }
     },
 
-    search: function(searchText) {
-      this.searched = searchText
-      this.onSearching(searchText)
-    }
+
+  created() {
+    this.isMain = window.location.pathname === '/'
   },
 
   methods: {
     ...mapActions([
-      'FETCH_SLIDES'
+      'FETCH_MAIN',
+      'FETCH_RATED'
     ]),
-
-    fetchData: function() {
-      this.isMain = window.location.pathname === '/'
-      this.FETCH_SLIDES({
+    fetches: function() {
+      this.FETCH_MAIN({
         id: 'trending', 
+        pages: 1
+      })
+      this.FETCH_RATED({
+        id: 'topRated', 
         pages: 1
       })
     }
@@ -69,20 +71,22 @@ export default {
 
 </script>
 
-<style lang="scss">
-.movie-list-wrapper {
-  position: relative;
-  width: calc(100% - 250px);
-  height: 300px;
-}
 
-.main-container {
+<style lang="scss">
+
+.main__container {
   position: fixed;
   width: 100%;
   margin-left: 250px;
   min-height: 100%;
   z-index: 0;
   background: #292d3e;
+}
+
+.main__slides {
+  margin-top: 100px;
+  position: relative;
+  width: calc(100% - 250px);
 }
 
 </style>

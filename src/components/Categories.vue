@@ -1,5 +1,6 @@
 <template>
-  <div class="movie-wrapper">
+  <div></div>
+  <!-- <div class="movie-wrapper">
     <div class="movies-container">
       <ul
         class="movie-lists">
@@ -26,7 +27,7 @@
         ref="next"
         @click.prevent="increaseIdx"
       ></FontAwesome>
-  </div>
+  </div> -->
 </template>
 
 <script>

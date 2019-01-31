@@ -1,5 +1,6 @@
 const state = {
-  slides: [],
+  mains: [],
+  rates: [],
   lists: [],
   list: [],
   casts: [],

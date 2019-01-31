@@ -24,7 +24,7 @@
       </div>
     </form>
 
-
+<!-- 
     <div 
       class="search-result-wrapper"
       v-if="results.length"
@@ -42,7 +42,7 @@
 
     <div v-else>
       <p>NOTHING TO BE SHOWN</p>
-    </div>
+    </div> -->
 
 
   </section>
@@ -122,31 +122,35 @@ export default {
 </script>
 
 <style lang="scss">
+.search {
+  display: inline-block;
+  width: 200px;
+  margin: 0;
+}
 
 .movie-search-form {
   position: relative;
-  width: 350px;
-  margin: 2rem auto;
   text-align: center;
+  width: 200px;
 }
 
 .movie-search-input {
   box-sizing: border-box;
-  margin: 15px 0 15px 0;
-  padding: 10px 15px;
-  text-indent: .4rem;
-  border-radius: 4px;
-  width: 300px;
-  border: 1px solid #cccccc;
-  box-shadow: 1px 2px 4px #dedede;
+  padding: 5px 0;
+  width: 200px;
   line-height: 1.5;
+  background: transparent;
+  border-bottom: 1.25px solid #fff;
+  box-shadow: none;
+  outline: 0;
+  color: #fff;
 }
 
 
 .reset-btn {
   position: absolute;
-  top: 27px;
-  right: 2.5rem;
+  top: 22px;
+  right: 3.5rem;
   height: 22px;
   width: 22px;
   line-height: 22px;

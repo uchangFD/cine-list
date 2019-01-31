@@ -24,9 +24,6 @@
       <input type="text" class="search-input" title="Search" placeholder="영화를 검색하세요">
       <button class="search-btn">검색</button>
     </div> -->
-    <div class="nav__login">
-      <router-link class="nav__login-btn" to="/login">Login</router-link>
-    </div>
   </div>
 </template>
 
@@ -69,7 +66,6 @@ export default {
 
   .nav__logo, .nav__login {
     padding: 20px 30px;
-    background-color: rgba(0, 0, 0, 0.2);
   }
 
   .nav__logo {
