@@ -56,7 +56,7 @@ export default {
 
     increaseIdx:_.debounce(function() {
       setTimeout(() => {  
-        // this.mains.push(this.mains.shift())
+        this.data.push(this.data.shift())
         document.querySelector('.slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.slide__lists').classList.remove('transition')
         }, 300)
@@ -64,7 +64,7 @@ export default {
 
     decreaseIdx: _.debounce(function() {
       setTimeout(() => {
-        // this.mains.unshift(this.mains.pop())
+        this.data.unshift(this.data.pop())
         document.querySelector('.slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.slide__lists').classList.remove('transition')
         }, 300)

@@ -3,10 +3,10 @@
     <div class="is-fullbleed">
       <div v-if="isMain">
         <div class="main__slides">
-          <Slides :data="mains" />
+          <MainSlide :data="mains" />
         </div>
         <div class="main__slides">
-          <Slides :data="rates" />
+          <SubSlide :data="rates" />
         </div>
       </div>
       <div v-else>
@@ -17,13 +17,14 @@
 </template>
 
 <script>
-import Slides from './Slides.vue'
+import MainSlide from './MainSlide.vue'
+import SubSlide from './SubSlide.vue'
 import {mapActions, mapState} from 'vuex'
 
 
 export default {
   components:{
-    Slides
+    MainSlide, SubSlide
   },
 
   data() {
