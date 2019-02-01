@@ -18,11 +18,11 @@ const router = new VueRouter({
   mode: 'history',
   routes: [{
       path: '/',
-      component: Home,
-      children: [{
-        path: 'categories/:categoriesId',
-        component: Categories
-      }]
+      component: Home
+    },
+    {
+      path: '/categories/:categoriesId',
+      component: Categories
     },
     {
       path: '/content/:cid',

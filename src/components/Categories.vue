@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>asdfasfas</div>
   <!-- <div class="movie-wrapper">
     <div class="movies-container">
       <ul

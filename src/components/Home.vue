@@ -1,16 +1,11 @@
 <template>
   <div class="main__container">
     <div class="is-fullbleed">
-      <div v-if="isMain">
-        <div class="main__slides">
-          <MainSlide :data="mains" />
-        </div>
-        <div class="main__slides">
-          <SubSlide :data="rates" />
-        </div>
+      <div class="slides">
+        <MainSlide :data="mains" />
       </div>
-      <div v-else>
-        <router-view></router-view>
+      <div class="slides">
+        <SubSlide :data="rates" />
       </div>
     </div>
   </div>
@@ -47,11 +42,6 @@ export default {
       }
     },
 
-
-  created() {
-    this.isMain = window.location.pathname === '/'
-  },
-
   methods: {
     ...mapActions([
       'FETCH_MAIN',
@@ -84,7 +74,7 @@ export default {
   background: #292d3e;
 }
 
-.main__slides {
+.slides, .slides {
   margin-top: 100px;
   position: relative;
   width: calc(100% - 250px);

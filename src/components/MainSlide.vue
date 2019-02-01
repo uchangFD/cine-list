@@ -1,11 +1,11 @@
 <template>
-  <section class="slides">
-    <div class="slides-container">
-      <h2 class="slides-container__title">Hot Movies Now</h2>
-      <div class="slide__lists__wrapper">
-        <ul class="slide__lists">
+  <section class="main-slides">
+    <div class="main-main-slides__container">
+      <h2 class="main-main-slides__container__title">Hot Movies Now</h2>
+      <div class="main-slide__lists__wrapper">
+        <ul class="main-slide__lists">
           <li
-            class="slide__item"
+            class="main-slide__item"
             v-for="(list, index) in data"
             :key="index"
             ref="slides"
@@ -16,13 +16,13 @@
       </div>
     </div>
     <FontAwesome
-       class="slides__navigation-btn slides__prev-btn"
+       class="main-slides__navigation-btn main-slides__prev-btn"
        icon="angle-left"
        ref="prev"
        @click.prevent="onClickPrevBtn(1)"
      ></FontAwesome>
      <FontAwesome
-       class="slides__navigation-btn slides__next-btn"
+       class="main-slides__navigation-btn main-slides__next-btn"
        icon="angle-right"
        ref="next"
        @click.prevent="onClickNextBtn(-1)"
@@ -43,30 +43,30 @@ export default {
 
   methods: {
     onClickNextBtn: function(direction) {
-      document.querySelector('.slide__lists').classList.add('transition')
-      document.querySelector('.slide__lists').style.transform = `translateX(${direction * 170}px)`
+      document.querySelector('.main-slide__lists').classList.add('transition')
+      document.querySelector('.main-slide__lists').style.transform = `translateX(${direction * 170}px)`
       this.increaseIdx()
     },
   
     onClickPrevBtn: function(direction) {
-      document.querySelector('.slide__lists').classList.add('transition')
-      document.querySelector('.slide__lists').style.transform = `translateX(${direction * 170}px)`
+      document.querySelector('.main-slide__lists').classList.add('transition')
+      document.querySelector('.main-slide__lists').style.transform = `translateX(${direction * 170}px)`
       this.decreaseIdx()
     },
 
     increaseIdx:_.debounce(function() {
       setTimeout(() => {  
         this.data.push(this.data.shift())
-        document.querySelector('.slide__lists').style.transform = `translateX(0px)`
-        document.querySelector('.slide__lists').classList.remove('transition')
+        document.querySelector('.main-slide__lists').style.transform = `translateX(0px)`
+        document.querySelector('.main-slide__lists').classList.remove('transition')
         }, 300)
       }, 500),
 
     decreaseIdx: _.debounce(function() {
       setTimeout(() => {
         this.data.unshift(this.data.pop())
-        document.querySelector('.slide__lists').style.transform = `translateX(0px)`
-        document.querySelector('.slide__lists').classList.remove('transition')
+        document.querySelector('.main-slide__lists').style.transform = `translateX(0px)`
+        document.querySelector('.main-slide__lists').classList.remove('transition')
         }, 300)
       }, 500)
   }
@@ -76,16 +76,16 @@ export default {
 </script>
 
 <style lang="scss">
-.slides {
+.main-slides {
   position: relative;
   overflow: hidden;
   margin-right: auto;
-  width: 1190px;
-  .slides-container {
+  width: 100%;
+  .main-main-slides__container {
     margin-left: 80px;
     margin-right: 80px;
     overflow: hidden;
-    .slides-container__title {
+    .main-main-slides__container__title {
       color: #fff;
       font-size: 1.35rem;
       font-weight: 700;
@@ -93,20 +93,20 @@ export default {
       padding-left: 10px;
       margin-bottom: .4rem;
     }
-    .slide__lists__wrapper{
+    .main-slide__lists__wrapper{
       width: 100%;
       overflow: hidden;
     }
-    .slide__lists {
+    .main-slide__lists {
       width: 10000%;
       position: relative;
       left: -340px;
-      .slide__item {
+      .main-slide__item {
         display: inline-block;
       }
     }
   }
-  .slides__navigation-btn {
+  .main-slides__navigation-btn {
     position: absolute;
     top: 137px;
     font-size: 4rem;
@@ -121,10 +121,10 @@ export default {
       opacity: 1;
       color: #e2e4df;
     }
-    &.slides__prev-btn {
+    &.main-slides__prev-btn {
       left: 3rem;
     }
-    &.slides__next-btn {
+    &.main-slides__next-btn {
       right: 3rem;
     }
   }
