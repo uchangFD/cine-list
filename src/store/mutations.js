@@ -4,7 +4,6 @@ const mutations = {
     state.mains = mains
   },
 
-
   SET_RATED(state, rates) {
     state.rates = rates
   },
@@ -13,13 +12,11 @@ const mutations = {
     state.results = results
   },
 
-
   SET_LISTS(state, lists) {
     lists.forEach(list => {
       state.lists.push(list)
     })
   },
-  
   
   SET_ITEM(state, list) {
     state.list = list
@@ -29,10 +26,15 @@ const mutations = {
     state.casts = casts
   },
 
+
+  SET_BROWSER(state, browser) {
+    state.browser = browser
+  },
+
   RESET_STATES(state) {
     state.results = []
   },
-
+  
   RESET_LISTS(state) {
     state.lists = []
   }

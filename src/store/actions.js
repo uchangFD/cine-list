@@ -1,14 +1,12 @@
 import * as api from '../api'
 
 const actions = {
-
-  FETCH_MAIN({ commit }, {id, pages}) {    
-    return api.main.fetch(id, pages)
+  FETCH_MAIN({ commit }, {id}) {    
+    return api.main.fetch(id)
       .then(data => {
         commit('SET_MAIN', data.results)
       })
   },
-
 
   FETCH_RATED({ commit }, {id, pages}) {    
     return api.main.fetch(id, pages)
@@ -16,7 +14,6 @@ const actions = {
         commit('SET_RATED', data.results)
       })
   },
-
 
   FETCH_LISTS({ commit }, {id, pages}) {    
     return api.main.fetch(id, pages)
@@ -43,6 +40,13 @@ const actions = {
     })
   },
 
+
+  FETCH_BROWSER({commit}, {item}) {
+    return api.browser.fetch(item).then(data => {
+      commit('SET_BROWSER', data.results)
+    })
+  },
+
   RESET_RESULTS({commit}) {
     commit('RESET_STATES')
   },
@@ -50,6 +54,9 @@ const actions = {
   RESET_LISTS({commit}) {
     commit('RESET_LISTS')
   }
+
+
+
 }
 
 export default actions

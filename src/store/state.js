@@ -5,6 +5,7 @@ const state = {
   list: [],
   casts: [],
   results: [],
+  browser: [],
   pages: 0
 }
 

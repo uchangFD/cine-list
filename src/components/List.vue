@@ -7,7 +7,7 @@
         :src="`https://image.tmdb.org/t/p/w500${data.poster_path}`"  
         :alt="`${data.original_title}`"
       >
-      <p class="content__title">{{data.title}}</p>
+      <p class="content__title">{{data.title ? data.title : '제목 없음'}}</p>
     </router-link>
   </div>
 </div>
@@ -19,16 +19,24 @@ export default {
   props:[
     'data'
   ],
+  data() {
+    return {
+    }
+  }
 
 }
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/variables.scss";
+
 .content {
   width: 150px;
+  opacity: 0.8;
   padding: 10px;
   &:hover {
-    background: #3e4251;
+    background: $primary-shadow-color;
+    opacity: 1;
     border-radius: 2px;
   }
   .content__poster-image {

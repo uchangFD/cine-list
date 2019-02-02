@@ -45,8 +45,7 @@ export default {
     ]),
     fetches: function() {
       this.FETCH_MAIN({
-        id: 'trending', 
-        pages: 1
+        id: 'trending',
       })
       this.FETCH_RATED({
         id: 'topRated', 
