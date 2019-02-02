@@ -1,6 +1,15 @@
 <template>
   <div class="categories__container">
-    <div class="movie-wrapper">
+    <ul
+    v-for="(item, index) in categories" :key="index"
+    class="categories__movie-list">
+      <li class="categories__movie-item">
+        <!-- <pre wrap class="categories__test">{{item.title}}</pre> -->
+        <List :data="item" />
+        <hr>
+      </li>
+    </ul>
+    <!-- <div class="movie-wrapper">
       <div class="movies-container">
         <ul
           class="movie-lists">
@@ -15,7 +24,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -31,89 +40,83 @@ export default {
 
   data() {
     return {
-      page: 1,
-      sIdx: 0,
-      genres: null
     }
   },
 
   created () {
-    window.addEventListener('scroll', this.handleScroll);
-    this.genres = this.$route.params.categoriesId
-
+    // window.addEventListener('scroll', this.handleScroll);
   },
 
   destroyed () {
-    window.removeEventListener('scroll', this.handleScroll);
+    // window.removeEventListener('scroll', this.handleScroll);
   },
 
 
   computed: {
     ...mapState({
-      slides: 'slides',
-      lists: 'lists'
+      genres: 'genres',
+      categories: 'categories'
     })
   },
 
   watch: {
     '$route': {
-      handler :'fetchData',
+      handler :'fetch',
       immediate: true,
     }
   },
 
   updated() {
-    if ( this.genres !== this.$route.params.categoriesId ) {
-      this.onResetLists()
-    }
   },
   
   methods: {
     ...mapActions([
-      'FETCH_LISTS',
-      'RESET_LISTS'
+      'FETCH_CATEGORIES'
     ]),
 
-    fetchData: function() {
-      this.loading = true
-      this.FETCH_LISTS({
-        id: this.$route.params.categoriesId, 
-      }).finally(_ =>{
-        this.loading = false
+    fetch: function() {
+      this.genres.forEach(obj => {
+        if(obj.name.toLowerCase() === this.$route.params.categoriesId) {
+          this.FETCH_CATEGORIES({id: obj.id})
+        }
       })
     },
 
-    handleScroll: _.throttle(
-      function() {
-        this.scrolled = (window.innerHeight + window.scrollY) >= document.body.offsetHeight
-        if ( this.scrolled ) {
-          this.page++
-          this.fetchData()
-        }
-      }, 300
-    ),
+    // handleScroll: _.throttle(
+    //   function() {
+    //     this.scrolled = (window.innerHeight + window.scrollY) >= document.body.offsetHeight
+    //     if ( this.scrolled ) {
+    //       this.page++
+    //       this.fetch()
+    //     }
+    //   }, 300
+    // ),
 
-    onResetLists: function() {
-      this.RESET_LISTS()
-      this.genres = this.$route.params.categoriesId
-      this.page = 1
-      this.fetchData()
-    },
+    // onResetLists: function() {
+    //   this.RESET_LISTS()
+    //   this.pageName = this.$route.params.categoriesId
+    //   this.fetch()
+    // },
 
-    increaseIdx: _.debounce(function() {
-        if (this.sIdx > this.slides.length) this.sIdx = 0; 
-        this.sIdx++
-      }, 300),
+    // increaseIdx: _.debounce(function() {
+    //     if (this.sIdx > this.slides.length) this.sIdx = 0; 
+    //     this.sIdx++
+    //   }, 300),
 
-    decreaseIdx: _.debounce(function() {
-      if (this.sIdx <= 0) this.sIdx = this.slides.length
-        this.sIdx--
-      }, 300)
+    // decreaseIdx: _.debounce(function() {
+    //   if (this.sIdx <= 0) this.sIdx = this.slides.length
+    //     this.sIdx--
+    //   }, 300)
   }
 }
 </script>
 
 <style lang="scss">
+@import "../assets/styles/variables.scss";
+
+.categories__test {
+  color: #fff;
+}
 
 .categories__container {
   position: fixed;
@@ -121,7 +124,7 @@ export default {
   margin-left: 250px;
   min-height: 100%;
   z-index: 0;
-  background: #292d3e;
+  background: $primary-color;
 }
 
 

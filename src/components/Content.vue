@@ -16,7 +16,7 @@ export default {
   props:['data'],
   data() {
     return {
-      cid: 0,
+      contentId: 0,
       loading: false
     }
   },
@@ -45,9 +45,9 @@ export default {
       
       this.loading = true
       
-      this.FETCH_ITEM({id: this.$route.params.cid})
+      this.FETCH_ITEM({id: this.$route.params.contentId})
         .then(()=>{
-          this.FETCH_CAST({id: this.$route.params.cid})
+          this.FETCH_CAST({id: this.$route.params.contentId})
         })
         .finally(_ =>{
           this.loading = false

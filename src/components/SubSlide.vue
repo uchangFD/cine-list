@@ -2,7 +2,7 @@
   <section class="slides">
     <div class="sub-slides">
       <div class="sub-slides-container">
-        <h2 class="sub-slides-container__title">Top Rated Movies</h2>
+        <h2 class="sub-slides-container__title">Upcoming Movies</h2>
         <div class="sub-slide__lists__wrapper">
           <ul class="sub-slide__lists">
             <li

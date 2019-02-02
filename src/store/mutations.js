@@ -4,8 +4,8 @@ const mutations = {
     state.mains = mains
   },
 
-  SET_RATED(state, rates) {
-    state.rates = rates
+  SET_UPCOMING(state, upcoming) {
+    state.upcoming = upcoming
   },
 
   SET_SEARCH(state, results) {
@@ -26,9 +26,16 @@ const mutations = {
     state.casts = casts
   },
 
-
   SET_BROWSER(state, browser) {
     state.browser = browser
+  },
+
+  SET_GENRES(state, genres) {
+    state.genres = genres
+  },
+
+  SET_CATEGORIES(state, categories) {
+    state.categories = categories
   },
 
   RESET_STATES(state) {
@@ -36,7 +43,7 @@ const mutations = {
   },
   
   RESET_LISTS(state) {
-    state.lists = []
+    state.categories = []
   }
 }
 

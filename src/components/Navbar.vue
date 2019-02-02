@@ -22,10 +22,9 @@
         </li>
         <li class="navbar__browser__item">
           <router-link 
-            to="/browser/scifi"
+            to="/browser/"
             class="browser__item__link"
           >
-            Sci
           </router-link>
         </li>
       </ul>
@@ -33,15 +32,14 @@
 
     <div class="navbar__categories">
       <h2 class="navbar__categories__title">CATEGORIES</h2>
-      <ul class="navbar__categories__list">
+      <ul v-for="(item, index) in genres" :key="index" class="navbar__categories__list">
         <li class="navbar__categories__item">
-          <router-link class="categories__item__link" to="/categories/trending">Trend</router-link>
-        </li>
-        <li class="navbar__categories__item">
-          <router-link class="categories__item__link" to="/categories/scifi">Sci</router-link>
-        </li>
-        <li class="navbar__categories__item">
-          <router-link class="categories__item__link" to="/categories/upcoming">upcoming</router-link>
+          <router-link 
+            class="categories__item__link" 
+            :to="`/categories/${item.name.toLowerCase()}`"
+          >
+            {{item.name}}
+          </router-link>
         </li>
       </ul>
     </div>
@@ -50,22 +48,42 @@
 
 <script>
 
+import {mapActions, mapState} from 'vuex'
 
-export default {
-  name: 'TabRouter',
-
+export default {  
   data() {
     return {
-      isMouseOn: false
+
     }
   },
 
   created() {
   },
 
+  computed: {
+    ...mapState({
+      genres: 'genres'
+    })
+  },
+
+
   watch: {
-    isMouseOn: data => data
-  }
+    '$route': {
+      handler :'fetch',
+      immediate: true,
+    }
+  },
+
+  methods: {
+    ...mapActions([
+      'FETCH_GENRES'
+    ]),
+
+    fetch: function() {
+      this.FETCH_GENRES()
+    }  
+  },
+
 }
 </script>
 
@@ -79,9 +97,10 @@ export default {
   margin: 0;
   padding: 0;
   z-index: 1;
-  overflow: auto;
+  overflow-y:unset;
   background: $secondary-color;
   opacity: 0.98;
+
 
   .navbar__logo {
     background: $secondary-color;
@@ -130,11 +149,11 @@ export default {
       letter-spacing: 0.2rem;
       color: #666;
       font-size: 0.8rem;
+      padding-bottom: 0.6rem;
     }
     .navbar__categories__list {
-      margin-top: 0.4rem;
       .navbar__categories__item {
-        margin-top: 0.6rem;
+        padding-top: 1rem;
         .categories__item__link {
           font-size: .85rem;
           letter-spacing: 0.1rem;

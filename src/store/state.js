@@ -1,11 +1,13 @@
 const state = {
   mains: [],
-  rates: [],
+  upcoming: [],
   lists: [],
   list: [],
   casts: [],
   results: [],
   browser: [],
+  genres: [],
+  categories: [],
   pages: 0
 }
 

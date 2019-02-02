@@ -2,7 +2,7 @@
   <div class="home__container">
     <div class="is-fullbleed">
       <MainSlide :data="mains" />
-      <SubSlide :data="rates" />
+      <SubSlide :data="upcoming" />
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
   computed: {
     ...mapState({
       mains: 'mains',
-      rates: 'rates',
+      upcoming: 'upcoming',
     })
   },
 
@@ -40,16 +40,16 @@ export default {
 
   methods: {
     ...mapActions([
-      'FETCH_MAIN',
-      'FETCH_RATED'
+      'FETCH_MAIN'
     ]),
     fetches: function() {
       this.FETCH_MAIN({
         id: 'trending',
+        options: 'SET_MAIN'
       })
-      this.FETCH_RATED({
-        id: 'topRated', 
-        pages: 1
+      this.FETCH_MAIN({
+        id: 'upcoming',
+        options: 'SET_UPCOMING'
       })
     }
   }

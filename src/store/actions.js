@@ -1,17 +1,10 @@
 import * as api from '../api'
 
 const actions = {
-  FETCH_MAIN({ commit }, {id}) {    
+  FETCH_MAIN({ commit }, {id, options}) {    
     return api.main.fetch(id)
       .then(data => {
-        commit('SET_MAIN', data.results)
-      })
-  },
-
-  FETCH_RATED({ commit }, {id, pages}) {    
-    return api.main.fetch(id, pages)
-      .then(data => {
-        commit('SET_RATED', data.results)
+        commit(options, data.results)
       })
   },
 
@@ -34,8 +27,9 @@ const actions = {
     })
   },
 
+
   FETCH_SEARCH({commit}, {text}) {
-    return api.main.fetchSearch(text).then(data => {
+    return api.search.fetch(text).then(data => {
       commit('SET_SEARCH', data.results)
     })
   },
@@ -47,9 +41,25 @@ const actions = {
     })
   },
 
+
+  FETCH_GENRES({commit}) {
+    return api.genre.fetch().then(data => {
+      commit('SET_GENRES', data.genres)
+    })
+  },
+
+
+  FETCH_CATEGORIES({commit}, {id}) {
+    return api.categories.fetch(id).then(data => {
+      commit('SET_CATEGORIES', data.results)
+    })
+  },
+
+
   RESET_RESULTS({commit}) {
     commit('RESET_STATES')
   },
+
 
   RESET_LISTS({commit}) {
     commit('RESET_LISTS')
