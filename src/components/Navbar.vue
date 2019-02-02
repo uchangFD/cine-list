@@ -32,8 +32,11 @@
 
     <div class="navbar__categories">
       <h2 class="navbar__categories__title">CATEGORIES</h2>
-      <ul v-for="(item, index) in genres" :key="index" class="navbar__categories__list">
-        <li class="navbar__categories__item">
+      <ul class="navbar__categories__list">
+        <li
+          v-for="(item, index) in genres" :key="index" 
+          class="navbar__categories__item"
+        >
           <router-link 
             class="categories__item__link" 
             :to="`/categories/${item.name.toLowerCase()}`"
@@ -144,16 +147,21 @@ export default {
   .navbar__categories {
     justify-content: space-around;
     margin: 2.5rem auto;
-    padding-left: 2rem;
     .navbar__categories__title {
       letter-spacing: 0.2rem;
       color: #666;
       font-size: 0.8rem;
       padding-bottom: 0.6rem;
+      padding-left: 2rem;
     }
     .navbar__categories__list {
       .navbar__categories__item {
         padding-top: 1rem;
+        padding-left: 2rem;
+        opacity: 0.6;
+        &:hover {
+          opacity: 1;
+        }
         .categories__item__link {
           font-size: .85rem;
           letter-spacing: 0.1rem;

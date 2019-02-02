@@ -1,29 +1,26 @@
 <template>
   <div class="categories__container">
-    <ul
-    v-for="(item, index) in categories" :key="index"
-    class="categories__movie-list">
-      <li class="categories__movie-item">
-        <!-- <pre wrap class="categories__test">{{item.title}}</pre> -->
-        <List :data="item" />
-      </li>
-    </ul>
-    <!-- <div class="movie-wrapper">
-      <div class="movies-container">
-        <ul
-          class="movie-lists">
-          <li
-            class="movie-item"
-            v-for="(list, index) in lists"
-            :key="index"
-            ref="slides"
-            :class="{active: index === sIdx}"
-          >
-            <List :data="list"/>
-          </li>
-        </ul>
+    <div class="categories__movie-wrapper">
+      <h2 class="categories__movie-title">{{title}}</h2>
+      <div class="categories__movie-list">
+        <router-link 
+          :to="`/content/${item.id}`"
+          v-for="(item, index) in categories" 
+          :key="index"
+          class="categories__movie-item"
+        >
+          <div>
+            <img 
+              class="categories__content__poster-image"
+              :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"  
+              :alt="`${item.original_title}`"
+            >
+            <h3 class="categories__content__title">{{item.title ? item.title : '제목 없음'}}</h3>
+            <span class="categories__content__rate">{{item.vote_average}}</span>
+          </div>
+        </router-link>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -39,6 +36,7 @@ export default {
 
   data() {
     return {
+      title: ''
     }
   },
 
@@ -77,6 +75,7 @@ export default {
       this.genres.forEach(obj => {
         if(obj.name.toLowerCase() === this.$route.params.categoriesId) {
           this.FETCH_CATEGORIES({id: obj.id})
+          this.title = obj.name
         }
       })
     },
@@ -110,7 +109,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
 
 .categories__test {
@@ -120,49 +119,55 @@ export default {
 .categories__container {
   margin-left: 250px;
   background: $primary-color;
-}
-
-
-.movie-wrapper {
-  position: relative;
-  overflow: hidden;
-  margin-top: 100px;
-}
-
-.movies-container {
-  margin-left: 100px;
-  margin-right: 100px;
-  overflow: hidden;
-}
-
-.movie-lists {
-  width: 10000px;
-}
-
-.movie-item {
-  display: inline-block;
-}
-
-
-
-.carousel__btn {
-  position: absolute;
-  top: 80px;
-  font-size: 4rem;
-  opacity: 0.5;
-  color: #e2e4df;
-  cursor: pointer;
-  height: 100px;
-  transition: 0.3s;
-  &:hover {
-    opacity: 1;
-    color: #e2e4df;
+  padding-top: 30px;
+  .categories__movie-wrapper {
+    width: 90%;
+    margin-right: auto;
+    position: relative;
+    margin-left: 80px;
+    .categories__movie-title {
+      color: #fff;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      padding-left: 10px;
+      margin-bottom: .4rem;
+      margin-left: .5rem;
+    }
   }
-  &.prev-btn {
-    left: 0;
-  }
-  &.next-btn {
-    right: 0;
+}
+
+.categories__movie-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  .categories__movie-item {
+    margin-bottom: 2rem;
+    opacity: 0.8;
+    padding: 1rem;
+    margin: 0 2rem 2rem 0;
+    &:hover {
+      background: $primary-shadow-color;
+      opacity: 1;
+      border-radius: 2px;
+    }
+    .categories__content__poster-image {
+      float: left;
+      object-fit: cover;
+      width: 150px;
+      height: 225px;
+      border-radius: 2px;
+      margin-right: 1rem;
+    }
+    .categories__content__title {
+      color: #fff;
+      font-size: 1.2rem;
+      letter-spacing: 1.2px;
+    }
+    .categories__content__rate {
+      color: #fff;
+      float: left;
+      display: block;
+    }
   }
 }
 

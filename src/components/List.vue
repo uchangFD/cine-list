@@ -1,5 +1,4 @@
 <template>
-<div>
   <div class="content">
     <router-link :to="`/content/${data.id}`">
       <img 
@@ -10,7 +9,6 @@
       <p class="content__title">{{data.title ? data.title : '제목 없음'}}</p>
     </router-link>
   </div>
-</div>
 </template>
 
 <script>
