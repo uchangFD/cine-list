@@ -16,7 +16,8 @@
               :alt="`${item.original_title}`"
             >
             <h3 class="categories__content__title">{{item.title ? item.title : '제목 없음'}}</h3>
-            <span class="categories__content__rate">{{item.vote_average}}</span>
+            <p class="categories__content__rate">{{item.vote_average}} / 10</p>
+            <p class="categories__content__synopsis">{{item.overview}}</p>
           </div>
         </router-link>
       </div>
@@ -165,8 +166,15 @@ export default {
     }
     .categories__content__rate {
       color: #fff;
-      float: left;
-      display: block;
+      letter-spacing: 1.2px;
+    }
+    .categories__content__synopsis {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      font-weight: 300;
+      line-height: 1.4;
+      color: #fff;
     }
   }
 }
