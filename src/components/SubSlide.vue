@@ -1,32 +1,34 @@
 <template>
-  <section class="sub-slides">
-    <div class="sub-slides-container">
-      <h2 class="sub-slides-container__title">Top Rated Movies</h2>
-      <div class="sub-slide__lists__wrapper">
-        <ul class="sub-slide__lists">
-          <li
-            class="slide__item"
-            v-for="(list, index) in data"
-            :key="index"
-            ref="slides"
-          >
-            <List :data="list"/>
-          </li>
-        </ul>
+  <section class="slides">
+    <div class="sub-slides">
+      <div class="sub-slides-container">
+        <h2 class="sub-slides-container__title">Top Rated Movies</h2>
+        <div class="sub-slide__lists__wrapper">
+          <ul class="sub-slide__lists">
+            <li
+              class="slide__item"
+              v-for="(list, index) in data"
+              :key="index"
+              ref="slides"
+            >
+              <List :data="list"/>
+            </li>
+          </ul>
+        </div>
       </div>
+      <FontAwesome
+         class="sub-slides__navigation-btn slides__prev-btn"
+         icon="angle-left"
+         ref="prev"
+         @click.prevent="onClickPrevBtn(1)"
+       ></FontAwesome>
+       <FontAwesome
+         class="sub-slides__navigation-btn slides__next-btn"
+         icon="angle-right"
+         ref="next"
+         @click.prevent="onClickNextBtn(-1)"
+       ></FontAwesome>
     </div>
-    <FontAwesome
-       class="sub-slides__navigation-btn slides__prev-btn"
-       icon="angle-left"
-       ref="prev"
-       @click.prevent="onClickPrevBtn(1)"
-     ></FontAwesome>
-     <FontAwesome
-       class="sub-slides__navigation-btn slides__next-btn"
-       icon="angle-right"
-       ref="next"
-       @click.prevent="onClickNextBtn(-1)"
-     ></FontAwesome>
   </section>
 </template>
 
@@ -75,57 +77,64 @@ export default {
 
 </script>
 
-<style lang="scss">
-.sub-slides {
+<style lang="scss" scoped>
+.slides {
+  padding-top: 30px;
+  padding-bottom: 30px;
   position: relative;
-  overflow: hidden;
-  margin-right: auto;
-  width: 100%;
-  .sub-slides-container {
-    margin-left: 80px;
-    margin-right: 80px;
+  width: calc(100% - 250px);
+  .sub-slides {
+    position: relative;
     overflow: hidden;
-    .sub-slides-container__title {
-      color: #fff;
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: .5px;
-      padding-left: 10px;
-      margin-bottom: .4rem;
-    }
-    .sub-slide__lists__wrapper{
-      width: 100%;
+    margin-right: auto;
+    width: 90%;
+    .sub-slides-container {
+      margin-left: 80px;
+      margin-right: 80px;
       overflow: hidden;
-    }
-    .sub-slide__lists {
-      width: 10000%;
-      position: relative;
-      left: -340px;
-      .slide__item {
-        display: inline-block;
+      .sub-slides-container__title {
+        color: #fff;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: .5px;
+        padding-left: 10px;
+        margin-bottom: .4rem;
+      }
+      .sub-slide__lists__wrapper{
+        width: 100%;
+        overflow: hidden;
+      }
+      .sub-slide__lists {
+        width: 10000%;
+        position: relative;
+        left: -340px;
+        .slide__item {
+          display: inline-block;
+        }
       }
     }
-  }
-  .sub-slides__navigation-btn {
-    position: absolute;
-    top: 137px;
-    font-size: 4rem;
-    opacity: 0.5;
-    color: #e2e4df;
-    cursor: pointer;
-    height: 44px;
-    width: 44px;
-    background: #000;
-    transition: 0.3s;
-    &:hover {
-      opacity: 1;
+    .sub-slides__navigation-btn {
+      position: absolute;
+      top: 137px;
+      font-size: 4rem;
+      opacity: 0.5;
       color: #e2e4df;
-    }
-    &.slides__prev-btn {
-      left: 3rem;
-    }
-    &.slides__next-btn {
-      right: 3rem;
+      cursor: pointer;
+      height: 44px;
+      width: 44px;
+      background: #000;
+      transition: 0.3s;
+      border-radius: 4px;
+      &:hover {
+        opacity: 1;
+        color: #e2e4df;
+      }
+      &.slides__prev-btn {
+        left: 3rem;
+      }
+      &.slides__next-btn {
+        right: 3rem;
+      }
     }
   }
 }

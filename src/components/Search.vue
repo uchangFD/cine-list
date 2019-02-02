@@ -149,20 +149,20 @@ export default {
 
 .reset-btn {
   position: absolute;
-  top: 22px;
-  right: 3.5rem;
-  height: 22px;
-  width: 22px;
-  line-height: 22px;
+  top: 26px;
+  right: 1.2%;
+  height: 18px;
+  width: 18px;
+  line-height: 18px;
   border-radius: 50%;
   background-color: #ccc;
   color: white;
-  font-size: 1.25rem;
+  font-size: 1rem;
   border: none;
   span {
     position: absolute;
-    top: -1px;
-    right: 5px;
+    top: -1.5px;
+    right: 4px;
   }
 }
 

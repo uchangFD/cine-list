@@ -5,6 +5,7 @@ import Home from '../components/Home.vue'
 import Login from '../components/Login.vue'
 import Categories from '../components/Categories.vue'
 import Content from '../components/Content.vue'
+import Browser from '../components/Browser.vue'
 import NotFound from '../components/NotFound.vue'
 
 
@@ -28,7 +29,10 @@ const router = new VueRouter({
       path: '/content/:cid',
       component: Content
     },
-
+    {
+      path: '/browser/:browserId',
+      component: Browser
+    },
     {
       path: '/login',
       component: Login

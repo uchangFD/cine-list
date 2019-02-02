@@ -19,10 +19,12 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../assets/styles/variables.scss";
+
 .header {
   margin-left: 250px;
   display: flex;
-  background-color: #292d3e;
+  background-color: $primary-color;
 
   .header__prev-btn, .header__next-btn, .header__search, .header__login {
     flex: none;

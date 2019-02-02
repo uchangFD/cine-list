@@ -1,30 +1,59 @@
 <template>
-  <div class="navbar-container">
-    <div class="nav__logo">
+  <section class="navbar">
+    <div class="navbar__logo">
         <router-link 
           to="/"
           aria-label="CINE-LIST"
-          class="logo"
+          class="logo-btn"
         >
-        CINE LIST
+        <span class="logo__title">CINE LIST</span>
         </router-link>
     </div>
-    <ul class="nav__categories">
-      <li class="nav__categories-tab">
-        <router-link class="categories-tab__link" to="/categories/trending">Trend</router-link>
-      </li>
-      <li class="nav__categories-tab">
-        <router-link class="categories-tab__link" to="/categories/scifi">Sci</router-link>
-      </li>
-      <li class="nav__categories-tab">
-        <router-link class="categories-tab__link" to="/categories/pitt">Pitt</router-link>
-      </li>
-    </ul>
-    <!-- <div class="nav__search">
-      <input type="text" class="search-input" title="Search" placeholder="영화를 검색하세요">
-      <button class="search-btn">검색</button>
-    </div> -->
-  </div>
+    <div class="navbar__browser">
+      <h2 class="navbar__browser__title">BROWSE</h2>
+      <ul class="navbar__categories__list">
+        <li class="navbar__categories__item">
+          <router-link 
+            to="/categories/trending"
+            class="categories__item__link" 
+          >
+            Trend
+          </router-link>
+        </li>
+        <li class="navbar__categories__item">
+          <router-link 
+            to="/categories/scifi"
+            class="categories__item__link"
+          >
+            Sci
+          </router-link>
+        </li>
+        <li class="navbar__categories__item">
+          <router-link 
+            to="/categories/pitt"
+            class="categories__item__link"
+          >
+            Pitt
+          </router-link>
+        </li>
+      </ul>
+    </div>
+
+    <div class="navbar__categories">
+      <h2 class="navbar__categories__title">CATEGORIES</h2>
+      <ul class="navbar__categories__list">
+        <li class="navbar__categories__item">
+          <router-link class="categories__item__link" to="/categories/trending">Trend</router-link>
+        </li>
+        <li class="navbar__categories__item">
+          <router-link class="categories__item__link" to="/categories/scifi">Sci</router-link>
+        </li>
+        <li class="navbar__categories__item">
+          <router-link class="categories__item__link" to="/categories/pitt">Pitt</router-link>
+        </li>
+      </ul>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -49,7 +78,9 @@ export default {
 </script>
 
 <style lang="scss">
-.navbar-container {
+@import "../assets/styles/variables.scss";
+
+.navbar {
   position: fixed;
   width: 250px;
   height: 100%;
@@ -57,42 +88,48 @@ export default {
   padding: 0;
   z-index: 1;
   overflow: auto;
-  background: #292d3e;
+  background: $secondary-color;
   opacity: 0.98;
 
-  .nav__logo, .nav__categories, .nav__search, .nav__login {
-    flex: none;
-  }
-
-  .nav__logo, .nav__login {
-    padding: 20px 30px;
-  }
-
-  .nav__logo {
-    .logo {
-      color: #fff;
-      font-size: 1rem;
+  .navbar__logo {
+    background: $secondary-color;
+    text-align: center;
+    .logo-btn {
+      .logo__title {
+        color: #fff;
+        font-size: 1rem;
+        height: 100px;
+        line-height: 100px;
+        font-weight: 700;
+        
+        font-size: 2rem;
+      }
     }
   }
 
-  .nav__login {
-    margin-left: auto;
-    .nav__login-btn {
-      color: #fff;
-      font-size: 1rem;
+
+  .navbar__browser {
+    .navbar__browser__title {
+      color: #777;
     }
   }
 
-  .nav__categories {
-    padding: 20px 30px;
+  .navbar__categories {
     justify-content: space-around;
-    .nav__categories-tab {
-      padding: 20px;
-      .categories-tab__link {
+    .navbar__categories__title {
+      color: #777;
+    }
+    .navbar__categories__item {
+      .categories__item__link {
         font-size: 1rem;
         color: #fff;
       }
     }
+  }
+
+
+  .navbar__logo, .navbar__categories {
+    flex: none;
   }
 }
 

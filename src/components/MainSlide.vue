@@ -1,32 +1,34 @@
 <template>
-  <section class="main-slides">
-    <div class="main-main-slides__container">
-      <h2 class="main-main-slides__container__title">Hot Movies Now</h2>
-      <div class="main-slide__lists__wrapper">
-        <ul class="main-slide__lists">
-          <li
-            class="main-slide__item"
-            v-for="(list, index) in data"
-            :key="index"
-            ref="slides"
-          >
-            <List :data="list"/>
-          </li>
-        </ul>
+  <section class="slides">
+    <div class="main-slides">
+      <div class="main-main-slides__container">
+        <h2 class="main-main-slides__container__title">Hot Movies Now</h2>
+        <div class="main-slide__lists__wrapper">
+          <ul class="main-slide__lists">
+            <li
+              class="main-slide__item"
+              v-for="(list, index) in data"
+              :key="index"
+              ref="slides"
+            >
+              <List :data="list"/>
+            </li>
+          </ul>
+        </div>
       </div>
+      <FontAwesome
+         class="main-slides__navigation-btn main-slides__prev-btn"
+         icon="angle-left"
+         ref="prev"
+         @click.prevent="onClickPrevBtn(1)"
+       ></FontAwesome>
+       <FontAwesome
+         class="main-slides__navigation-btn main-slides__next-btn"
+         icon="angle-right"
+         ref="next"
+         @click.prevent="onClickNextBtn(-1)"
+       ></FontAwesome>
     </div>
-    <FontAwesome
-       class="main-slides__navigation-btn main-slides__prev-btn"
-       icon="angle-left"
-       ref="prev"
-       @click.prevent="onClickPrevBtn(1)"
-     ></FontAwesome>
-     <FontAwesome
-       class="main-slides__navigation-btn main-slides__next-btn"
-       icon="angle-right"
-       ref="next"
-       @click.prevent="onClickNextBtn(-1)"
-     ></FontAwesome>
   </section>
 </template>
 
@@ -75,57 +77,64 @@ export default {
 
 </script>
 
-<style lang="scss">
-.main-slides {
+<style lang="scss" scoped>
+.slides {
+  padding-top: 30px;
+  padding-bottom: 30px;
   position: relative;
-  overflow: hidden;
-  margin-right: auto;
-  width: 100%;
-  .main-main-slides__container {
-    margin-left: 80px;
-    margin-right: 80px;
+  width: calc(100% - 250px);
+  .main-slides {
+    position: relative;
     overflow: hidden;
-    .main-main-slides__container__title {
-      color: #fff;
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: .5px;
-      padding-left: 10px;
-      margin-bottom: .4rem;
-    }
-    .main-slide__lists__wrapper{
-      width: 100%;
+    margin-right: auto;
+    width: 90%;
+    .main-main-slides__container {
+      margin-left: 80px;
+      margin-right: 80px;
       overflow: hidden;
-    }
-    .main-slide__lists {
-      width: 10000%;
-      position: relative;
-      left: -340px;
-      .main-slide__item {
-        display: inline-block;
+      .main-main-slides__container__title {
+        color: #fff;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: .5px;
+        padding-left: 10px;
+        margin-bottom: .4rem;
+      }
+      .main-slide__lists__wrapper{
+        width: 100%;
+        overflow: hidden;
+      }
+      .main-slide__lists {
+        width: 10000%;
+        position: relative;
+        left: -340px;
+        .main-slide__item {
+          display: inline-block;
+        }
       }
     }
-  }
-  .main-slides__navigation-btn {
-    position: absolute;
-    top: 137px;
-    font-size: 4rem;
-    opacity: 0.5;
-    color: #e2e4df;
-    cursor: pointer;
-    height: 44px;
-    width: 44px;
-    background: #000;
-    transition: 0.3s;
-    &:hover {
-      opacity: 1;
+    .main-slides__navigation-btn {
+      position: absolute;
+      top: 137px;
+      font-size: 4rem;
+      opacity: 0.5;
       color: #e2e4df;
-    }
-    &.main-slides__prev-btn {
-      left: 3rem;
-    }
-    &.main-slides__next-btn {
-      right: 3rem;
+      cursor: pointer;
+      height: 44px;
+      width: 44px;
+      background: #000;
+      transition: 0.3s;
+      border-radius: 4px;
+      &:hover {
+        opacity: 1;
+        color: #e2e4df;
+      }
+      &.main-slides__prev-btn {
+        left: 3rem;
+      }
+      &.main-slides__next-btn {
+        right: 3rem;
+      }
     }
   }
 }

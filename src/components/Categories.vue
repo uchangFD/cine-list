@@ -1,33 +1,22 @@
 <template>
-  <div>asdfasfas</div>
-  <!-- <div class="movie-wrapper">
-    <div class="movies-container">
-      <ul
-        class="movie-lists">
-        <li
-          class="movie-item"
-          v-for="(list, index) in lists"
-          :key="index"
-          ref="slides"
-          :class="{active: index === sIdx}"
-        >
-          <List :data="list"/>
-        </li>
-      </ul>
+  <div class="categories__container">
+    <div class="movie-wrapper">
+      <div class="movies-container">
+        <ul
+          class="movie-lists">
+          <li
+            class="movie-item"
+            v-for="(list, index) in lists"
+            :key="index"
+            ref="slides"
+            :class="{active: index === sIdx}"
+          >
+            <List :data="list"/>
+          </li>
+        </ul>
+      </div>
     </div>
-     <FontAwesome
-        class="carousel__btn prev-btn"
-        icon="angle-left"
-        ref="prev"
-        @click.prevent="decreaseIdx"
-      ></FontAwesome>
-      <FontAwesome
-        class="carousel__btn next-btn"
-        icon="angle-right"
-        ref="next"
-        @click.prevent="increaseIdx"
-      ></FontAwesome>
-  </div> -->
+  </div>
 </template>
 
 <script>
@@ -42,20 +31,20 @@ export default {
 
   data() {
     return {
-      // page: 1,
+      page: 1,
       sIdx: 0,
-      // genres: null
+      genres: null
     }
   },
 
   created () {
-    // window.addEventListener('scroll', this.handleScroll);
-    // this.genres = this.$route.params.categoriesId
+    window.addEventListener('scroll', this.handleScroll);
+    this.genres = this.$route.params.categoriesId
 
   },
 
   destroyed () {
-    // window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   },
 
 
@@ -94,20 +83,20 @@ export default {
       })
     },
 
-    // handleScroll: _.throttle(
-    //   function() {
-    //     this.scrolled = (window.innerHeight + window.scrollY) >= document.body.offsetHeight
-    //     if ( this.scrolled ) {
-    //       this.page++
-    //       this.fetchData()
-    //     }
-    //   }, 300
-    // ),
+    handleScroll: _.throttle(
+      function() {
+        this.scrolled = (window.innerHeight + window.scrollY) >= document.body.offsetHeight
+        if ( this.scrolled ) {
+          this.page++
+          this.fetchData()
+        }
+      }, 300
+    ),
 
     onResetLists: function() {
       this.RESET_LISTS()
       this.genres = this.$route.params.categoriesId
-      // this.page = 1
+      this.page = 1
       this.fetchData()
     },
 
@@ -126,13 +115,20 @@ export default {
 
 <style lang="scss">
 
+.categories__container {
+  position: fixed;
+  width: 100%;
+  margin-left: 250px;
+  min-height: 100%;
+  z-index: 0;
+  background: #292d3e;
+}
+
+
 .movie-wrapper {
   position: relative;
   overflow: hidden;
   margin-top: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 1250px;
 }
 
 .movies-container {

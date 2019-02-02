@@ -1,12 +1,8 @@
 <template>
-  <div class="main__container">
+  <div class="home__container">
     <div class="is-fullbleed">
-      <div class="slides">
-        <MainSlide :data="mains" />
-      </div>
-      <div class="slides">
-        <SubSlide :data="rates" />
-      </div>
+      <MainSlide :data="mains" />
+      <SubSlide :data="rates" />
     </div>
   </div>
 </template>
@@ -63,22 +59,17 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-.main__container {
+@import "../assets/styles/variables.scss";
+
+.home__container {
   position: fixed;
   width: 100%;
   margin-left: 250px;
   min-height: 100%;
   z-index: 0;
-  background: #292d3e;
+  background: $primary-color;
 }
-
-.slides, .slides {
-  margin-top: 100px;
-  position: relative;
-  width: calc(100% - 250px);
-}
-
 </style>
 

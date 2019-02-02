@@ -41,15 +41,13 @@ export default {
 	  list-style: none;
   }
 
-
   a {
     text-decoration: none;
     color: #181818
   }
 
-
-.transition {
-  transition: 0.5s;
-}
+  .transition {
+    transition: 0.5s;
+  }
 
 </style>
