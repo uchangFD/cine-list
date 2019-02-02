@@ -6,7 +6,6 @@
       <li class="categories__movie-item">
         <!-- <pre wrap class="categories__test">{{item.title}}</pre> -->
         <List :data="item" />
-        <hr>
       </li>
     </ul>
     <!-- <div class="movie-wrapper">
@@ -119,11 +118,7 @@ export default {
 }
 
 .categories__container {
-  position: fixed;
-  width: 100%;
   margin-left: 250px;
-  min-height: 100%;
-  z-index: 0;
   background: $primary-color;
 }
 

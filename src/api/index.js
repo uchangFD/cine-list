@@ -21,7 +21,7 @@ const BROWSERS = {
 
 
 
-const SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=ko&vote_count.gte=100&query=`
+const SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=ko&vote_count.gte=50&query=`
 
 const request = (method, url, data) => {
   return axios({
