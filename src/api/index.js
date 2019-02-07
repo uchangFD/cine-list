@@ -1,5 +1,4 @@
 import axios from 'axios'
-import SLIDE_REF from '../store/firebase'
 
 const API_KEY = '64391ca210dbae0d44b0a622177ef8d3'
 const TRENDING = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=en-US&page=1`
@@ -20,17 +19,9 @@ const request = (method, url, data) => {
     .then(result => result.data)
 }
 
-
-
 export const mainSlide = {
   fetch() {
     return request('get', TRENDING)
-  },
-
-  update() {
-    return SLIDE_REF.child('TRENDING').on('value', snapshot => {
-      snapshot.val().concat(snapshot.val().splice(0, 2))
-    })
   }
 }
 

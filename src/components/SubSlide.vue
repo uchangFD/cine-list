@@ -20,13 +20,13 @@
          class="sub-slides__navigation-btn slides__prev-btn"
          icon="angle-left"
          ref="prev"
-         @click.prevent="onClickPrevBtn(1)"
+         @click.prevent="onClickPrevBtn(4)"
        ></FontAwesome>
        <FontAwesome
          class="sub-slides__navigation-btn slides__next-btn"
          icon="angle-right"
          ref="next"
-         @click.prevent="onClickNextBtn(-1)"
+         @click.prevent="onClickNextBtn(-4)"
        ></FontAwesome>
     </div>
   </section>
@@ -59,19 +59,19 @@ export default {
 
     increaseIdx:_.debounce(function() {
       setTimeout(() => {  
-        this.data.push(this.data.shift())
+        this.$store.state.upcoming = this.$store.state.upcoming.concat(this.$store.state.upcoming.splice(0,4))
         document.querySelector('.sub-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.sub-slide__lists').classList.remove('transition')
         }, 300)
-      }, 500),
+      }, 1000),
 
     decreaseIdx: _.debounce(function() {
       setTimeout(() => {
-        this.data.unshift(this.data.pop())
+        this.$store.state.upcoming = this.$store.state.upcoming.splice(this.$store.state.upcoming.length - 4, 4).concat(this.$store.state.upcoming)
         document.querySelector('.sub-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.sub-slide__lists').classList.remove('transition')
         }, 300)
-      }, 500)
+      }, 1000)
   }
 }
 
@@ -108,7 +108,7 @@ export default {
       .sub-slide__lists {
         width: 10000%;
         position: relative;
-        left: -340px;
+        left: -680px;
         .slide__item {
           display: inline-block;
         }

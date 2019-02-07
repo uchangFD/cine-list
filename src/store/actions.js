@@ -1,4 +1,5 @@
 import * as api from '../api'
+import SLIDE_REF from '../store/firebase'
 
 const actions = {
   FETCH_MAIN_SLIDE({ commit }, { options }) {
@@ -7,11 +8,13 @@ const actions = {
     })
   },
 
-  UPDATE_MAIN_SLIDE() {
-    return api.mainSlide.update().then(data => {
-      console.log(data)
-    })
-  },
+  // UPDATE_MAIN_SLIDE({ dispatch, state }) {
+  //   SLIDE_REF.child('TRENDING')
+  //     .on('value', snapshot => {
+  //       console.log(snapshot.val())
+  //     })
+  //   // return SLIDE_REF.update()
+  // },
 
   FETCH_SUB_SLIDE({ commit }, { options }) {
     return api.subSlide.fetch().then(data => {
