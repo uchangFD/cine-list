@@ -38,18 +38,21 @@ export default {
       }
     },
 
+  
+
   methods: {
     ...mapActions([
-      'FETCH_MAIN'
+      'FETCH_MAIN_SLIDE',
+      'FETCH_SUB_SLIDE'
     ]),
+
+
     fetches: function() {
-      this.FETCH_MAIN({
-        id: 'trending',
-        options: 'SET_MAIN'
+      this.FETCH_MAIN_SLIDE({
+        options: 'SET_MAIN_SLIDES'
       })
-      this.FETCH_MAIN({
-        id: 'upcoming',
-        options: 'SET_UPCOMING'
+      this.FETCH_SUB_SLIDE({
+        options: 'SET_SUB_SLIDES'
       })
     }
   }

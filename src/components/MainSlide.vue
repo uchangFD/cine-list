@@ -20,13 +20,13 @@
          class="main-slides__navigation-btn main-slides__prev-btn"
          icon="angle-left"
          ref="prev"
-         @click.prevent="onClickPrevBtn(1)"
+         @click.prevent="onClickPrevBtn(2)"
        ></FontAwesome>
        <FontAwesome
          class="main-slides__navigation-btn main-slides__next-btn"
          icon="angle-right"
          ref="next"
-         @click.prevent="onClickNextBtn(-1)"
+         @click.prevent="onClickNextBtn(-2)"
        ></FontAwesome>
     </div>
   </section>
@@ -43,11 +43,21 @@ export default {
   },
   props: ['data'],
 
+  
   methods: {
+    ...mapActions([
+      'UPDATE_MAIN_SLIDE'
+    ]),
+
+
+
+
     onClickNextBtn: function(direction) {
       document.querySelector('.main-slide__lists').classList.add('transition')
       document.querySelector('.main-slide__lists').style.transform = `translateX(${direction * 170}px)`
       this.increaseIdx()
+      this.UPDATE_MAIN_SLIDE()
+
     },
   
     onClickPrevBtn: function(direction) {
@@ -57,8 +67,8 @@ export default {
     },
 
     increaseIdx:_.debounce(function() {
-      setTimeout(() => {  
-        this.data.push(this.data.shift())
+      setTimeout(() => {
+        // this.data = this.data.concat(this.data.splice(0, 2))
         document.querySelector('.main-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.main-slide__lists').classList.remove('transition')
         }, 300)

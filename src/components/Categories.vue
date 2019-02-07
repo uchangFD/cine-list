@@ -97,15 +97,6 @@ export default {
     //   this.fetch()
     // },
 
-    // increaseIdx: _.debounce(function() {
-    //     if (this.sIdx > this.slides.length) this.sIdx = 0; 
-    //     this.sIdx++
-    //   }, 300),
-
-    // decreaseIdx: _.debounce(function() {
-    //   if (this.sIdx <= 0) this.sIdx = this.slides.length
-    //     this.sIdx--
-    //   }, 300)
   }
 }
 </script>

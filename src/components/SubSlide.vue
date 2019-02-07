@@ -38,6 +38,7 @@ import List from './List.vue'
 import _ from 'lodash'
 
 export default {
+
   components: {
     List
   },

@@ -1,3 +1,4 @@
+
 const state = {
   mains: [],
   upcoming: [],
@@ -7,9 +8,10 @@ const state = {
   results: [],
   browser: [],
   genres: [],
-  categories: [],
-  pages: 0
+  categories: []
 }
+
+
 
 
 export default state
