@@ -32,11 +32,21 @@ export default {
 	  font: inherit;
 	  vertical-align: baseline;
   }
+  html {
+    height: 100%
+  }
 
   body {
     line-height: 1;
   }
 
+  #app {
+    position: absolute; 
+    top: 0; 
+    bottom: 0;
+    right: 0;
+    left:0;
+  }
   ul, li {
 	  list-style: none;
   }

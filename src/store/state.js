@@ -3,10 +3,14 @@ const state = {
   mains: [],
   upcoming: [],
   lists: [],
-  list: [],
+
+  contents: [],
+  videoId: '',
   casts: [],
+
   results: [],
   browser: [],
+  
   genres: [],
   categories: []
 }

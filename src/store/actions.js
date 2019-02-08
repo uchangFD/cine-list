@@ -22,12 +22,17 @@ const actions = {
       })
   },
 
-  FETCH_ITEM({ commit }, { id }) {
+  FETCH_CONTENTS({ commit }, { id }) {
     return api.item.fetch(id).then(data => {
-      commit('SET_ITEM', data)
+      commit('SET_CONTENTS', data)
     })
   },
 
+  FETCH_CONTENTS_DETAILS({ commit }, { id }) {
+    return api.item.fetchVideos(id).then(data => {
+      commit('SET_CONTENTS_DETAILS', data)
+    })
+  },
   FETCH_CAST({ commit }, { id }) {
     return api.cast.fetch(id).then(data => {
       commit('SET_CAST', data)

@@ -56,23 +56,13 @@ export default {
 
   methods: {
     onHover: function() {
-      this.onHoverDebounce()
-    },
-
-    onLeave: function() {
-      this.onLeaveDebounce()
-    },
-
-    onHoverDebounce:_.debounce(function() {
       this.$el.classList.add('content-detail')
       this.isHovered = true   
-    }, 10),
-
-    onLeaveDebounce:_.debounce(function() {
+    },
+    onLeave: function() {
       this.$el.classList.remove('content-detail')
       this.isHovered = false
-    }, 10),
-
+    }
   }
 }
 </script>

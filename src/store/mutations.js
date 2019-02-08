@@ -32,8 +32,12 @@ const mutations = {
     })
   },
   
-  SET_ITEM(state, list) {
-    state.list = list
+  SET_CONTENTS(state, contents) {
+    state.contents = contents
+  },
+
+  SET_CONTENTS_DETAILS(state, videoId) {
+    state.videoId = videoId
   },
 
   SET_CAST(state, casts) {

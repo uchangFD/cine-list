@@ -1,9 +1,7 @@
 <template>
   <div class="home__container">
-    <div class="is-fullbleed">
-      <MainSlide :data="mains" />
-      <SubSlide :data="upcoming" />
-    </div>
+    <MainSlide :data="mains" />
+    <SubSlide :data="upcoming" />
   </div>
 </template>
 
@@ -20,7 +18,7 @@ export default {
 
   data() {
     return {
-      isMain: true
+      isLoading: false,
     }
   },
 
@@ -48,12 +46,10 @@ export default {
 
 
     fetches: function() {
-      this.FETCH_MAIN_SLIDE({
-        options: 'SET_MAIN_SLIDES'
-      })
-      this.FETCH_SUB_SLIDE({
-        options: 'SET_SUB_SLIDES'
-      })
+      this.isLoading = true
+      this.FETCH_MAIN_SLIDE({options: 'SET_MAIN_SLIDES'})
+      this.FETCH_SUB_SLIDE({options: 'SET_SUB_SLIDES'})
+        .finally(_ => {this.isLoading = false})
     }
   }
 }
