@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API_KEY = '64391ca210dbae0d44b0a622177ef8d3'
-const TRENDING = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&language=en-US&page=1`
+const TRENDING = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&language=en-US&page=1`
 const UPCOMING = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
 const POPULAR =  `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=`
 const CELEBRITIES = `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en-US&page=1`
@@ -33,11 +33,6 @@ export const subSlide = {
 }
 
 
-export const cast = {
-  fetch(id) {
-    return request('get', `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US&append_to_response=movie_credits`)
-  }
-}
 
 export const search = {
   fetch(text) {
@@ -71,4 +66,10 @@ export const item = {
   fetch(id) {
     return request('get', `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`)
   },
+}
+
+export const cast = {
+  fetch(id) {
+    return request('get', `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US&append_to_response=movie_credits`)
+  }
 }

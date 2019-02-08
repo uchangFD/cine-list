@@ -23,13 +23,13 @@ const actions = {
   },
 
   FETCH_ITEM({ commit }, { id }) {
-    return api.main.fetchItem(id).then(data => {
+    return api.item.fetch(id).then(data => {
       commit('SET_ITEM', data)
     })
   },
 
   FETCH_CAST({ commit }, { id }) {
-    return api.main.fetchCast(id).then(data => {
+    return api.cast.fetch(id).then(data => {
       commit('SET_CAST', data)
     })
   },

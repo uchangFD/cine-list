@@ -1,8 +1,8 @@
 <template>
   <section class="slides">
     <div class="main-slides">
-      <div class="main-main-slides__container">
-        <h2 class="main-main-slides__container__title">Hot Movies Now</h2>
+      <div class="main-slides__container">
+        <h2 class="main-slides__container__title">Hot Movies Now</h2>
         <div class="main-slide__lists__wrapper">
           <ul class="main-slide__lists">
             <li
@@ -87,11 +87,11 @@ export default {
     overflow: hidden;
     margin-right: auto;
     width: 90%;
-    .main-main-slides__container {
+    .main-slides__container {
       margin-left: 80px;
       margin-right: 80px;
       overflow: hidden;
-      .main-main-slides__container__title {
+      .main-slides__container__title {
         color: #fff;
         font-size: 1.35rem;
         font-weight: 700;
