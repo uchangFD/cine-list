@@ -58,20 +58,16 @@ export default {
     },
 
     increaseIdx:_.debounce(function() {
-      setTimeout(() => {  
         this.$store.state.upcoming = this.$store.state.upcoming.concat(this.$store.state.upcoming.splice(0,4))
         document.querySelector('.sub-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.sub-slide__lists').classList.remove('transition')
-        }, 300)
-      }, 1000),
+      }, 800),
 
     decreaseIdx: _.debounce(function() {
-      setTimeout(() => {
         this.$store.state.upcoming = this.$store.state.upcoming.splice(this.$store.state.upcoming.length - 4, 4).concat(this.$store.state.upcoming)
         document.querySelector('.sub-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.sub-slide__lists').classList.remove('transition')
-        }, 300)
-      }, 1000)
+      }, 800)
   }
 }
 
@@ -80,10 +76,11 @@ export default {
 
 <style lang="scss" scoped>
 .slides {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   position: relative;
   width: calc(100% - 250px);
+  height: 320px;
   .sub-slides {
     position: relative;
     overflow: hidden;

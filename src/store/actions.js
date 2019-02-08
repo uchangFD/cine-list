@@ -8,14 +8,6 @@ const actions = {
     })
   },
 
-  // UPDATE_MAIN_SLIDE({ dispatch, state }) {
-  //   SLIDE_REF.child('TRENDING')
-  //     .on('value', snapshot => {
-  //       console.log(snapshot.val())
-  //     })
-  //   // return SLIDE_REF.update()
-  // },
-
   FETCH_SUB_SLIDE({ commit }, { options }) {
     return api.subSlide.fetch().then(data => {
       commit(options, data.results)

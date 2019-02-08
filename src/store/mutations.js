@@ -22,16 +22,6 @@ const mutations = {
     })
   },
 
-
-
-  SET_UPCOMING_SLIDES(state, upcoming) {
-    SLIDE_REF.once('value').then(()=> {
-      SLIDE_REF.child('UPCOMING').set(upcoming)
-    })
-  },
-
-
-
   SET_SEARCH(state, results) {
     state.results = results
   },

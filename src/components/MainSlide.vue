@@ -43,9 +43,7 @@ export default {
   },
   props: ['data'],
 
-  
   methods: {
-
     onClickNextBtn: function(direction) {
       document.querySelector('.main-slide__lists').classList.add('transition')
       document.querySelector('.main-slide__lists').style.transform = `translateX(${direction * 170}px)`
@@ -59,21 +57,19 @@ export default {
     },
 
     increaseIdx:_.debounce(function() {
-      setTimeout(() => {
         this.$store.state.mains = this.$store.state.mains.concat(this.$store.state.mains.splice(0,4))
         document.querySelector('.main-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.main-slide__lists').classList.remove('transition')
-        }, 300)
-      }, 1000),
+      }, 800),
 
     decreaseIdx: _.debounce(function() {
-      setTimeout(() => {
         this.$store.state.mains = this.$store.state.mains.splice(this.$store.state.mains.length - 4, 4).concat(this.$store.state.mains)
         document.querySelector('.main-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.main-slide__lists').classList.remove('transition')
-        }, 300)
-      }, 1000)
+      }, 800)
   }
+
+
 }
 
 
@@ -81,10 +77,11 @@ export default {
 
 <style lang="scss" scoped>
 .slides {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   position: relative;
   width: calc(100% - 250px);
+  height: 320px;
   .main-slides {
     position: relative;
     overflow: hidden;
@@ -100,7 +97,7 @@ export default {
         font-weight: 700;
         letter-spacing: .5px;
         padding-left: 10px;
-        margin-bottom: .4rem;
+        height: 3rem;
       }
       .main-slide__lists__wrapper{
         width: 100%;
@@ -108,6 +105,7 @@ export default {
       }
       .main-slide__lists {
         width: 10000%;
+        height: 350px;
         position: relative;
         left: -680px;
         .main-slide__item {
@@ -117,7 +115,7 @@ export default {
     }
     .main-slides__navigation-btn {
       position: absolute;
-      top: 137px;
+      top: 150px;
       font-size: 4rem;
       opacity: 0.5;
       color: #e2e4df;

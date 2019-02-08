@@ -1,7 +1,5 @@
 <template>
   <section class="header">
-    <div class="header__prev-btn">&lt;</div>
-    <div class="header__next-btn">&gt;</div>
     <Search class="header__search"/>
     <div class="header__login">
       <router-link class="header__login-btn" to="/login">Login</router-link>
@@ -26,13 +24,13 @@ export default {
   display: flex;
   background-color: $primary-color;
 
-  .header__prev-btn, .header__next-btn, .header__search, .header__login {
+  .header__search, .header__login {
     flex: none;
     height: 70px;
     line-height: 70px;
     padding: 0 40px;
   }
-  .header__prev-btn, .header__next-btn, .header__login-btn {
+  .header__login-btn {
     cursor: pointer;
     color: #fff;
   }
@@ -45,10 +43,6 @@ export default {
   .header__login {
     margin: 0;
   }
-
-  
-
-  
 }
 
 </style>

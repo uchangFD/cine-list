@@ -47,7 +47,7 @@ export default {
   }
 
   .transition {
-    transition: 1s;
+    transition: 800ms;
   }
 
 </style>
