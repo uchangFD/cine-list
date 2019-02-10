@@ -157,6 +157,7 @@ export default {
     }
     .categories__content__rate {
       color: #fff;
+      margin-top: 1rem;
       letter-spacing: 1.2px;
     }
     .categories__content__synopsis {

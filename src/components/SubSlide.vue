@@ -85,7 +85,7 @@ export default {
     position: relative;
     overflow: hidden;
     margin-right: auto;
-    width: 90%;
+    width: 110%;
     .sub-slides-container {
       margin-left: 80px;
       margin-right: 80px;

@@ -62,10 +62,9 @@ export default {
 @import "../assets/styles/variables.scss";
 
 .home__container {
-  position: fixed;
-  width: 100%;
+  width: calc(100% - 250px);
+  height: 100%;
   margin-left: 250px;
-  min-height: 100%;
   z-index: 0;
   background: $primary-color;
 }
