@@ -16,14 +16,14 @@
       class="content-detail__wrapper"
     > 
       <div 
-        v-for="(item, index) in genres" 
+        v-for="(genre, index) in genres" 
         :key="index"
       >
          <p 
-           v-if="item.id === data.genre_ids[0]"
+           v-if="genre.id === data.genre_ids[0]"
            class="content-detail__info"
          >
-           <span>{{item.name}}</span>
+           <span>#{{genre.name}}</span>
            <span>{{data.release_date.split('-')[0]}}</span>
          </p>
       </div>

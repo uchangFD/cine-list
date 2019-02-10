@@ -16,7 +16,7 @@ const actions = {
 
 
   FETCH_LISTS({ commit }, { id, pages }) {
-    return api.main.fetch(id, pages)
+    return api.mainSlide.fetch(id, pages)
       .then(data => {
         commit('SET_LISTS', data.results)
       })

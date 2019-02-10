@@ -66,6 +66,7 @@ export const item = {
   fetch(id) {
     return request('get', `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`)
   },
+  
   fetchVideos(movieId) {
     return request('get', `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`)
   }
