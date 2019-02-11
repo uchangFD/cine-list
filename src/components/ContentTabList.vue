@@ -7,18 +7,19 @@
       </div>
     </div>
 
-    <div v-if="selectedTab === 'Videos'">
+    <div class="videos-wrapper" v-if="selectedTab === 'Videos'">
       <div 
-        v-for="(video, idx) in videoId.results.slice(0,4)" 
+        v-for="(video, idx) in videoId.results.slice(0, 3)" 
         :key="idx"
         style="display: inline;"
       >
         <iframe 
           class="videos"
-          width="222" 
+          width="95%" 
           height="125" 
           :src="`https://www.youtube.com/embed/${video.key}`" 
           frameborder="0" 
+          allowfullscreen
         >
         </iframe>
       </div>
@@ -50,6 +51,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.videos-wrapper {
+  margin-top: .8rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2px;
+  div {
+    margin: 0 auto;
+  }
+}
 
 .tab-list__container {
   .tab-list__wrapper {
