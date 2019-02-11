@@ -1,5 +1,6 @@
 <template>
   <div class="contents__tab-container">
+
     <ul class="contents__tab-list">
       <li 
         v-for="(tab, index) in tabs" 
@@ -12,14 +13,17 @@
       {{tab}}
       </li>
     </ul>
-    <Details :tabs="tabs" :selected-tab="selectedTab" />
+
+    <div v-if="selectedTab">
+      <TabList :tabs="tabs" :selected-tab="selectedTab" />
+    </div>
   </div>
 </template>
 
 <script>
-import ContentTabDetails from './ContentTabDetails.vue'
+import ContentTabList from './ContentTabList.vue'
 export default {
-  components: { 'Details' :ContentTabDetails },
+  components: { 'TabList' :ContentTabList },
   props: ['tabs', 'selectedTab'],
   methods: {
     onClickTab: function(tab) {
@@ -36,7 +40,7 @@ export default {
 
 .contents__tab-container {
   // background: #05a;
-  grid-column: 3 / 7;
+  grid-column: 3 / 8;
   grid-row: 2;
   margin-left: 1rem;
   margin-top: 1rem;

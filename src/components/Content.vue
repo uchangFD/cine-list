@@ -134,7 +134,7 @@ export default {
 
 
     .contents__info-container {
-      grid-column: 3 / 7;
+      grid-column: 3 / 8;
       grid-row: 1;
       margin: 1rem;
       .contents__info__title {
@@ -182,7 +182,7 @@ export default {
 
     .contents__review-container {
       background: #a05;
-      grid-column: 2 / 7;
+      grid-column: 2 / 8;
       grid-row: 3;
     }
   }
