@@ -1,5 +1,5 @@
 <template>
-  <div class="contents__container">
+  <section class="contents__section">
     <div v-if="isLoading">
      Loading...
     </div>
@@ -19,13 +19,15 @@
         <h1 class="contents__info__title">
           {{contents.title}} <span class="contents__info__year">{{contents.release_date.split('-')[0]}}</span>
         </h1>
-        <span 
-          v-for="(genre, index) in contents.genres" 
-          :key="index"
-          class="contents__info__genres"
-        >
-          #{{genre.name}}
-        </span>
+        <div class="contents__info__genres-wrapper">
+          <div 
+            v-for="(genre, index) in contents.genres" 
+            :key="index"
+            class="contents__info__genres"
+          >
+            <span class="contents__info__genre">#{{genre.name}}</span>
+          </div>
+        </div>
         <div class="contents__info__wrapper">
           <button class="contents__info__btn">
             <a
@@ -34,12 +36,14 @@
           </button>
         </div>
       </div>
-      <ContentTab :tabs="tabs" :selected-tab="selectedTab" v-on:@change="onClickedTab"/>
+      <ContentTab :tabs="tabs" :selected-tab="selectedTab" v-on:@change="onClickedTab" />
+      
+
       <div class="contents__review-container">
         <p>Review Container</p>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -104,7 +108,7 @@ export default {
 <style lang="scss">
 @import "../assets/styles/variables.scss";
 
-.contents__container 
+.contents__section 
 {
   background: $primary-color;
   margin-left: 250px;
@@ -135,22 +139,33 @@ export default {
       margin: 1rem;
       .contents__info__title {
         font-size: 2.4rem;
-        padding: .5rem;
+        margin-bottom: 1rem;
         .contents__info__year {
           font-size: 1.2rem;
         }
       }
       .contents__info__rate {
         font-size: 1.2rem;
-        padding: .5rem;
+        margin-bottom: .5rem;
+
       }
-      .contents__info__genres {
-        padding: .5rem;
+      .contents__info__genres-wrapper {
+        margin-bottom: 1rem;
+        .contents__info__genres {
+          display: inline-block;
+          padding: .4rem;
+          margin-right: .5rem;
+          border-radius: 17px;
+          border: 1.4px solid #adb5bd;
+          .contents__info__genre {
+            color: #adb5bd;
+            font-size: 0.9rem;
+          }
+        }
       }
       .contents__info__wrapper {
-        padding-left: .5rem;
         .contents__info__btn {
-          margin-top: 1rem;
+          margin-bottom: 1rem;
           width: 120px;
           height: 35px;
           border-radius: 17.5px;

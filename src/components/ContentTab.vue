@@ -4,6 +4,7 @@
       <li 
         v-for="(tab, index) in tabs" 
         :key="index"
+        :data-category="tab"
         class="contents__tab-item"
         :class="{activedTab: tab === selectedTab}"
         @click="onClickTab(tab)"
@@ -11,11 +12,14 @@
       {{tab}}
       </li>
     </ul>
+    <Details :tabs="tabs" :selected-tab="selectedTab" />
   </div>
 </template>
 
 <script>
+import ContentTabDetails from './ContentTabDetails.vue'
 export default {
+  components: { 'Details' :ContentTabDetails },
   props: ['tabs', 'selectedTab'],
   methods: {
     onClickTab: function(tab) {
@@ -28,9 +32,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../assets/styles/variables.scss";
 
 .contents__tab-container {
-  background: #05a;
+  // background: #05a;
   grid-column: 3 / 7;
   grid-row: 2;
   margin-left: 1rem;
@@ -39,19 +44,20 @@ export default {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 0rem;
-    border-bottom: 4px solid #fff;
+    border-bottom: 3px solid #484848;
     .contents__tab-item {
       text-align: center;
       position: relative;
       padding: 1rem;
-      margin-bottom: -4px;
+      margin-bottom: -3px;
       cursor: pointer;
     }
   }
 }
 
 .activedTab {
-  border-bottom: 4px solid #f0a;
+  color: #ffa;
+  border-bottom: 3px solid #ffa;
 }
 
 </style>
