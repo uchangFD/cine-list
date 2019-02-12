@@ -6,6 +6,7 @@ import Login from '../components/Login.vue'
 import Browser from '../components/Browser.vue'
 import Categories from '../components/Categories.vue'
 import Content from '../components/Content.vue'
+import People from '../components/People.vue'
 import NotFound from '../components/NotFound.vue'
 
 
@@ -33,10 +34,16 @@ const router = new VueRouter({
       path: '/content/:contentId',
       component: Content
     },
+
+    {
+      path: '/people/:peopleId',
+      component: People
+    },
     {
       path: '/login',
       component: Login
     },
+    
     {
       path: '*',
       component: NotFound

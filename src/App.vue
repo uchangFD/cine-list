@@ -60,12 +60,5 @@ export default {
     transition: 800ms;
   }
 
-.ytp-title-enable-channel-logo {
-  display: none;
-  .ytp-title-channel {
-    display: none;
-  }
-} 
-
 
 </style>

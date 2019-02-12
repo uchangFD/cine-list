@@ -40,7 +40,7 @@ export default {
 
 .contents__tab-container {
   // background: #05a;
-  grid-column: 3 / 7;
+  grid-column: 3 / 8;
   grid-row: 2;
   margin-left: 1rem;
   margin-top: 1rem;

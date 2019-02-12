@@ -17,7 +17,7 @@
       <div class="contents__info-container">
         <p class="contents__info__rate">{{contents.vote_average}}</p>
         <h1 class="contents__info__title">
-          {{contents.title}} <span class="contents__info__year">{{contents.release_date.split('-')[0]}}</span>
+          {{contents.title}} <span class="contents__info__year">{{contents.release_date.slice(0, 4)}}</span>
         </h1>
         <div class="contents__info__genres-wrapper">
           <div 
@@ -182,8 +182,7 @@ export default {
 
     .contents__review-container {
       background: #a05;
-      grid-column: 2 / 7;
-      grid-row: 3;
+      grid-column: 2 / 8;
     }
   }
 }
