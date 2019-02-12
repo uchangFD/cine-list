@@ -25,6 +25,7 @@ import ContentTabList from './ContentTabList.vue'
 export default {
   components: { 'TabList' :ContentTabList },
   props: ['tabs', 'selectedTab'],
+  
   methods: {
     onClickTab: function(tab) {
       this.$emit('@change', tab)
@@ -54,14 +55,17 @@ export default {
       position: relative;
       padding: 1rem;
       margin-bottom: -3px;
+      font-size: 1.2rem;
       cursor: pointer;
     }
   }
 }
 
 .activedTab {
-  color: #ffa;
-  border-bottom: 3px solid #ffa;
+  background: $gradient-color;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 3px solid #66a6ff;
 }
 
 </style>

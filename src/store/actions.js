@@ -33,11 +33,28 @@ const actions = {
       commit('SET_CONTENTS_DETAILS', data)
     })
   },
+
+
+
   FETCH_CAST({ commit }, { id }) {
     return api.cast.fetch(id).then(data => {
       commit('SET_CAST', data)
     })
   },
+
+
+  FETCH_PERSON({commit}, {id}) {
+    return api.person.fetch(id).then(data => {
+      commit('SET_PERSON', data)
+    })
+  },
+
+  FETCH_PERSON_CREDITS({commit}, {id}) {
+    return api.personCredits.fetch(id).then(data => {
+      commit('SET_PERSON_CREDITS', data)
+    })
+  },
+
 
 
   FETCH_SEARCH({ commit }, { text }) {

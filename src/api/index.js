@@ -72,8 +72,24 @@ export const item = {
   }
 }
 
+
 export const cast = {
   fetch(id) {
     return request('get', `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US&append_to_response=movie_credits`)
   }
 }
+
+
+export const person = {
+  fetch(personId) {
+    return request('get', `https://api.themoviedb.org/3/person/${personId}?api_key=${API_KEY}&language=en-US`)
+  }
+}
+
+export const personCredits = {
+  fetch(personId) {
+    return request('get', `https://api.themoviedb.org/3/person/${personId}/movie_credits?api_key=${API_KEY}&language=en-US`)
+  }
+}
+
+

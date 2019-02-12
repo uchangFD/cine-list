@@ -44,6 +44,15 @@ const mutations = {
     state.casts = casts
   },
 
+  SET_PERSON(state, person) {
+    state.person = person
+  },
+
+  SET_PERSON_CREDITS(state, credits) {
+    state.credits = credits
+  },
+
+
   SET_BROWSER(state, browser) {
     state.browser = browser
   },

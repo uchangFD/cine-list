@@ -2,24 +2,26 @@
   <div class="categories__container">
     <div class="categories__movie-wrapper">
       <h2 class="categories__movie-title">{{title}}</h2>
-      <div class="categories__movie-list">
-        <router-link 
-          :to="`/content/${item.id}`"
-          v-for="(item, index) in categories" 
-          :key="index"
-          class="categories__movie-item"
-        >
-          <div>
-            <img 
-              class="categories__content__poster-image"
-              :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"  
-              :alt="`${item.original_title}`"
-            >
-            <h3 class="categories__content__title">{{item.title ? item.title : '제목 없음'}}</h3>
-            <p class="categories__content__rate">{{item.vote_average}} / 10</p>
-            <p class="categories__content__synopsis">{{item.overview}}</p>
-          </div>
-        </router-link>
+      <div v-if="isLoading">
+        <div class="categories__movie-list">
+          <router-link 
+            :to="`/content/${item.id}`"
+            v-for="(item, index) in categories" 
+            :key="index"
+            class="categories__movie-item"
+          >
+            <div>
+              <img 
+                class="categories__content__poster-image"
+                :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"  
+                :alt="`${item.original_title}`"
+              >
+              <h3 class="categories__content__title">{{item.title ? item.title : '제목 없음'}}</h3>
+              <p class="categories__content__rate">{{item.vote_average}} / 10</p>
+              <p class="categories__content__synopsis">{{item.overview}}</p>
+            </div>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -37,7 +39,8 @@ export default {
 
   data() {
     return {
-      title: ''
+      title: '',
+      isLoading: false
     }
   },
 
@@ -75,9 +78,13 @@ export default {
     fetch: function() {
       this.genres.forEach(obj => {
         if(obj.name.toLowerCase() === this.$route.params.categoriesId) {
-          this.FETCH_CATEGORIES({id: obj.id})
+          this.isLoading = true
           this.title = obj.name
+          this.FETCH_CATEGORIES({id: obj.id})
         }
+      })
+      .finally(_=>{
+        this.isLoading = false
       })
     },
 

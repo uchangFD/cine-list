@@ -19,16 +19,20 @@
       >
         <div class="tab-list__cast-info">
           <div class="tab-list__cast-info__profile">
-            <router-link :to="`/people/${actor.id}`">
-              <img 
-                :src="`https://image.tmdb.org/t/p/w138_and_h175_face${actor.profile_path}`" 
-                :alt="`${actor.name}`"
+            <router-link :to="`/person/${actor.id}`">
+              <img v-if="actor.profile_path"
+                :src="`https://image.tmdb.org/t/p/w138_and_h175_face${actor.profile_path}`"
+                :alt="`${actor.profile_path}`"
+                class="tab-list__cast-info__profile-image"
+              >
+              <img v-else
+                src="../assets/images/profile.png"
+                :alt="`${actor.profile_path}`"
                 class="tab-list__cast-info__profile-image"
               >
             </router-link>
             <p class="tab-list__cast-info__profile__character">{{actor.character}} 역</p>
             <p class="tab-list__cast-info__profile__name">{{actor.name}}</p>
-            <p>{{actor.id}}</p>
           </div>
         </div>
       </div>
@@ -86,8 +90,15 @@ export default {
 
 .tab-list__container {
   .tab-list__synopsis {
+    margin-top: .8rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
     .tab-list__synopsis-paragraph {
-
+      line-height: 1.5;
+      text-indent: 1rem;
+      font-weight: 300;
+      letter-spacing: .7px;
     }
   }
 
@@ -104,6 +115,11 @@ export default {
         margin: 0 auto;
         .tab-list__cast-info__profile {
           width: 100%;
+          opacity: 0.5;
+          transition: opacity 750ms;
+          &:hover {
+            opacity: 1;
+          }
           .tab-list__cast-info__profile-image {
             width: 120px;
             height: 120px;
@@ -111,6 +127,7 @@ export default {
             object-fit: cover;
             margin: 0 auto;
             display: block;
+            box-shadow: 0 1px 2px #181818;
           } 
           p {
             text-align: center;
@@ -118,6 +135,7 @@ export default {
           .tab-list__cast-info__profile__name, 
           .tab-list__cast-info__profile__character {
             margin-top: .5rem;
+            letter-spacing: .8px;
           }
         }
       }

@@ -17,8 +17,10 @@
       <div class="contents__info-container">
         <p class="contents__info__rate">{{contents.vote_average}}</p>
         <h1 class="contents__info__title">
-          {{contents.title}} <span class="contents__info__year">{{contents.release_date.slice(0, 4)}}</span>
+          {{contents.title}} 
+          <span class="contents__info__year">{{contents.release_date.substring(0, 4)}}</span>
         </h1>
+
         <div class="contents__info__genres-wrapper">
           <div 
             v-for="(genre, index) in contents.genres" 
@@ -28,11 +30,34 @@
             <span class="contents__info__genre">#{{genre.name}}</span>
           </div>
         </div>
+
+        <div class="contents__info__runtime-wrapper">
+          <span class="contents__info__runtime">
+            {{Math.floor(contents.runtime / 60)}}hr {{(contents.runtime - (Math.floor(contents.runtime / 60) * 60))}}mins
+          </span>
+        </div>
+
         <div class="contents__info__wrapper">
-          <button class="contents__info__btn">
+          <button class="contents__imdb__btn">
             <a
               class="contents__info__imdb-link"
               :href="`https://www.imdb.com/title/${contents.imdb_id}/`">View IMDB</a>
+          </button>
+          <button class="contents__like__btn">
+            <p>
+            <FontAwesome
+              icon="thumbs-up"
+              ref="like">
+            </FontAwesome>
+              Like it</p>
+          </button>
+          <button class="contents__like__btn">
+            <p>
+            <FontAwesome
+              icon="bookmark"
+              ref="like">
+            </FontAwesome>
+              Save it</p>
           </button>
         </div>
       </div>
@@ -65,6 +90,9 @@ export default {
 
   created() {
     this.selectedTab = this.tabs[0]
+    console.log(this.contents)
+    
+
   },
 
   computed: {
@@ -91,11 +119,11 @@ export default {
     ]),
 
     fetch: function() {
-      this.loading = true
+      this.isLoading = true
       this.FETCH_CONTENTS({id: this.$route.params.contentId})
       this.FETCH_CONTENTS_DETAILS({id: this.$route.params.contentId})
       this.FETCH_CAST({id: this.$route.params.contentId})
-        .finally(_ =>{ this.loading = false})
+        .finally(_ =>{ this.isLoading = false})
     },
 
     onClickedTab: function(tab) {
@@ -122,9 +150,9 @@ export default {
     grid-template-columns: repeat(8, 1fr);
     grid-gap: 5px;
     grid-auto-rows: minmax(200px, 1fr);
-
+    max-width: 1400px;
+    margin: 0 auto;
     .contents__image-container {
-      background: #a50;
       grid-column: 2;
       grid-row: 1 / 3;
       .contents__image {
@@ -139,7 +167,7 @@ export default {
       margin: 1rem;
       .contents__info__title {
         font-size: 2.4rem;
-        margin-bottom: 1rem;
+        margin-bottom: .4rem;
         .contents__info__year {
           font-size: 1.2rem;
         }
@@ -150,21 +178,31 @@ export default {
 
       }
       .contents__info__genres-wrapper {
+        display: inline-block;
         margin-bottom: 1rem;
+        border-right: 1.4px solid #adb5bd;
         .contents__info__genres {
           display: inline-block;
-          padding: .4rem;
-          margin-right: .5rem;
-          border-radius: 17px;
-          border: 1.4px solid #adb5bd;
+          margin-right: .4rem;
           .contents__info__genre {
             color: #adb5bd;
-            font-size: 0.9rem;
+            font-weight: 300;
           }
         }
       }
+      .contents__info__runtime-wrapper {
+        display: inline-block;
+        margin-bottom: 1rem;
+        .contents__info__runtime {
+          display: inline-block;
+          margin-left: .4rem;
+          color: #adb5bd;
+          font-weight: 300;
+        }
+      }
       .contents__info__wrapper {
-        .contents__info__btn {
+        margin-top: 1rem;
+        .contents__imdb__btn {
           margin-bottom: 1rem;
           width: 120px;
           height: 35px;
@@ -175,6 +213,18 @@ export default {
             font-size: 0.9rem;
             letter-spacing: 0.7px;
             text-shadow: 0 1px 2px #ced4da;
+          }
+        }
+        .contents__like__btn {
+          margin-bottom: 1rem;
+          width: 120px;
+          height: 35px;
+          border-radius: 17.5px;
+          background: transparent;
+          border: 1px solid #adb5bd;
+          cursor: pointer;
+          p {
+            color: #adb5bd;
           }
         }
       }

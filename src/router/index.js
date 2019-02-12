@@ -6,7 +6,8 @@ import Login from '../components/Login.vue'
 import Browser from '../components/Browser.vue'
 import Categories from '../components/Categories.vue'
 import Content from '../components/Content.vue'
-import People from '../components/People.vue'
+import Person from '../components/Person.vue'
+import PersonCredits from '../components/PersonCredits.vue'
 import NotFound from '../components/NotFound.vue'
 
 
@@ -36,8 +37,12 @@ const router = new VueRouter({
     },
 
     {
-      path: '/people/:peopleId',
-      component: People
+      path: '/person/:personId',
+      component: Person, 
+      children: [{
+        path: 'credits/:creditId',
+        component: PersonCredits
+      }]
     },
     {
       path: '/login',
