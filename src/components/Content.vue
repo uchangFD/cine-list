@@ -1,7 +1,7 @@
 <template>
   <section class="contents__section">
     <div v-if="isLoading">
-     Loading...
+      <Loader />
     </div>
     <div 
       v-else
@@ -73,10 +73,11 @@
 
 <script>
 import ContentTab from './ContentTab.vue'
+import Loader from './Loader.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  components: { ContentTab },
+  components: { ContentTab, Loader },
   props:['data'],
 
   data() {
@@ -136,8 +137,7 @@ export default {
 <style lang="scss">
 @import "../assets/styles/variables.scss";
 
-.contents__section 
-{
+.contents__section {
   background: $primary-color;
   margin-left: 250px;
   color: #fff;

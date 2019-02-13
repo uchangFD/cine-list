@@ -62,16 +62,19 @@ const mutations = {
   },
 
   SET_CATEGORIES(state, categories) {
-    state.categories = categories
+    state.categories = state.categories.concat(categories)
   },
 
+  RESET_CATEGORIES(state) {
+    state.categories = []
+  },
+
+  
   RESET_STATES(state) {
     state.results = []
   },
   
-  RESET_LISTS(state) {
-    state.categories = []
-  }
+
 }
 
 export default mutations

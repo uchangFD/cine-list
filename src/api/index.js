@@ -50,8 +50,8 @@ export const browser = {
 
 
 export const categories = {
-  fetch(id) {
-    return request('get', `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${id}&vote_count.gte=100`)
+  fetch(id, page) {
+    return request('get', `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${id}&vote_count.gte=100&page=${page}`)
   }
 }
 

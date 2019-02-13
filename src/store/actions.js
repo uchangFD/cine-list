@@ -78,19 +78,21 @@ const actions = {
   },
 
 
-  FETCH_CATEGORIES({ commit }, { id }) {
-    return api.categories.fetch(id).then(data => {
+  FETCH_CATEGORIES({ commit }, { id, page }) {
+    return api.categories.fetch(id, page).then(data => {
       commit('SET_CATEGORIES', data.results)
     })
+  },
+
+  RESET_CATEGORIES({ commit }) {
+    commit('RESET_CATEGORIES')
   },
 
   RESET_RESULTS({ commit }) {
     commit('RESET_STATES')
   },
 
-  RESET_LISTS({ commit }) {
-    commit('RESET_LISTS')
-  }
+  
 
 
 }

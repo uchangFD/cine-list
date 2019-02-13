@@ -1,10 +1,11 @@
 <template>
   <div class="categories__container">
-    <div class="categories__movie-wrapper">
-      <h2 class="categories__movie-title">{{title}}</h2>
-      <div v-if="isLoading" class="categories__loading">
-      </div>
-      <div v-else>
+    <div v-if="isLoading" class="categories__loading">
+      <Loader />
+    </div>
+    <div v-else>
+      <div class="categories__movie-wrapper">
+        <h2 class="categories__movie-title">{{title}}</h2>
         <div class="categories__movie-list">
           <div 
             v-for="(item, index) in categories" 
@@ -40,26 +41,28 @@
 <script>
 import {mapActions, mapState} from 'vuex'
 import List from './List.vue'
+import Loader from './Loader.vue'
 import _ from 'lodash'
 
 export default {
   components: {
-    List
+    List, Loader
   },
 
   data() {
     return {
       title: '',
-      isLoading: false
+      isLoading: false,
+      pages: 1
     }
   },
 
   created () {
-    // window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   },
 
   destroyed () {
-    // window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   },
 
 
@@ -74,7 +77,8 @@ export default {
     '$route': {
       handler :'fetch',
       immediate: true,
-    }
+    },
+    '$route.params.categoriesId': 'onReset'
   },
 
   updated() {
@@ -82,38 +86,35 @@ export default {
   
   methods: {
     ...mapActions([
-      'FETCH_CATEGORIES'
+      'FETCH_CATEGORIES',
+      'RESET_CATEGORIES'
     ]),
 
-    fetch: function() {
+    fetch: function(pages = 1) {
+      // this.onReset()
       this.genres.forEach(obj => {
         if(obj.name.toLowerCase() === this.$route.params.categoriesId) {
           this.isLoading = true
           this.title = obj.name
-          this.FETCH_CATEGORIES({id: obj.id})
-            .finally(_=>{
+          this.FETCH_CATEGORIES({id: obj.id, page: pages})
+            .finally(_ => {
               this.isLoading = false
             })
         }
       })
     },
 
-    // handleScroll: _.throttle(
-    //   function() {
-    //     this.scrolled = (window.innerHeight + window.scrollY) >= document.body.offsetHeight
-    //     if ( this.scrolled ) {
-    //       this.page++
-    //       this.fetch()
-    //     }
-    //   }, 300
-    // ),
+    onReset: function() {
+      this.RESET_CATEGORIES()
+      window.scrollTo(0, 0);
+      this.pages = 1
+    },
 
-    // onResetLists: function() {
-    //   this.RESET_LISTS()
-    //   this.pageName = this.$route.params.categoriesId
-    //   this.fetch()
-    // },
-
+    handleScroll: _.throttle(
+      function() {
+        this.scrolled = (window.innerHeight + window.scrollY) >= document.querySelector('.categories__movie-wrapper').offsetHeight
+        if ( this.scrolled) {this.fetch(++this.pages)}
+      }, 300),
   }
 }
 </script>
@@ -125,9 +126,10 @@ export default {
   margin-left: 250px;
   background: $primary-color;
   padding-top: 30px;
-  min-height: 1000px;
+  min-height: 100%;
   .categories__movie-wrapper {
     width: 90%;
+    min-height: 100%;
     margin-right: auto;
     position: relative;
     margin-left: 80px;
@@ -140,8 +142,13 @@ export default {
       margin-bottom: .4rem;
       margin-left: .5rem;
     }
-    .categories__loading {
-    }
+    // .categories__loading {
+    //   position: absolute;
+    //   top: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   left: 0;
+    // }
   }
 }
 

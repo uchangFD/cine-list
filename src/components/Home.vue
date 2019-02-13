@@ -47,6 +47,8 @@ export default {
 
     fetches: function() {
       this.isLoading = true
+      console.log("Loading")
+      
       this.FETCH_MAIN_SLIDE({options: 'SET_MAIN_SLIDES'})
       this.FETCH_SUB_SLIDE({options: 'SET_SUB_SLIDES'})
         .finally(_ => {this.isLoading = false})
@@ -63,7 +65,7 @@ export default {
 
 .home__container {
   width: calc(100% - 250px);
-  height: 100%;
+  min-height: 100%;
   margin-left: 250px;
   z-index: 0;
   background: $primary-color;

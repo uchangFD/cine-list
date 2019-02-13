@@ -33,10 +33,13 @@ export default {
 	  vertical-align: baseline;
   }
   html {
-    height: 100%
+    height: 100%;
+    margin: 0;
   }
 
   body {
+    height: 100%;
+    margin: 0;
     line-height: 1;
   }
 
