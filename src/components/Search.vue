@@ -1,66 +1,50 @@
 <template>
   <section class="search">
     <form 
-      class="movie-search-form"
+      class="search__form"
       type="submit"
       @submit.prevent="onSubmit"
     >
       <input 
-        class="movie-search-input"
+        class="search__input"
         type="text"
         ref="searchInput"
-        v-model="search"
+        v-model="query"
         @keyup="onKeyup"
         placeholder="보고싶은 영화를 검색하세요"
       />
-
       <div
-        v-show="search.length"
+        v-show="query.length"
         type="remove"
         class="reset-btn"
-        @click.prevent="onClickResetBtn"
+        @click.prevent="onReset"
       >
         <span class="reset-btn-text">&times;</span>
       </div>
     </form>
-
-<!-- 
-    <div 
-      class="search-result-wrapper"
-      v-if="results.length"
-    >
-      <ul class="search-result-list">
-        <li
-          v-for="(item, index) in results" 
-          :key="index"
-          class="search-result-item"
-        >
-          <List :data="item" />
-        </li>
-      </ul>
+    <div v-if="results.length">
+      <div v-if="isShowResults">
+        <SearchResult :data="results" @close="isShowResults = false" />
+      </div>
     </div>
-
-    <div v-else>
-      <p>NOTHING TO BE SHOWN</p>
-    </div> -->
-
-
+    <div></div>
   </section>
 </template>
 
 <script>
-import List from './List'
+import SearchResult from './SearchResult.vue'
 import {mapActions, mapState} from 'vuex'
 import _ from 'lodash'
 
 
 export default {
   components: {
-    List
+    SearchResult
   },
   data() {
     return {
-      search: ''
+      query: '',
+      isShowResults: true,
     }
   },
 
@@ -68,9 +52,10 @@ export default {
     ...mapState({
       results: 'results',
     }),
+
     invalid() {
-      return !this.search.trim()
-    },
+      return !this.query.trim()
+    }
   },
 
   mounted() {
@@ -78,8 +63,13 @@ export default {
   },
 
   watch: {
-    search: function(searchText) {
+    query: function(searchText) {
       this.onSearching(searchText)
+    },
+    '$route.params.contentId': 'onReset',
+    
+    isShowResults: function() {
+      if (!this.isShowResults) this.onReset()
     }
   },
   
@@ -92,6 +82,7 @@ export default {
     onSearching: _.debounce(
       function(searchText) {        
         if (this.invalid) return
+        this.isShowResults = true
         this.FETCH_SEARCH({text: searchText})
       }, 500),
 
@@ -102,18 +93,19 @@ export default {
 
 
     onSearched: function() {
-      if (this.invalid) return      
-      this.FETCH_SEARCH({text: this.search})
+      if (this.invalid) return  
+      this.isShowResults = true    
+      this.FETCH_SEARCH({text: this.query})
     },
 
 
     onKeyup: function() {      
-      if (!this.search) this.RESET_RESULTS()
+      if (!this.query) this.RESET_RESULTS()
     },
     
 
-    onClickResetBtn: function() {
-      this.search = ''
+    onReset: function() {
+      this.query = ''
       this.RESET_RESULTS()
     }
 
@@ -124,62 +116,47 @@ export default {
 <style lang="scss">
 .search {
   display: inline-block;
-  width: 200px;
+  width: 350px;
   margin: 0;
-}
-
-.movie-search-form {
-  position: relative;
-  text-align: center;
-  width: 200px;
-}
-
-.movie-search-input {
-  box-sizing: border-box;
-  padding: 5px 0;
-  width: 200px;
-  line-height: 1.5;
-  background: transparent;
-  border-bottom: 1.25px solid #fff;
-  box-shadow: none;
-  outline: 0;
-  color: #fff;
-}
-
-
-.reset-btn {
-  position: absolute;
-  top: 26px;
-  right: 1.2%;
-  height: 18px;
-  width: 18px;
-  line-height: 18px;
-  border-radius: 50%;
-  background-color: #ccc;
-  color: white;
-  font-size: 1rem;
-  border: none;
-  span {
-    position: absolute;
-    top: -1.5px;
-    right: 4px;
+  .search__form {
+    position: relative;
+    text-align: center;
+    width: 350px;
+    .search__input {
+      box-sizing: border-box;
+      padding: 5px 0;
+      width: 350px;
+      line-height: 1.5;
+      background: transparent;
+      border-bottom: 1.25px solid #fff;
+      box-shadow: none;
+      outline: 0;
+      color: #fff;
+      text-indent: 1rem;
+    }
+    .reset-btn {
+      position: absolute;
+      top: 26px;
+      right: 1.2%;
+      height: 18px;
+      width: 18px;
+      line-height: 18px;
+      border-radius: 50%;
+      background-color: #ccc;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      span {
+        position: absolute;
+        top: -1.5px;
+        right: 4px;
+      }
+    }
   }
 }
 
-.search-result-wrapper {
-  max-width: 960px;
-  margin: 0 auto;
-}
 
-.search-result-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 1.5rem;
-  grid-row-gap: 1.75rem;
-}
 
-.search-result-item {
-  background: #faa;
-}
+
 
 </style>

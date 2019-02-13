@@ -7,7 +7,6 @@ const POPULAR =  `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&
 const CELEBRITIES = `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en-US&page=1`
 const GENRES = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
 const SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&vote_count.gte=50&query=`
-// const VIDEOS = `https://api.themoviedb.org/3/movie/${MOVIE_ID}/videos?api_key=${API_KEY}&language=en-US`
 
 
 const request = (method, url, data) => {

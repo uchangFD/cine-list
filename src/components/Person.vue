@@ -7,9 +7,16 @@
       v-else
       class="person__wrapper"
     >
-      <pre>{{person}}</pre>
+
+      <div class="person__info">
+        <h1 class="person__info__name">{{person.name}}</h1>
+        <img :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${person.profile_path}`" alt="">
+        <p class="person__info__bio">{{person.biography}}</p>
+      </div>
       <hr>
-      <pre>{{credits}}</pre>
+      <div class="person__credits">
+        <div class="person__credits__cast">{{credits.cast}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -73,11 +80,18 @@ export default {
   background: $primary-color;
   position: relative;
   min-height: 100%;
-}
+  .person__wrapper {
+    color: #fff;
+    .person__info {
+      .person__info__name {
 
-pre {
-  color: #fff;
-  letter-spacing: 1.4px;
-  font-weight: 300;
+      }
+    }
+    .person__credits {
+      .person__credits__cast {
+
+      }
+    }
+  }
 }
 </style>

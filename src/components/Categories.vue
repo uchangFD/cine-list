@@ -12,22 +12,22 @@
             :key="index"
             class="categories__movie-item"
           >
-            <div class="categories__content__poster">
+            <div class="categories__poster">
               <img 
-                class="categories__content__poster-image"
+                class="categories__poster-image"
                 :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"  
                 :alt="`${item.original_title}`"
               >
             </div>
-            <div class="categories__content__wrapper">
-              <div class="categories__content__info">
-                <h3 class="categories__content__title">{{item.title ? item.title : '제목 없음'}}</h3>
-                <p class="categories__content__rate">{{item.vote_average}} / 10</p>
-                <p class="categories__content__synopsis">{{item.overview}}</p>
+            <div class="categories__wrapper">
+              <div class="categories__info">
+                <h3 class="categories__title">{{item.title ? item.title : '제목 없음'}}</h3>
+                <p class="categories__rate">{{item.vote_average}} / 10</p>
+                <p class="categories__synopsis">{{item.overview}}</p>
               </div>
-              <div class="categories__content__links">
+              <div class="categories__links">
                 <router-link :to="`/content/${item.id}`">
-                  <button class="categories__content__btn">View Details</button>
+                  <button class="categories__btn">View Details</button>
                 </router-link>
               </div>
             </div>
@@ -155,9 +155,9 @@ export default {
       opacity: 1;
       border-radius: 2px;
     }
-    .categories__content__poster{
+    .categories__poster{
       flex: none;
-      .categories__content__poster-image {
+      .categories__poster-image {
         object-fit: cover;
         width: 150px;
         height: 225px;
@@ -165,22 +165,22 @@ export default {
         margin-right: 1rem;
       }
     }
-    .categories__content__wrapper {
+    .categories__wrapper {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      .categories__content__info {  
-        .categories__content__title {
+      .categories__info {  
+        .categories__title {
           color: #fff;
           font-size: 1.2rem;
           letter-spacing: 1.2px;
         }
-        .categories__content__rate {
+        .categories__rate {
           color: #fff;
           margin-top: 1rem;
           letter-spacing: 1.2px;
         }
-        .categories__content__synopsis {
+        .categories__synopsis {
           margin-top: 1rem;
           font-size: 0.9rem;
           letter-spacing: 0.5px;
@@ -189,9 +189,9 @@ export default {
           color: #fff;
         }
       }
-      .categories__content__links {
+      .categories__links {
         margin-top: 1rem;
-        .categories__content__btn {
+        .categories__btn {
           width: 120px;
           height: 35px;
           border-radius: 17.5px;

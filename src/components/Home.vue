@@ -16,12 +16,6 @@ export default {
     MainSlide, SubSlide
   },
 
-  data() {
-    return {
-      isLoading: false
-    }
-  },
-
   computed: {
     ...mapState({
       mains: 'mains',
@@ -31,7 +25,7 @@ export default {
 
    watch: {
       '$route': {
-        handler :'fetches',
+        handler :'fetch',
         immediate: true
       }
     },
@@ -45,13 +39,9 @@ export default {
     ]),
 
 
-    fetches: function() {
-      this.isLoading = true
-      console.log("Loading")
-      
+    fetch: function() {
       this.FETCH_MAIN_SLIDE({options: 'SET_MAIN_SLIDES'})
       this.FETCH_SUB_SLIDE({options: 'SET_SUB_SLIDES'})
-        .finally(_ => {this.isLoading = false})
     }
   }
 }

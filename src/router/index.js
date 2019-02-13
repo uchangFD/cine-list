@@ -7,7 +7,6 @@ import Browser from '../components/Browser.vue'
 import Categories from '../components/Categories.vue'
 import Content from '../components/Content.vue'
 import Person from '../components/Person.vue'
-import PersonCredits from '../components/PersonCredits.vue'
 import NotFound from '../components/NotFound.vue'
 
 
@@ -23,14 +22,17 @@ const router = new VueRouter({
       path: '/',
       component: Home
     },
+    
     {
       path: '/browser/:browserId',
       component: Browser
     },
+
     {
       path: '/categories/:categoriesId',
       component: Categories
     },
+
     {
       path: '/content/:contentId',
       component: Content
@@ -38,12 +40,9 @@ const router = new VueRouter({
 
     {
       path: '/person/:personId',
-      component: Person, 
-      children: [{
-        path: 'credits/:creditId',
-        component: PersonCredits
-      }]
+      component: Person
     },
+
     {
       path: '/login',
       component: Login
