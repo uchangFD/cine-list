@@ -80,9 +80,6 @@ export default {
     },
     '$route.params.categoriesId': 'onReset'
   },
-
-  updated() {
-  },
   
   methods: {
     ...mapActions([
@@ -91,15 +88,12 @@ export default {
     ]),
 
     fetch: function(pages = 1) {
-      // this.onReset()
       this.genres.forEach(obj => {
         if(obj.name.toLowerCase() === this.$route.params.categoriesId) {
           this.isLoading = true
           this.title = obj.name
           this.FETCH_CATEGORIES({id: obj.id, page: pages})
-            .finally(_ => {
-              this.isLoading = false
-            })
+          .finally(_ => {this.isLoading = false})
         }
       })
     },
@@ -142,13 +136,6 @@ export default {
       margin-bottom: .4rem;
       margin-left: .5rem;
     }
-    // .categories__loading {
-    //   position: absolute;
-    //   top: 0;
-    //   right: 0;
-    //   bottom: 0;
-    //   left: 0;
-    // }
   }
 }
 
