@@ -1,25 +1,13 @@
 <template>
   <div id="app">
-    <Navbar /> 
-    <Header />
     <router-view></router-view>
   </div>
-  
 </template>
-
 <script>
-import Navbar from "./components/Navbar.vue";
-import Header from "./components/Header.vue";
-export default {
-  components: {
-    Navbar, Header
-  }
-}
-
+export default {}
 </script>
 
 <style lang="scss">
-
   html, body, div, span, 
   h1, h2, h3, h4, h5, h6, 
   p, pre, a, img, strong, 

@@ -1,11 +1,17 @@
 <template>
-  <div class="home__container">
-    <MainSlide :data="mains" />
-    <SubSlide :data="upcoming" />
+  <div>
+    <Navbar /> 
+    <Header />
+    <div class="home__container">
+      <MainSlide :data="mains" />
+      <SubSlide :data="upcoming" />
+    </div>
   </div>
 </template>
 
 <script>
+import Navbar from "./Navbar.vue";
+import Header from "./Header.vue";
 import MainSlide from './MainSlide.vue'
 import SubSlide from './SubSlide.vue'
 import {mapActions, mapState} from 'vuex'
@@ -13,7 +19,7 @@ import {mapActions, mapState} from 'vuex'
 
 export default {
   components:{
-    MainSlide, SubSlide
+     Navbar, Header, MainSlide, SubSlide
   },
 
   computed: {

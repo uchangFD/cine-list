@@ -1,5 +1,4 @@
 import * as api from '../api'
-import SLIDE_REF from '../store/firebase'
 
 const actions = {
   FETCH_MAIN_SLIDE({ commit }, { options }) {
