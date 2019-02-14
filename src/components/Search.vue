@@ -27,7 +27,6 @@
         <SearchResult :data="results" @close="isShowResults = false" />
       </div>
     </div>
-    <div></div>
   </section>
 </template>
 

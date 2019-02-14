@@ -42,10 +42,10 @@ export default {
       background: $gradient-color;
       animation: loader 1.2s linear infinite;
 
-      &:nth-child(#{$i * 3 - 2}) {
+      &:nth-child(#{$i * 3}) {
         top: 20px * ($i - 1) + 5px;
-        left: 5px;
-        animation-delay: -0.4s * $i + 0.4s;
+        left: 45px;
+        animation-delay: -0.4s * $i + 0.8s;
       }
 
       &:nth-child(#{$i * 3 - 1}) {
@@ -53,12 +53,12 @@ export default {
         left: 25px;
         animation-delay: -0.4s * $i;
       }
-      
-      &:nth-child(#{$i * 3}) {
+    
+      &:nth-child(#{$i * 3 - 2}) {
         top: 20px * ($i - 1) + 5px;
-        left: 45px;
-        animation-delay: -0.4s * $i + 0.8s;
-      }
+        left: 5px;
+        animation-delay: -0.4s * $i + 0.4s;
+      }  
     }
   }
 }

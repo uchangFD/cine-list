@@ -1,17 +1,16 @@
 <template>
   <section class="header">
     <Search class="header__search"/>
-    <div class="header__login">
-      <router-link class="header__login-btn" to="/login">Login</router-link>
-    </div>
+    <AuthSuccess />
   </section>
 </template>
 
 <script>
 import Search from './Search.vue'
+import AuthSuccess from './AuthSuccess.vue'
 export default {
   components: {
-    Search
+    Search, AuthSuccess
   }
 }
 </script>
