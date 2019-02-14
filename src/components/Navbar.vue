@@ -1,5 +1,6 @@
 <template>
   <section class="navbar">
+
     <div class="navbar__logo">
         <router-link 
           to="/home"
@@ -10,16 +11,21 @@
         </router-link>
     </div>
     <div class="navbar__browser">
+
       <h2 class="navbar__browser__title">BROWSE</h2>
+
       <ul class="navbar__browser__list">
+
         <li class="navbar__browser__item">
           <router-link 
             to="/browser/celebrities"
             class="browser__item__link" 
           >
-            CELEBRITIES
+            <span class="browser__item__link-text">CELEBRITIES</span>
           </router-link>
         </li>
+
+
         <li class="navbar__browser__item">
           <router-link 
             to="/browser/"
@@ -27,6 +33,8 @@
           >
           </router-link>
         </li>
+
+
       </ul>
     </div>
 
@@ -41,7 +49,7 @@
             class="categories__item__link" 
             :to="`/categories/${item.name.toLowerCase()}`"
           >
-            {{item.name}}
+            <span class="categories__item__link-text">{{item.name}}</span>
           </router-link>
         </li>
       </ul>
@@ -135,9 +143,11 @@ export default {
       .navbar__browser__item{
         margin-top: 0.6rem;
         .browser__item__link {
-          font-size: 1rem;
-          letter-spacing: 0.1rem;
-          color: #aaa;
+          .browser__item__link-text{
+            font-size: 1rem;
+            letter-spacing: 0.1rem;
+            color: #aaa;
+          }
         }
       }
     }
@@ -156,16 +166,18 @@ export default {
     }
     .navbar__categories__list {
       .navbar__categories__item {
-        padding-top: 1rem;
-        padding-left: 2rem;
+        margin-top: 1rem;
+        margin-left: 2rem;
         opacity: 0.6;
         &:hover {
           opacity: 1;
         }
         .categories__item__link {
-          font-size: .85rem;
-          letter-spacing: 0.1rem;
-          color: #aaa;
+          .categories__item__link-text{
+            color: #aaa;
+            letter-spacing: 0.1rem;
+            font-size: .85rem;
+          }
         }
       }
     }

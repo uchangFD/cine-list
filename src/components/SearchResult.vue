@@ -25,10 +25,10 @@
 <script>
 export default {
   props: ['data'],
+
   mounted() {
     this.onClickOutside(this.$el)
   },
-
   
   methods: {
     onClickOutside: function(el) {
@@ -56,6 +56,9 @@ export default {
     &:hover {
       background: $gradient-color;
       opacity: 1;
+      p, span {
+        color: #181818;
+      }
     }
     .search-result__link {
       .search-result__item-wrapper {

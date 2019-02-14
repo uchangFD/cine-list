@@ -100,7 +100,7 @@ export default {
 
     onReset: function() {
       this.RESET_CATEGORIES()
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0)
       this.pages = 1
     },
 

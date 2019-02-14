@@ -10,7 +10,7 @@
       :alt="`${data.original_title}`"
     />
     <span class="content__rate">{{data.vote_average}}</span>
-    <p class="content__title">{{data.title ? data.title : '제목 없음'}}</p>
+    <p class="content__title">{{data.title}}</p>
     <div
       v-if="isHovered"
       class="content-detail__wrapper"
@@ -24,7 +24,7 @@
            class="content-detail__info"
          >
            <span>#{{genre.name}}</span>
-           <span>{{data.release_date.split('-')[0]}}</span>
+           <span>{{`${year}`}}</span>
          </p>
       </div>
       <router-link :to="`/content/${data.id}`">
@@ -51,7 +51,11 @@ export default {
   computed: {
     ...mapState({
       genres: 'genres'
-    })
+    }),
+
+    year: function() {      
+      return this.getReleasedYear(this.data.release_date)
+    }
   },
 
   methods: {
@@ -62,6 +66,9 @@ export default {
     onLeave: function() {
       this.$el.classList.remove('content-detail')
       this.isHovered = false
+    },
+    getReleasedYear: function(data) {
+      return data.slice(0, 4)
     }
   }
 }
