@@ -124,14 +124,14 @@ export default {
     width: 350px;
     .search__input {
       box-sizing: border-box;
-      padding: 5px 0;
+      padding-bottom: 15px;
       width: 350px;
       line-height: 1.5;
       background: transparent;
       border-bottom: 1.25px solid #fff;
       box-shadow: none;
       outline: 0;
-      color: #fff;
+      color: #aaa;
       text-indent: 1rem;
     }
     .reset-btn {

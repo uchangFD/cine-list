@@ -35,9 +35,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
-div {
-  padding-left: 500px;
-}
 </style>

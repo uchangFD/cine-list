@@ -15,9 +15,7 @@
       </div>
     </div>
     <div class="contents__info__runtime-wrapper">
-      <span class="contents__info__runtime">
-        {{Math.floor(contents.runtime / 60)}}hr {{(contents.runtime - (Math.floor(contents.runtime / 60) * 60))}}mins
-      </span>
+      <span class="contents__info__runtime">{{`${runtimes}`}}</span>
     </div>
     <div class="contents__info__wrapper">
       <button class="contents__imdb__btn">
@@ -53,9 +51,18 @@ export default {
     ...mapState({
       contents: 'contents',
       genres: 'genres'
-    })
+    }),
+
+    runtimes: function() {
+      return this.getRuntime(this.contents.runtime)
+    }
   },
 
+  methods: {
+    getRuntime: function(data) {
+      return `${Math.floor(data / 60)}hr ${(data - (Math.floor(data / 60) * 60))}mins`
+    }
+  }
 }
 </script>
 

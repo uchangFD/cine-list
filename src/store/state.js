@@ -15,7 +15,7 @@ const state = {
   browser: [],
   
   genres: [],
-  categories: []
+  categoriesList: []
 }
 
 

@@ -1,6 +1,6 @@
 <template>
 <div class="search-result__wrapper">
-  <ul>
+  <ul class="search-result__list">
       <li
         v-for="(item, index) in data" 
         :key="index"
@@ -45,43 +45,45 @@ export default {
 
 .search-result__wrapper {
   margin: 0 auto;
-  height: 300px;
+  max-height: 500px;
   border-radius: 4px;
   overflow-y: scroll;
   background: rgba(44, 51, 56, .8);
-  .search-result__item {
-    margin-bottom: .5rem;
-    text-indent: .5rem;
-    opacity: .9;
-    &:hover {
-      background: $gradient-color;
-      opacity: 1;
-      p, span {
-        color: #181818;
+  .search-result__list {
+    .search-result__item {
+      margin-bottom: .5rem;
+      text-indent: .5rem;
+      opacity: .9;
+      &:hover {
+        background: $gradient-color;
+        opacity: 1;
+        p, span {
+          color: #181818;
+        }
       }
-    }
-    .search-result__link {
-      .search-result__item-wrapper {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        .search-result__item-image {
-          // display: inline-block;
-          padding: .5rem;
-          width: 48px;
-          height: 100%;
-        }
-        .search-result__item-title {
-          width: 50%;
-          line-height: 1.6;
-          color: #efefef;
-          text-shadow: 0 1px 2px #777;
-          flex-direction:column;
-          align-content: center;
-        }
-        .search-result__item-year {
-          color: #efefef;
-          text-shadow: 0 1px 2px #777;
+      .search-result__link {
+        .search-result__item-wrapper {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          .search-result__item-image {
+            padding: .5rem;
+            width: 48px;
+            height: auto;
+          }
+          .search-result__item-title {
+            width: 50%;
+            line-height: 1.6;
+            color: #efefef;
+            text-shadow: 0 1px 2px #777;
+            flex-direction:column;
+            align-content: center;
+          }
+          .search-result__item-year {
+            color: #efefef;
+            text-shadow: 0 1px 2px #777;
+            padding: .5rem;
+          }
         }
       }
     }

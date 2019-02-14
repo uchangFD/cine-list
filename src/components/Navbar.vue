@@ -1,43 +1,17 @@
 <template>
   <section class="navbar">
-
     <div class="navbar__logo">
-        <router-link 
-          to="/home"
-          aria-label="CINE-LIST"
-          class="logo-btn"
-        >
+      <router-link 
+        to="/home"
+        aria-label="CINE-LIST"
+        class="logo-btn"
+      >
         <span class="logo__title">CINE LIST</span>
-        </router-link>
-    </div>
-    <div class="navbar__browser">
-
-      <h2 class="navbar__browser__title">BROWSE</h2>
-
-      <ul class="navbar__browser__list">
-
-        <li class="navbar__browser__item">
-          <router-link 
-            to="/browser/celebrities"
-            class="browser__item__link" 
-          >
-            <span class="browser__item__link-text">CELEBRITIES</span>
-          </router-link>
-        </li>
-
-
-        <li class="navbar__browser__item">
-          <router-link 
-            to="/browser/"
-            class="browser__item__link"
-          >
-          </router-link>
-        </li>
-
-
-      </ul>
+      </router-link>
     </div>
 
+    <NavbarBrowser :list="browsers" />
+    
     <div class="navbar__categories">
       <h2 class="navbar__categories__title">CATEGORIES</h2>
       <ul class="navbar__categories__list">
@@ -59,12 +33,15 @@
 
 <script>
 
+import NavbarBrowser from './NavbarBrowser.vue'
 import {mapActions, mapState} from 'vuex'
 
-export default {  
+export default {
+
+  components: {NavbarBrowser},
   data() {
     return {
-
+      browsers: ['CELEBRITIES', 'FAVORITES', 'NEWS'],
     }
   },
 
@@ -126,32 +103,6 @@ export default {
         font-size: 2rem;
       }
     }
-  }
-
-
-  .navbar__browser {
-    justify-content: space-around;
-    margin: 2.5rem auto;
-    padding-left: 2rem;
-    .navbar__browser__title {
-      letter-spacing: 0.2rem;
-      color: #666;
-      font-size: 0.9rem;
-    }
-    .navbar__browser__list {
-      margin-top: 0.4rem;
-      .navbar__browser__item{
-        margin-top: 0.6rem;
-        .browser__item__link {
-          .browser__item__link-text{
-            font-size: 1rem;
-            letter-spacing: 0.1rem;
-            color: #aaa;
-          }
-        }
-      }
-    }
-
   }
 
   .navbar__categories {
