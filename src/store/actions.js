@@ -57,8 +57,9 @@ const actions = {
 
 
 
-  FETCH_SEARCH({ commit }, { text }) {
-    return api.search.fetch(text).then(data => {
+  FETCH_SEARCH({ commit }, { query }) {
+    
+    return api.search.fetch(query).then(data => {
       commit('SET_SEARCH', data.results)
     })
   },

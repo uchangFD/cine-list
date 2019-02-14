@@ -7,9 +7,14 @@
         class="search-result__item"
       >
         <router-link 
+          class="search-result__link"
           :to="`/content/${item.id}`"
         >
-          <span>{{item.title}}</span>
+          <div class="search-result__item-wrapper">
+            <img class="search-result__item-image" :src="`https://image.tmdb.org/t/p/w92${item.poster_path}`" alt="">
+            <p class="search-result__item-title">{{item.title}}</p>
+            <span class="search-result__item-year">{{item.release_date.split('-')[0]}}</span>
+          </div>
         </router-link>
       </li>
   </ul>
@@ -36,21 +41,48 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../assets/styles/variables.scss";
+
 .search-result__wrapper {
-  padding-left: 1rem;
-  padding-right: 1rem;
   margin: 0 auto;
   height: 300px;
+  border-radius: 4px;
   overflow-y: scroll;
-  z-index: 4;
-    .search-result__item {
-      border-radius: 4px;
-      background: #fff;
-      height: 30px;
-      line-height: 30px;
-      margin-bottom: .3rem;
-      text-indent: 1rem;
+  background: rgba(44, 51, 56, .8);
+  .search-result__item {
+    margin-bottom: .5rem;
+    text-indent: .5rem;
+    opacity: .9;
+    &:hover {
+      background: $gradient-color;
+      opacity: 1;
     }
+    .search-result__link {
+      .search-result__item-wrapper {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .search-result__item-image {
+          // display: inline-block;
+          padding: .5rem;
+          width: 48px;
+          height: 100%;
+        }
+        .search-result__item-title {
+          width: 50%;
+          line-height: 1.6;
+          color: #efefef;
+          text-shadow: 0 1px 2px #777;
+          flex-direction:column;
+          align-content: center;
+        }
+        .search-result__item-year {
+          color: #efefef;
+          text-shadow: 0 1px 2px #777;
+        }
+      }
+    }
+  }
 }
 
 

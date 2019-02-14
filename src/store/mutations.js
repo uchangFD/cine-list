@@ -1,29 +1,29 @@
-import SLIDE_REF from './firebase'
+import REF from './firebase'
 
 
 const mutations = {
   SET_MAIN_SLIDES(state, mains) {    
-    SLIDE_REF.once('value').then(() => {
-      SLIDE_REF.child('TRENDING').set(mains)
+    REF.SLIDES.once('value').then(() => {
+      REF.SLIDES.child('TRENDING').set(mains)
     })
 
-    SLIDE_REF.child('TRENDING').on('child_added', function(snapshot) { 
+    REF.SLIDES.child('TRENDING').on('child_added', function(snapshot) { 
       state.mains.push(snapshot.val())
     })
   },
 
   SET_SUB_SLIDES(state, upcoming) {    
-    SLIDE_REF.once('value').then(() => {
-      SLIDE_REF.child('UPCOMING').set(upcoming)
+    REF.SLIDES.once('value').then(() => {
+      REF.SLIDES.child('UPCOMING').set(upcoming)
     })
 
-    SLIDE_REF.child('UPCOMING').on('child_added', function(snapshot) { 
+    REF.SLIDES.child('UPCOMING').on('child_added', function(snapshot) { 
       state.upcoming.push(snapshot.val())
     })
   },
 
   SET_SEARCH(state, results) {
-    state.results = results
+    state.results = results    
   },
 
   SET_LISTS(state, lists) {

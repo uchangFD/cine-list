@@ -79,7 +79,7 @@ export default {
   padding-top: 50px;
   padding-bottom: 50px;
   position: relative;
-  width: calc(100% - 250px);
+  width: 90%;
   height: 320px;
   .sub-slides {
     position: relative;

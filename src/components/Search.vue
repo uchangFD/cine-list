@@ -83,7 +83,7 @@ export default {
       function(searchText) {        
         if (this.invalid) return
         this.isShowResults = true
-        this.FETCH_SEARCH({text: searchText})
+        this.FETCH_SEARCH({query: searchText})
       }, 500),
 
 
@@ -95,7 +95,7 @@ export default {
     onSearched: function() {
       if (this.invalid) return  
       this.isShowResults = true    
-      this.FETCH_SEARCH({text: this.query})
+      this.FETCH_SEARCH({query: this.query})
     },
 
 
@@ -137,9 +137,10 @@ export default {
     .reset-btn {
       position: absolute;
       top: 26px;
-      right: 1.2%;
+      right: 0;
       height: 18px;
       width: 18px;
+      margin-right: 1rem;
       line-height: 18px;
       border-radius: 50%;
       background-color: #ccc;

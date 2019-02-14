@@ -9,7 +9,13 @@ const CONFIG = {
 
 firebase.initializeApp(CONFIG)
 
-const SLIDE_REF = firebase.database().ref('SLIDE')
+
+const REF = {
+  'SLIDES': firebase.database().ref('SLIDES'),
+  'SEARCHED': firebase.database().ref('SEARCHED')
+}
 
 
-export default SLIDE_REF
+
+
+export default REF

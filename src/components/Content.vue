@@ -43,7 +43,7 @@
               class="contents__info__imdb-link"
               :href="`https://www.imdb.com/title/${contents.imdb_id}/`">View IMDB</a>
           </button>
-          <button class="contents__like__btn">
+          <button class="contents__like-btn">
             <p>
             <FontAwesome
               icon="thumbs-up"
@@ -51,7 +51,7 @@
             </FontAwesome>
               Like it</p>
           </button>
-          <button class="contents__like__btn">
+          <button class="contents__save-btn">
             <p>
             <FontAwesome
               icon="bookmark"
@@ -91,9 +91,6 @@ export default {
 
   created() {
     this.selectedTab = this.tabs[0]
-    console.log(this.contents)
-    
-
   },
 
   computed: {
@@ -215,7 +212,8 @@ export default {
             text-shadow: 0 1px 2px #ced4da;
           }
         }
-        .contents__like__btn {
+        .contents__like-btn,
+        .contents__save-btn {
           margin-bottom: 1rem;
           width: 120px;
           height: 35px;
@@ -225,6 +223,14 @@ export default {
           cursor: pointer;
           p {
             color: #adb5bd;
+          }
+        }
+        .contents__like-btn {
+          &:hover {
+            background: #aaa;
+            p {
+              color: #181818;
+            }
           }
         }
       }

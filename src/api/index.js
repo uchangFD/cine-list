@@ -34,8 +34,8 @@ export const subSlide = {
 
 
 export const search = {
-  fetch(text) {
-    return request('get', `${SEARCH + text}`)
+  fetch(query) {
+    return request('get', `${SEARCH + query}`)
   },
 
 }
