@@ -1,25 +1,19 @@
 <template>
-  <div>
-    <Navbar /> 
-    <Header />
-    <div class="home__container">
-      <MainSlide :data="mains" />
-      <SubSlide :data="upcoming" />
-    </div>
+  <div class="home__container">
+    <MainSlide :data="mains" />
+    <SubSlide :data="upcoming" />
   </div>
 </template>
 
 <script>
-import Navbar from "./Navbar.vue";
-import Header from "./Header.vue";
 import MainSlide from './MainSlide.vue'
 import SubSlide from './SubSlide.vue'
-import {mapActions, mapState} from 'vuex'
 
+import {mapActions, mapState} from 'vuex'
 
 export default {
   components:{
-     Navbar, Header, MainSlide, SubSlide
+    MainSlide, SubSlide
   },
 
   computed: {
@@ -51,14 +45,10 @@ export default {
     }
   }
 }
-
 </script>
 
-
-<style lang="scss" scoped>
-
+<style lang="scss">
 @import "../assets/styles/variables.scss";
-
 .home__container {
   width: calc(100% - 250px);
   min-height: 100%;
@@ -66,5 +56,5 @@ export default {
   z-index: 0;
   background: $primary-color;
 }
-</style>
 
+</style>

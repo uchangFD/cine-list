@@ -8,6 +8,8 @@ export default {}
 </script>
 
 <style lang="scss">
+@import "./assets/styles/variables.scss";
+
   html, body, div, span, 
   h1, h2, h3, h4, h5, h6, 
   p, pre, a, img, strong, 
@@ -23,12 +25,14 @@ export default {}
   html {
     height: 100%;
     margin: 0;
+    background: $primary-color;
   }
 
   body {
     height: 100%;
     margin: 0;
     line-height: 1;
+    background: $primary-color;
   }
 
   #app {

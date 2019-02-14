@@ -2,7 +2,7 @@
   <section class="navbar">
     <div class="navbar__logo">
         <router-link 
-          to="/"
+          to="/home"
           aria-label="CINE-LIST"
           class="logo-btn"
         >
