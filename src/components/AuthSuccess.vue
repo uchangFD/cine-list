@@ -5,8 +5,8 @@
       :src="photo" 
     >
     <p
-      class="user__name"
-    >{{name}}</p> 
+      class="user__email"
+    >{{email}}</p> 
     <button 
       class="user__logout-btn"
       @click="logOut"
@@ -30,15 +30,7 @@ export default {
  },
 
 created() {
-  // this.user = firebase.auth().currentUser; 
-  // if ( this.user ) {
-  //   this.name = this.user.displayName; 
-  //   this.email = this.user.email; 
-  //   this.photo = this.user.photoURL; 
-  //   this.userId = this.user.uid; 
-  // }
-  // console.log("this.user: ", this.user)
-
+  this.user = firebase.auth().currentUser; 
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       this.name = user.displayName; 
@@ -70,7 +62,7 @@ methods: {
     margin: 1rem;
     border-radius: 50%;
   }
-  .user__name {
+  .user__email {
     height: 70px;
     line-height: 70px;
     float: left;

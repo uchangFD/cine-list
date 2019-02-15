@@ -8,24 +8,22 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faAngleLeft, faThumbsUp, faBookmark } from '@fortawesome/fontawesome-free-solid'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-
 import firebase from 'firebase'
 import { config } from './store/firebase.config'
 
+
 library.add(faAngleLeft, faThumbsUp, faBookmark)
 Vue.component('FontAwesome', FontAwesomeIcon)
+
+
 Vue.config.productionTip = false
+firebase.initializeApp(config)
+
 
 
 new Vue({
   el: '#app',
   router,
   store,
-  created() {
-    firebase.initializeApp(config)
-    firebase.auth().onAuthStateChanged(user => {
-      user ? this.$router.push('/home') : this.$router.push('/login')
-    })
-  },
   render: h => h(App)
 })
