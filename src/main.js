@@ -23,14 +23,9 @@ new Vue({
   store,
   created() {
     firebase.initializeApp(config)
-    firebase.auth().onAuthStateChanged((user) => {
-      if(user) {
-        console.log(user.uid)
-        this.$router.push('/home')
-      } else {
-        this.$router.push('/login')
-      }
-     })
+    firebase.auth().onAuthStateChanged(user => {
+      user ? this.$router.push('/home') : this.$router.push('/login')
+    })
   },
   render: h => h(App)
 })

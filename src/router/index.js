@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Main from '../components/Main.vue'
-import Auth from '../components/Auth.vue'
+import Login from '../components/Login.vue'
 import AuthSuccess from '../components/AuthSuccess.vue';
 import Home from '../components/Home.vue'
 import Browser from '../components/Browser.vue'
@@ -11,8 +11,14 @@ import Content from '../components/Content.vue'
 import Person from '../components/Person.vue'
 import NotFound from '../components/NotFound.vue'
 
+import firebase from 'firebase'
+import { config } from '../store/firebase.config'
+
 
 Vue.use(VueRouter)
+
+
+
 
 
 
@@ -29,8 +35,8 @@ const router = new VueRouter({
         { path: 'categories/:categoriesId', component: Categories },
       ]
     },
-    { path: '/login', component: Auth },
-    { path: '*', component: NotFound },
+    { path: '/login', component: Login  },
+    { path: '*', component: NotFound  },
   ]
 })
 
