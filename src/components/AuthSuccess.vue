@@ -18,34 +18,33 @@
 <script>
 import firebase from 'firebase'
 export default {
-
- data() {
-   return {
-     photo: "",
-     userId: "",
-     name: "",
-     email: "",
-     user: {}
-   }
- },
-
-created() {
-  this.user = firebase.auth().currentUser; 
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      this.name = user.displayName; 
-      this.email = user.email; 
-      this.photo = user.photoURL; 
-      this.userId = user.uid; 
+  data() {
+    return {
+      photo: "",
+      userId: "",
+      name: "",
+      email: "",
+      user: {}
     }
-   })
-},
-
-methods: { 
-  logOut() { 
-    firebase.auth().signOut();
-  } 
-}
+  },
+  created() {
+    this.user = firebase.auth().currentUser; 
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.name = user.displayName; 
+        this.email = user.email; 
+        this.photo = user.photoURL; 
+        this.userId = user.uid; 
+      }
+    })
+  },
+  methods: { 
+    logOut() { 
+      // firebase.auth().signOut();
+      console.log("logout btn")
+      
+    } 
+  }
 };
 
 </script>

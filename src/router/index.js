@@ -16,44 +16,54 @@ import firebase from 'firebase'
 
 Vue.use(VueRouter)
 
+
+const requireAuth = (to, from, next) => {
+  const loginPath = `login?rPath=${encodeURIComponent(to.path)}`
+  firebase.auth().onAuthStateChanged(user => {
+    user ? next() : next(loginPath)
+  })
+}
+
+
 const router = new VueRouter({
   mode: 'history',
   routes: [{
       path: '/',
       component: Main,
-      meta: { requiresAuth: true },
-      children: [
-        { path: '/home', component: Home },
-        { path: 'person/:personId', component: Person },
-        { path: 'content/:contentId', component: Content },
-        { path: 'browser/:browserId', component: Browser },
-        { path: 'categories/:categoriesId', component: Categories }
+      beforeEnter: requireAuth,
+      redirect: '/home',
+      children: [{
+          path: '/home',
+          component: Home,
+          beforeEnter: requireAuth,
+        },
+        {
+          path: 'person/:personId',
+          component: Person,
+          beforeEnter: requireAuth,
+        },
+        {
+          path: 'content/:contentId',
+          component: Content,
+          beforeEnter: requireAuth,
+        },
+        {
+          path: 'browser/:browserId',
+          component: Browser,
+          beforeEnter: requireAuth,
+        },
+        {
+          path: 'categories/:categoriesId',
+          component: Categories,
+          beforeEnter: requireAuth,
+        }
       ]
     },
     { path: '/login', component: Login },
     { path: '/sign-up', component: SignUp },
-    { path: '*', redirect: '/login' }
+    { path: '*', component: NotFound }
   ]
 })
-
-
-router.beforeEach((to, from, next) => {
-
-  const currentUser = firebase.auth().currentUser
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-  console.log(currentUser)
-  console.log(requiresAuth)
-  
-
-  if (requiresAuth && !currentUser) {
-    next('login')
-  } else if (!requiresAuth && currentUser) {
-    next('home')
-  } else {
-    next()
-  }
-})
-
 
 
 export default router
