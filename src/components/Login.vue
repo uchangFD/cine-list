@@ -2,20 +2,34 @@
   <!-- <div id="firebaseui-auth-container"></div> -->
   <div class="login">
     <h3 class="login__title">Sign In</h3>
-    <input class="login__input" v-model="email" type="text" placeholder="E-Mail">
-    <input 
-      class="login__input" 
-      v-model="password" 
-      type="password" 
-      placeholder="Password"
-      @keyup.enter="login"
+    <form 
+      class="login__form"
+      @submit.prevent="onSubmit"
     >
-    <button 
-      type="submit" 
-      class="login__btn" 
-      @click="login"
-    >
-      Connect</button>
+
+      <input 
+        class="login__input" 
+        v-model="email" 
+        type="text" 
+        autofocus
+        placeholder="E-Mail"
+      />
+
+      <input 
+        class="login__input" 
+        v-model="password" 
+        type="password" 
+        placeholder="Password"
+      />
+
+      <button 
+        type="submit" 
+        class="login__btn" 
+        :class="{'btn-success': !invalidForm}"
+        :disabled="invalidForm"
+      >Log In</button>
+
+    </form>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam, voluptatem!</p>
   </div>
 </template>
@@ -29,18 +43,34 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      rPath: ''
     }
   },
 
+  created() {
+    this.rPath = this.$route.query.rPath || '/'
+    
+  },
+
+  computed: {
+    invalidForm() {
+      return !this.email || !this.password
+    }
+  },
   methods: {
-    login: function() {
+    onSubmit: function() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-      .then(user => {this.$router.replace('home')},)
-      .catch(err => {alert(`Oops, ${err.message}`)})
+        .then(user => {
+          localStorage.setItem('token', user.user.uid)
+          this.$router.push(this.rPath)
+        })
+        .catch(err => {
+          alert(err.message)
+        })
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>

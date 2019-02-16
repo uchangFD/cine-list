@@ -13,13 +13,16 @@ import Person from '../components/Person.vue'
 import NotFound from '../components/NotFound.vue'
 
 import firebase from 'firebase'
+import { config } from '../store/firebase.config'
+
 
 Vue.use(VueRouter)
 
+firebase.initializeApp(config)
 
 const requireAuth = (to, from, next) => {
   const loginPath = `login?rPath=${encodeURIComponent(to.path)}`
-  firebase.auth().onAuthStateChanged(user => {
+  firebase.auth().onAuthStateChanged(function(user) {
     user ? next() : next(loginPath)
   })
 }
@@ -31,7 +34,6 @@ const router = new VueRouter({
       path: '/',
       component: Main,
       beforeEnter: requireAuth,
-      redirect: '/home',
       children: [{
           path: '/home',
           component: Home,

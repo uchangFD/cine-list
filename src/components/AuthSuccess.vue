@@ -40,9 +40,8 @@ export default {
   },
   methods: { 
     logOut() { 
-      // firebase.auth().signOut();
-      console.log("logout btn")
-      
+      firebase.auth().signOut().then(function() {
+      })
     } 
   }
 };
