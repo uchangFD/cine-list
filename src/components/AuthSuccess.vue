@@ -2,7 +2,7 @@
   <div class="user__container"> 
     <img 
       class="user__profile"
-      :src="photo" 
+      src="../assets/images/profile.png"
     >
     <p
       class="user__email"
@@ -65,12 +65,14 @@ export default {
     height: 70px;
     line-height: 70px;
     float: left;
+    margin: auto;
   }
   .user__logout-btn {
     height: 70px;
     padding: 0 2rem;
     background: none;
     color: #fff;
+    margin-left: auto;
     cursor: pointer;
   }
 }

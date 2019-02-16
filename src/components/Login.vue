@@ -1,40 +1,41 @@
 <template>
-  <!-- <div id="firebaseui-auth-container"></div> -->
   <div class="login">
     <h3 class="login__title">Sign In</h3>
+    
     <form 
       class="login__form"
       @submit.prevent="onSubmit"
     >
-
       <input 
-        class="login__input" 
+        class="login__input input-email" 
         v-model="email" 
         type="text" 
         autofocus
         placeholder="E-Mail"
       />
 
-      <input 
-        class="login__input" 
+      <input
+        class="login__input input-password" 
         v-model="password" 
         type="password" 
         placeholder="Password"
       />
-
+      
       <button 
         type="submit" 
         class="login__btn" 
         :class="{'btn-success': !invalidForm}"
         :disabled="invalidForm"
       >Log In</button>
-
     </form>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam, voluptatem!</p>
+    <p>계정이 없으신가요? <router-link to="/sign-up">회원가입</router-link>하세요</p>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import VeeValidate from 'vee-validate';
+
 import firebase from 'firebase'
 
 export default {
@@ -43,12 +44,8 @@ export default {
   data() {
     return {
       email: '',
-      password: '',
-      rPath: ''
+      password: ''
     }
-  },
-
-  created() {
   },
 
   computed: {
@@ -72,6 +69,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a {
+  color: #fff;
+  text-decoration: underline;
+}
 .login {
   color: #fff;
   margin-top: 40px;

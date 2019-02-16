@@ -38,33 +38,32 @@ const router = new VueRouter({
       children: [{
           path: '/home',
           component: Home,
-          beforeEnter: requireAuth,
         },
         {
           path: 'person/:personId',
           component: Person,
-          beforeEnter: requireAuth,
         },
         {
           path: 'content/:contentId',
           component: Content,
-          beforeEnter: requireAuth,
         },
         {
           path: 'browser/:browserId',
           component: Browser,
-          beforeEnter: requireAuth,
         },
         {
           path: 'categories/:categoriesId',
           component: Categories,
-          beforeEnter: requireAuth,
         }
       ]
     },
     { path: '/login', component: Login },
     { path: '/sign-up', component: SignUp },
-    { path: '*', component: NotFound }
+    {
+      path: '*',
+      component: NotFound,
+      beforeEnter: requireAuth
+    }
   ]
 })
 
