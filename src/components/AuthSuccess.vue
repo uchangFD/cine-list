@@ -9,7 +9,7 @@
     >{{email}}</p> 
     <button 
       class="user__logout-btn"
-      @click="logOut"
+      @click.prevent="logOut"
     >
       Log out</button> 
   </div>
@@ -40,8 +40,9 @@ export default {
   },
   methods: { 
     logOut() { 
-      firebase.auth().signOut().then(function() {
-      })
+      delete localStorage.token
+      firebase.auth().signOut()
+      this.$router.push('/login')
     } 
   }
 };

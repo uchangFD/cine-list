@@ -33,6 +33,7 @@ const router = new VueRouter({
   routes: [{
       path: '/',
       component: Main,
+      redirect: '/home',
       beforeEnter: requireAuth,
       children: [{
           path: '/home',

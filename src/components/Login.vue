@@ -49,8 +49,6 @@ export default {
   },
 
   created() {
-    this.rPath = this.$route.query.rPath || '/'
-    
   },
 
   computed: {
@@ -63,7 +61,7 @@ export default {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         .then(user => {
           localStorage.setItem('token', user.user.uid)
-          this.$router.push(this.rPath)
+          this.$router.push('/home')
         })
         .catch(err => {
           alert(err.message)
