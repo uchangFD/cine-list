@@ -1,14 +1,13 @@
 <template>
   <div class="navbar__browser">
     <h2 class="navbar__browser__title">BROWSE</h2>
-
     <ul class="navbar__browser__list">
       <li 
         v-for="(item, index) in list" 
         :key="index"
         class="navbar__browser__item"
       >
-        <router-link :to="`/browser/${item}`" class="browser__item__link" >
+        <router-link :to="`/browser/${item.toLowerCase()}`" class="browser__item__link" >
           <span class="browser__item__link-text">{{item}}</span>
         </router-link>
       </li>

@@ -66,7 +66,7 @@ const actions = {
 
   FETCH_BROWSER({ commit }, { item }) {
     return api.browser.fetch(item).then(data => {
-      commit('SET_BROWSER', data.results)
+      commit( 'SET_BROWSER', data.results )
     })
   },
 

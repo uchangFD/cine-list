@@ -1,17 +1,12 @@
 <template>
   <div class="tab-list__container">
-    <div 
-      v-if="selectedTab === 'Synopsis'"
-      class="tab-list__synopsis"
-    >
+    <div v-if="selectedTab === 'Synopsis'" class="tab-list__synopsis">
       <p class="tab-list__synopsis-paragraph">{{contents.overview}}</p>
     </div>
 
-    <div 
-      v-if="selectedTab === 'Cast'"
-      class="tab-list__cast"
-    >
-    
+
+
+    <div v-if="selectedTab === 'Cast'" class="tab-list__cast">
       <div 
         v-for="(actor, idx) in casts.cast.slice(0, 5)" 
         :key="idx"
@@ -20,14 +15,9 @@
         <div class="tab-list__cast-info">
           <div class="tab-list__cast-info__profile">
             <router-link :to="`/person/${actor.id}`">
-              <img v-if="actor.profile_path"
-                :src="`https://image.tmdb.org/t/p/w138_and_h175_face${actor.profile_path}`"
-                :alt="`${actor.profile_path}`"
-                class="tab-list__cast-info__profile-image"
-              >
-              <img v-else
-                src="../assets/images/profile.png"
-                :alt="`${actor.profile_path}`"
+              <img
+                :src="actor.profile_path ? `https://image.tmdb.org/t/p/w138_and_h175_face${actor.profile_path}`: profileImage"
+                :alt="`${actor.name}`"
                 class="tab-list__cast-info__profile-image"
               >
             </router-link>
@@ -38,10 +28,9 @@
       </div>
     </div>
 
-    <div
-      v-if="selectedTab === 'Videos'"
-      class="tab-list__videos"
-    >
+
+
+    <div v-if="selectedTab === 'Videos'" class="tab-list__videos">
       <div
         v-for="(video, idx) in videoId.results.slice(0, 3)" 
         :key="idx"
@@ -59,10 +48,9 @@
       </div>
     </div>
 
-    <div 
-      v-if="selectedTab === 'Related'"
-      class="tab-list__related"
-    >
+
+
+    <div v-if="selectedTab === 'Related'" class="tab-list__related">
       <p>{{selectedTab}}</p>
     </div>
   </div>
@@ -73,7 +61,12 @@ import { mapState, mapActions } from 'vuex'
 
 export default {
   props: ['tabs', 'selectedTab'],
-  
+
+  data() {
+    return {
+      profileImage: require('../assets/images/profile.png')
+    }
+  },
   computed: {
     ...mapState({
       contents: 'contents',

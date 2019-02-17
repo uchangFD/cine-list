@@ -15,7 +15,7 @@
         :selected-tab="selectedTab" 
         v-on:@change="onClickedTab" 
       />
-      <ContentReview />
+      <ContentReview :id="contentId"/>
     </div>
   </section>
 </template>

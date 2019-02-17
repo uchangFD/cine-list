@@ -41,7 +41,7 @@ export default {
   components: {NavbarBrowser},
   data() {
     return {
-      browsers: ['CELEBRITIES', 'FAVORITES', 'NEWS'],
+      browsers: ['FAVORITES', 'SAVED'],
     }
   },
 

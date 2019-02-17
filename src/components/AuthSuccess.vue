@@ -4,14 +4,15 @@
       class="user__profile"
       src="../assets/images/profile.png"
     >
-    <p
-      class="user__email"
-    >{{email}}</p> 
+    <p class="user__email">
+      {{email}}
+    </p> 
     <button 
       class="user__logout-btn"
       @click.prevent="logOut"
     >
-      Log out</button> 
+      Log out
+    </button> 
   </div>
 </template>
 

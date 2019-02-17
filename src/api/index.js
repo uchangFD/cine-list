@@ -9,6 +9,7 @@ const GENRES = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}
 const SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&vote_count.gte=50&query=`
 
 
+
 const request = (method, url, data) => {
   return axios({
       method,
