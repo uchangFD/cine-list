@@ -13,7 +13,7 @@ export default {}
   html, body, div, span, 
   h1, h2, h3, h4, h5, h6, 
   p, pre, a, img, strong, 
-  dl, dt, dd, ol, ul, li, nav, input,
+  dl, dt, dd, ol, ul, li, nav, input, hr,
   button {
     margin: 0;
 	  padding: 0;
@@ -50,6 +50,8 @@ export default {}
     text-decoration: none;
     color: #181818
   }
+
+  
 
   .transition {
     transition: 800ms;
