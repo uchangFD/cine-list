@@ -25,14 +25,14 @@ export default {}
   html {
     height: 100%;
     margin: 0;
-    background: $primary-color;
+    background: $baseline-color;
   }
 
   body {
     height: 100%;
     margin: 0;
     line-height: 1;
-    background: $primary-color;
+    background: $baseline-color;
   }
 
   #app {

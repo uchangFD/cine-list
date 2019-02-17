@@ -77,7 +77,7 @@ export default {
 
 .person__container {
   margin-left: 250px;
-  background: $primary-color;
+  background: $baseline-color;
   position: relative;
   min-height: 100%;
   .person__wrapper {

@@ -71,38 +71,6 @@
       </router-link>
     </div>
   </div>
-
-  <!-- <div class="login">
-    <h3 class="login__title">Sign In</h3>
-    
-    <form 
-      class="login__form"
-      @submit.prevent="onSubmit"
-    >
-      <input 
-        class="login__input input-email" 
-        v-model="email" 
-        type="text" 
-        autofocus
-        placeholder="E-Mail"
-      />
-
-      <input
-        class="login__input input-password" 
-        v-model="password" 
-        type="password" 
-        placeholder="Password"
-      />
-      
-      <button 
-        type="submit" 
-        class="login__btn" 
-        :class="{'btn-success': !invalidForm}"
-        :disabled="invalidForm"
-      >Log In</button>
-    </form>
-    <p>계정이 없으신가요? <router-link to="/sign-in">회원가입</router-link>하세요</p>
-  </div> -->
 </template>
 
 <script>
@@ -151,6 +119,7 @@ export default {
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 4px 15px 0 $baseline-shadow-color;
   .sign-in__header {
     padding-top: 2.5rem;
     width: 320px;
@@ -183,8 +152,10 @@ export default {
         .sign-in__input-wrapper {
           position: relative;
           .sign-in__input {
+            letter-spacing: .7px;
+            box-shadow: 0 .25px .5px #acacac;
             margin-top: .5rem;
-            border: 1px solid #aaa;
+            border: 1px solid #ddd;
             height: 2rem;
             text-indent: 1rem;
             border-radius: 1rem;
@@ -196,12 +167,12 @@ export default {
              bottom: 5px;
              right: .25rem;
             .validate-error {
-              color: #f06595;
+              color: $error-color;
               height: 1.5rem;
               width: 1.5rem;
             }
             .validate-pass {
-              color: #20c997;
+              color: $pass-color;
               height: 1.5rem;
               width: 1.5rem;
             }
@@ -214,14 +185,21 @@ export default {
           width: 100%;
           height: 2.5rem;
           border-radius: 1.25rem;
-          background: $gradient-color;
+          background-image: $secondary-gradient-color;
+          background-size: 400% 100%;
           color: #fff;
           cursor: pointer;
+          transition: all .4s ease-in-out;
+          box-shadow: 0 4px 15px 0 $secondary-gradient-color-shadow;
           &:hover {
-            background: $gradient-color-hover;
+            background-position: 100% 0;
+            transition: all .4s ease-in-out;
             .sign-in__btn-text {
               color: #fff;
             }
+          }
+          &:focus {
+            outline: none;
           }
         }
       }

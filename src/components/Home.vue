@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import Navbar from "./Navbar.vue";
-import Header from "./Header.vue";
 import MainSlide from './MainSlide.vue'
 import SubSlide from './SubSlide.vue'
 
@@ -15,7 +13,7 @@ import {mapActions, mapState} from 'vuex'
 
 export default {
   components:{
-    Navbar, Header, MainSlide, SubSlide
+    MainSlide, SubSlide
   },
 
   computed: {
@@ -56,7 +54,7 @@ export default {
   min-height: 100%;
   margin-left: 250px;
   z-index: 0;
-  background: $primary-color;
+  background: $baseline-color;
 }
 
 </style>

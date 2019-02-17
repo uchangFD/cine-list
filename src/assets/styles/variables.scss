@@ -1,5 +1,22 @@
-$primary-color: #151d23;
-$primary-shadow-color: #2c3338;
-$secondary-color: #1d2229;
-$gradient-color: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
-$gradient-color-hover: linear-gradient(120deg,#66a6ff 0%, #89f7fe 100%);
+$baseline-color: #151d23;
+$baseline-shadow-color: #2c3338;
+
+$baseline-secondary-color: #1d2229;
+
+
+
+$secondary-gradient-color: linear-gradient(120deg, #25aae1, #4481eb, #04befe, #3f86ed);
+$secondary-gradient-color-shadow: rgba(65, 132, 234, 0.75);
+
+
+
+$gradient-color: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%);
+$gradient-color-hover: linear-gradient(120deg,#89f7fe 0%, #66a6ff 100%);
+$gradient-error-color: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+
+
+
+
+$error-color: #ff758c;
+$pass-color: #00cdac;
+// background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);

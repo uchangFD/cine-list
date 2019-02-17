@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 import Main from '../components/Main.vue'
 import Login from '../components/Login.vue'
 import SignUp from '../components/SignUp.vue'
-import AuthSuccess from '../components/AuthSuccess.vue';
 import Home from '../components/Home.vue'
 import Browser from '../components/Browser.vue'
 import Categories from '../components/Categories.vue'

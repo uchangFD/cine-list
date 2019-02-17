@@ -44,12 +44,16 @@ export default {
 @import "../assets/styles/variables.scss";
 
 .search-result__wrapper {
-  margin: 0 auto;
+  padding-bottom: 1rem;
+  width: 100%;
   max-height: 500px;
-  border-radius: 4px;
-  overflow-y: scroll;
-  background: rgba(44, 51, 56, .8);
+  overflow: hidden;
   .search-result__list {
+    background: rgba(44, 51, 56, .8);
+    border-radius: 4px;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: scroll;
     .search-result__item {
       margin-bottom: .5rem;
       text-indent: .5rem;

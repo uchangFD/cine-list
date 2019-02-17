@@ -85,7 +85,7 @@ export default {
   padding: 10px;
   transition: 300ms;
   &:hover {
-    background: $primary-shadow-color;
+    background: $baseline-shadow-color;
     opacity: 1;
     border-radius: 4px;
   }
@@ -155,8 +155,16 @@ export default {
     color: #fff;
     text-shadow: 0 1px 2px #ced4da;
     cursor: pointer;
-    background: $gradient-color;
-
+    background-image: $gradient-color;
+    background-size: 200% 100%;
+    transition: all .4s ease-in-out;
+    &:hover {
+      background-position: 100% 0;
+      transition: all .4s ease-in-out;
+    }
+    &:focus {
+      outline: none;
+    }
   }
 }
 

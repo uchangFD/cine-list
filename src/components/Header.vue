@@ -38,7 +38,7 @@ export default {
 .header {
   margin-left: 250px;
   display: flex;
-  background-color: $primary-color;
+  background-color: $baseline-color;
   .header__search, .header__login {
     flex: none;
     height: 70px;

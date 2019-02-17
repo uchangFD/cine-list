@@ -141,6 +141,7 @@ export default {
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 4px 15px 0 $baseline-secondary-color;
   .sign-up__header {
     padding-top: 2.5rem;
     width: 320px;
@@ -185,12 +186,12 @@ export default {
              bottom: 5px;
              right: .25rem;
             .validate-error {
-              color: #f06595;
+              color: $error-color;
               height: 1.5rem;
               width: 1.5rem;
             }
             .validate-pass {
-              color: #20c997;
+              color: $pass-color;
               height: 1.5rem;
               width: 1.5rem;
             }
@@ -203,19 +204,24 @@ export default {
           width: 100%;
           height: 2.5rem;
           border-radius: 1.25rem;
-          background: $gradient-color;
+          background-image: $secondary-gradient-color;
+          background-size: 400% 100%;
           color: #fff;
           cursor: pointer;
+          transition: all .4s ease-in-out;
+          box-shadow: 0 4px 15px 0 $secondary-gradient-color-shadow;
           &:hover {
-            background: $gradient-color-hover;
+            background-position: 100% 0;
+            transition: all .4s ease-in-out;
             .sign-up__btn-text {
               color: #fff;
             }
           }
+          &:focus {
+            outline: none;
+          }
         }
       }
-
-
     }
   }
   .sign-up__footer {

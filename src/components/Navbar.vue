@@ -86,12 +86,12 @@ export default {
   padding: 0;
   z-index: 1;
   overflow-y:unset;
-  background: $secondary-color;
+  background: $baseline-secondary-color;
   opacity: 0.98;
 
 
   .navbar__logo {
-    background: $secondary-color;
+    background: $baseline-secondary-color;
     text-align: center;
     .logo-btn {
       .logo__title {

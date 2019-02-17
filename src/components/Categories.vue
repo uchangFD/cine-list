@@ -95,7 +95,7 @@ export default {
 
 .categories__container {
   margin-left: 250px;
-  background: $primary-color;
+  background: $baseline-color;
   padding-top: 30px;
   min-height: 100%;
 }

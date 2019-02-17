@@ -78,7 +78,7 @@ export default {
 @import "../assets/styles/variables.scss";
 
 .contents__section {
-  background: $primary-color;
+  background: $baseline-color;
   margin-left: 250px;
   color: #fff;
   width: calc(100% - 250px);

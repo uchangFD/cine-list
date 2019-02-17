@@ -72,7 +72,7 @@ export default {
       padding: 1rem;
       margin: 0 2rem 2rem 0;
       &:hover {
-        background: $primary-shadow-color;
+        background: $baseline-shadow-color;
         opacity: 1;
         border-radius: 2px;
       }
