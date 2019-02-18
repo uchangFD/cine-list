@@ -15,7 +15,7 @@
         :selected-tab="selectedTab" 
         v-on:@change="onClickedTab" 
       />
-      <ContentReview :id="contentId"/>
+      <AddReview :contentId="contentId"/>
     </div>
   </section>
 </template>
@@ -24,12 +24,12 @@
 import ContentImage from './ContentImage.vue'
 import ContentInfo from './ContentInfo.vue'
 import ContentTab from './ContentTab.vue'
-import ContentReview from './ContentReview.vue'
+import AddReview from './AddReview.vue'
 import Loader from './Loader.vue'
 import { mapActions } from 'vuex'
 
 export default {
-  components: { ContentImage, ContentInfo, ContentTab, ContentReview, Loader },
+  components: { ContentImage, ContentInfo, ContentTab, AddReview, Loader },
   props:['data'],
 
   data() {
@@ -55,14 +55,14 @@ export default {
   methods: {
     ...mapActions([
       'FETCH_CONTENTS',
-      'FETCH_CONTENTS_DETAILS',
+      'FETCH_VIDEOS',
       'FETCH_CAST'
     ]),
 
     fetch: function() {
       this.isLoading = true
       this.FETCH_CONTENTS({id: this.$route.params.contentId})
-      this.FETCH_CONTENTS_DETAILS({id: this.$route.params.contentId})
+      this.FETCH_VIDEOS({id: this.$route.params.contentId})
       this.FETCH_CAST({id: this.$route.params.contentId})
         .finally(_ =>{ this.isLoading = false})
     },

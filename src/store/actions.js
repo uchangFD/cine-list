@@ -22,14 +22,28 @@ const actions = {
   },
 
   FETCH_CONTENTS({ commit }, { id }) {
-    return api.item.fetch(id).then(data => {
+    return api.content.fetch(id).then(data => {
       commit('SET_CONTENTS', data)
     })
   },
 
-  FETCH_CONTENTS_DETAILS({ commit }, { id }) {
-    return api.item.fetchVideos(id).then(data => {
-      commit('SET_CONTENTS_DETAILS', data)
+
+  FETCH_REVIEW({ commit }, { id }) {
+    return api.review.fetch(id).then(data => {
+      commit('SET_REVIEW', data)
+    })
+  },
+
+
+
+  ADD_REVIEW({}, { contentId, userId, userMail, timeStamp, description }) {
+    return api.review.create(contentId, userId, userMail, timeStamp, description)
+  },
+
+
+  FETCH_VIDEOS({ commit }, { id }) {
+    return api.videos.fetch(id).then(data => {
+      commit('SET_VIDEOS', data)
     })
   },
 
@@ -42,13 +56,13 @@ const actions = {
   },
 
 
-  FETCH_PERSON({commit}, {id}) {
+  FETCH_PERSON({ commit }, { id }) {
     return api.person.fetch(id).then(data => {
       commit('SET_PERSON', data)
     })
   },
 
-  FETCH_PERSON_CREDITS({commit}, {id}) {
+  FETCH_PERSON_CREDITS({ commit }, { id }) {
     return api.personCredits.fetch(id).then(data => {
       commit('SET_PERSON_CREDITS', data)
     })
@@ -57,7 +71,7 @@ const actions = {
 
 
   FETCH_SEARCH({ commit }, { query }) {
-    
+
     return api.search.fetch(query).then(data => {
       commit('SET_SEARCH', data.results)
     })
@@ -66,7 +80,7 @@ const actions = {
 
   FETCH_BROWSER({ commit }, { item }) {
     return api.browser.fetch(item).then(data => {
-      commit( 'SET_BROWSER', data.results )
+      commit('SET_BROWSER', data.results)
     })
   },
 
@@ -92,7 +106,7 @@ const actions = {
     commit('RESET_STATES')
   },
 
-  
+
 
 
 }

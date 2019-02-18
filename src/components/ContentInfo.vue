@@ -1,6 +1,9 @@
 <template>
   <div class="contents__info-container">
-    <p class="contents__info__rate">{{contents.vote_average}}</p>
+    <div class="contetns__info__rate-wrapper">
+      <span class="contents__info__tmdb-rate">{{contents.vote_average}}</span>
+      <span class="contents__info__cine-list-rate">{{contents.vote_average}}</span>
+    </div>
     <h1 class="contents__info__title">
       {{contents.title}} 
       <span class="contents__info__year">{{contents.release_date.substring(0, 4)}}</span>
@@ -23,7 +26,10 @@
           class="contents__info__imdb-link"
           :href="`https://www.imdb.com/title/${contents.imdb_id}/`">View IMDB</a>
       </button>
-      <button class="contents__like-btn">
+      <button 
+        class="contents__like-btn"
+        @click.prevent="onClickLikeBtn"
+      >
         <p>
         <FontAwesome
           icon="thumbs-up"
@@ -44,6 +50,7 @@
 </template>
 
 <script>
+
 import { mapState, mapActions } from 'vuex'
 
 export default {
@@ -61,6 +68,9 @@ export default {
   methods: {
     getRuntime: function(data) {
       return `${Math.floor(data / 60)}hr ${(data - (Math.floor(data / 60) * 60))}mins`
+    },
+    onClickLikeBtn: function() {
+      console.log(this.contents.id)
     }
   }
 }
@@ -72,6 +82,17 @@ export default {
   grid-column: 3 / 8;
   grid-row: 1;
   margin: 1rem;
+  .contetns__info__rate-wrapper {
+    .contents__info__tmdb-rate {
+      font-size: 1.2rem;
+      margin-bottom: .5rem;
+    }
+    .contents__info__cine-list-rate {
+      font-size: 1.2rem;
+      margin-bottom: .5rem;
+    }
+  }
+
   .contents__info__title {
     font-size: 2.4rem;
     margin-bottom: .4rem;
@@ -79,10 +100,7 @@ export default {
       font-size: 1.2rem;
     }
   }
-  .contents__info__rate {
-    font-size: 1.2rem;
-    margin-bottom: .5rem;
-  }
+
   .contents__info__genres-wrapper {
     display: inline-block;
     margin-bottom: 1rem;

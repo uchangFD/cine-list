@@ -13,7 +13,12 @@
         />
       </div>
       <div class="contents__review__footer">
-        <button class="contents__review__post-btn">Post Review</button>
+        <button 
+          class="contents__review__post-btn"
+          @click.prevent="onSubmit"
+        >
+          Post Review
+        </button>
       </div>
     </div>
   </div>
@@ -21,23 +26,38 @@
 
 <script>
 import firebase from 'firebase'
+import { mapActions, mapState } from 'vuex'
+
 export default {
   data() {
     return {
-      contentId: 0
+      contentId: 0,
+      userId: '',
+      userMail: '',
+      timeStamp: '',
+      description: '',
     }
   },
+
   created() {
-    this.contentId = this.$route.params.contentId
-    
+    firebase.auth().onAuthStateChanged(user => {
+      this.userMail = user.email
+    })
   },
+
   methods: {
-    postReview: function(userId, name, email, imageUrl) {
-      firebase.database().ref('users/' + userId).set({
-        username: name,
-        email: email,
-        profile_picture : imageUrl
-      });
+    ...mapActions([
+      'ADD_REVIEW'
+      ]),
+
+    onSubmit: function() {
+      this.contentId = this.$route.params.contentId
+      this.userId = window.localStorage.token
+      this.timeStamp = Date.now()
+      this.description = document.querySelector('.contents__review__textarea').value
+      const {contentId, userId, userMail, timeStamp, description} = this
+
+      this.ADD_REVIEW({contentId, userId, userMail,timeStamp, description})
     }
   }
 }
@@ -45,7 +65,7 @@ export default {
 
 <style lang="scss">
 .contents__review-container {
-  grid-column: 2 / 5;
+  grid-column: 3 / 8;
   .contents__review__title {
     font-size: 1.5rem;
     margin: 1rem 0;

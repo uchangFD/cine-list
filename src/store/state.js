@@ -13,6 +13,10 @@ const state = {
 
   results: [],
   browser: [],
+  review: [],
+
+
+
   
   genres: [],
   categoriesList: []

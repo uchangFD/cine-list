@@ -1,19 +1,21 @@
 <template>
   <div
-    class="content"
+    class="content-list"
     @mouseover.prevent="onHover"
     @mouseleave.prevent="onLeave"
   >
-    <img 
-      class="content__poster-image"
-      :src="`https://image.tmdb.org/t/p/w500${data.poster_path}`"  
-      :alt="`${data.original_title}`"
-    />
-    <span class="content__rate">{{data.vote_average}}</span>
-    <p class="content__title">{{data.title}}</p>
+    <div class="content-list__poster-wrapper">
+      <img 
+        class="content-list__poster-image"
+        :src="`https://image.tmdb.org/t/p/w500${data.poster_path}`"  
+        :alt="`${data.original_title}`"
+      />
+      <span class="content-list__rate">{{data.vote_average}}</span>
+    </div>
+    <p class="content-list__title">{{data.title}}</p>
     <div
       v-if="isHovered"
-      class="content-detail__wrapper"
+      class="content-list-detail__wrapper"
     > 
       <div 
         v-for="(genre, index) in genres" 
@@ -21,14 +23,14 @@
       >
          <p 
            v-if="genre.id === data.genre_ids[0]"
-           class="content-detail__info"
+           class="content-list-detail__info"
          >
            <span>#{{genre.name}}</span>
            <span>{{`${year}`}}</span>
          </p>
       </div>
       <router-link :to="`/content/${data.id}`">
-        <button class="content-detail__btn">Details</button>
+        <button class="content-list-detail__btn">Details</button>
       </router-link>
     </div>
   </div>
@@ -61,11 +63,11 @@ export default {
 
   methods: {
     onHover: function() {
-      this.$el.classList.add('content-detail')
+      this.$el.classList.add('content-list-detail')
       this.isHovered = true   
     },
     onLeave: function() {
-      this.$el.classList.remove('content-detail')
+      this.$el.classList.remove('content-list-detail')
       this.isHovered = false
     },
     getReleasedYear: function(data) {
@@ -78,7 +80,7 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
 
-.content {
+.content-list {
   position: relative;
   width: 150px;
   opacity: 0.8;
@@ -87,32 +89,35 @@ export default {
   &:hover {
     background: $baseline-shadow-color;
     opacity: 1;
-    border-radius: 4px;
+    border-radius: 6px;
   }
-  &.content-detail {
+  &.content-list-detail {
   width: 180px;
   height: 320px;
 }
-  .content__poster-image {
-      position: relative;
-      display: block;
-      margin: 0 auto;
-      object-fit: cover;
-      width: 150px;
-      height: 225px;
+  .content-list__poster-wrapper {
+    position: relative;
+    .content-list__poster-image {
+        display: block;
+        margin: 0 auto;
+        object-fit: cover;
+        width: 150px;
+        height: 225px;
+        border-radius: 4px;
+      }
+    .content-list__rate {
+      position: absolute;
+      top: 10px;
+      left: 10px;
       border-radius: 4px;
+      background: rgba(33, 37, 41, 0.9);
+      color: #fff;
+      padding: .25rem .5rem;
     }
-  .content__rate {
-    position: absolute;
-    top: 22px;
-    right: 22px;
-    border-radius: 4px;
-    background: rgba(33, 37, 41, 0.9);
-    color: #fff;
-    padding: .25rem .5rem;
   }
+
   
-  .content__title {
+  .content-list__title {
     color: #fff;
     font-weight: 700;
     font-size: 0.85rem;
@@ -126,12 +131,12 @@ export default {
 }
 
 
-.content-detail__wrapper {
+.content-list-detail__wrapper {
   position: absolute;
   width: 180px;
   height: 65px;
   margin-top: .5rem;
-  .content-detail__info {
+  .content-list-detail__info {
     text-align: center;
     span {
       font-size: 0.8rem;
@@ -141,7 +146,7 @@ export default {
       padding: .05rem .1rem;
     }
   }
-  .content-detail__btn {
+  .content-list-detail__btn {
     display: block;
     margin-top: .7rem;
     margin-left: auto;

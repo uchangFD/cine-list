@@ -1,28 +1,14 @@
 const mutations = {
-  SET_MAIN_SLIDES(state, mains) {    
-    // REF.SLIDES.once('value').then(() => {
-    //   REF.SLIDES.child('TRENDING').set(mains)
-    // })
-
-    // REF.SLIDES.child('TRENDING').on('child_added', function(snapshot) { 
-    //   state.mains.push(snapshot.val())
-    // })
-      state.mains =  mains
+  SET_MAIN_SLIDES(state, mains) {
+    state.mains = mains
   },
 
-  SET_SUB_SLIDES(state, upcoming) {    
-    // REF.SLIDES.once('value').then(() => {
-    //   REF.SLIDES.child('UPCOMING').set(upcoming)
-    // })
-
-    // REF.SLIDES.child('UPCOMING').on('child_added', function(snapshot) { 
-    //   state.upcoming.push(snapshot.val())
-    // })
+  SET_SUB_SLIDES(state, upcoming) {
     state.upcoming = upcoming
   },
 
   SET_SEARCH(state, results) {
-    state.results = results    
+    state.results = results
   },
 
   SET_LISTS(state, lists) {
@@ -30,12 +16,12 @@ const mutations = {
       state.lists.push(list)
     })
   },
-  
+
   SET_CONTENTS(state, contents) {
     state.contents = contents
   },
 
-  SET_CONTENTS_DETAILS(state, videoId) {
+  SET_VIDEOS(state, videoId) {
     state.videoId = videoId
   },
 
@@ -51,6 +37,9 @@ const mutations = {
     state.credits = credits
   },
 
+  SET_REVIEW(state, reviews) {
+    state.review = reviews
+  },
 
   SET_BROWSER(state, browser) {
     state.browser = browser
@@ -68,11 +57,11 @@ const mutations = {
     state.categoriesList = []
   },
 
-  
+
   RESET_STATES(state) {
     state.results = []
   },
-  
+
 
 }
 
