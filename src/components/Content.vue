@@ -15,7 +15,7 @@
         :selected-tab="selectedTab" 
         v-on:@change="onClickedTab" 
       />
-      <AddReview :contentId="contentId"/>
+      <AddReview />
     </div>
   </section>
 </template>
@@ -89,7 +89,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-gap: 5px;
-    grid-auto-rows: minmax(200px, 1fr);
+    grid-auto-rows: minmax(5px, auto);
     max-width: 1400px;
     margin: 0 auto;
   }

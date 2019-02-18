@@ -79,16 +79,12 @@ export const content = {
 
 export const review = {
 
-  fetch(id) {
-    return request('get', `/content/${id}`)
-  },
-
   create(contentId, userId, userMail, timeStamp, description) {
-    firebase.database().ref(`REVIEWS/${contentId}/${userId}`).set({
-      userMail: userMail,
-      timeStamp: timeStamp,
-      description: description,
-    });
+    // firebase.database().ref(`REVIEWS/${contentId}/${userId}`).set({
+    //   userMail: userMail,
+    //   timeStamp: timeStamp,
+    //   description: description,
+    // })
   }
 
 }
@@ -124,5 +120,5 @@ export const personCredits = {
   fetch(id) {
     return request('get', `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${API_KEY}&language=en-US`)
   }
-  
+
 }

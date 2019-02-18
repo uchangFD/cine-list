@@ -40,11 +40,11 @@ export default {
 @import "../assets/styles/variables.scss";
 
 .contents__tab-container {
-  // background: #05a;
   grid-column: 3 / 8;
   grid-row: 2;
   margin-left: 1rem;
   margin-top: 1rem;
+  height: 280px;
   .contents__tab-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

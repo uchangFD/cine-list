@@ -82,6 +82,7 @@ export default {
   grid-column: 3 / 8;
   grid-row: 1;
   margin: 1rem;
+  height: 235px;
   .contetns__info__rate-wrapper {
     .contents__info__tmdb-rate {
       font-size: 1.2rem;

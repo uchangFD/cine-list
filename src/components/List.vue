@@ -56,8 +56,7 @@ export default {
     }),
 
     year: function() {      
-      return this.getReleasedYear(this.data.release_date)
-      
+      return this.getReleasedYear(this.data.release_date) 
     }
   },
 

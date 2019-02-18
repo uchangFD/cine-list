@@ -1,4 +1,5 @@
 import * as api from '../api'
+import firebase from 'firebase'
 
 const actions = {
   FETCH_MAIN_SLIDE({ commit }, { options }) {
@@ -29,15 +30,22 @@ const actions = {
 
 
   FETCH_REVIEW({ commit }, { id }) {
-    return api.review.fetch(id).then(data => {
-      commit('SET_REVIEW', data)
-    })
+    // const commentRef = firebase.database().ref(`REVIEWS/${id}`)
+    // commentRef.on('child_added', data => {
+    //   console.log(data.key,  data.val())
+    // })
   },
 
 
-
   ADD_REVIEW({}, { contentId, userId, userMail, timeStamp, description }) {
-    return api.review.create(contentId, userId, userMail, timeStamp, description)
+    const commentRef = firebase.database().ref(`REVIEWS/${contentId}/${userId}`)
+    commentRef.set({
+      userId,
+      userMail,
+      timeStamp,
+      description
+    })
+
   },
 
 

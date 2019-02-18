@@ -37,8 +37,8 @@ const mutations = {
     state.credits = credits
   },
 
-  SET_REVIEW(state, reviews) {
-    state.review = reviews
+  SET_REVIEW(state, data) {
+    state.review.push({id: data.id, data: data.data})
   },
 
   SET_BROWSER(state, browser) {

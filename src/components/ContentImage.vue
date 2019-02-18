@@ -23,6 +23,7 @@ export default {
 .contents__image-container {
   grid-column: 2;
   grid-row: 1 / 3;
+  grid-template-rows: none;
   .contents__image {
     padding: 1rem;
   }
