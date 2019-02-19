@@ -7,16 +7,18 @@
       <div class="content__review__post__body">
         <textarea
           v-model="description"
+          maxlength="250"
           name="review" 
           class="content__review__post__textarea"
           :id="`review-container-${contentId}`"
-          maxlength="250"
+          :disabled="didComment"
         />
       </div>
       <div class="content__review__post__footer">
         <button 
           class="content__review__post__post-btn"
           @click.prevent="onSubmit"
+          :disabled="didComment"
         >Post Review</button>
       </div>
     </div>
@@ -39,8 +41,8 @@ export default {
       userMail: '',
       timeStamp: '',
       description: '',
+      commented: false,
       values: [],
-      uniq: []
     }
   },
 
@@ -48,6 +50,8 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       this.userMail = user.email
     })
+    this.contentId = this.$route.params.contentId
+    this.userId = window.localStorage.token    
   },
 
   watch: {
@@ -57,29 +61,48 @@ export default {
     }
   },
 
+  computed: {
+    didComment: function() {
+      return this.checkComments()
+    }
+    
+  },
+
   methods: {
     ...mapActions([
       'ADD_REVIEW',
       ]),
 
     fetch: function() {
+      this.userId = window.localStorage.token
       const commentRef = firebase.database().ref(`REVIEWS/${this.$route.params.contentId}`)
       commentRef.on('child_added', data => {
-        this.values.push({id: data.key, time: data.val().timeStamp, value: data.val()})
-        this.values = this.values.sort((a, b) => b["time"] - a["time"])
+        this.values.push({
+          userId: data.key, 
+          userMail: data.val().userMail, 
+          timeStamp: data.val().timeStamp, 
+          description: data.val().description
+        })
+        this.values = this.values.sort((a, b) => b["timeStamp"] - a["timeStamp"])
       })
     },
 
+    checkComments: function() {
+      const {contentId, userId} = this
+      firebase.database().ref(`REVIEWS/${contentId}/${userId}`).on('value', snapshot => {
+        this.commented = snapshot.exists()
+      })
+
+      return this.commented
+    },
 
     onSubmit: function() {
-      this.contentId = this.$route.params.contentId
-      this.userId = window.localStorage.token
       this.timeStamp = Date.now()
       this.description = document.querySelector('.content__review__post__textarea').value
       const {contentId, userId, userMail, timeStamp, description} = this
       this.ADD_REVIEW({contentId, userId, userMail,timeStamp, description})
+      this.description = ''
     }
-
   }
 }
 </script>

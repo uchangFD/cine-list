@@ -2,18 +2,18 @@
   <div class="viewer__wrapper">
     <div 
       class="viewer__container"
-      v-for="(item, index) in values" 
+      v-for="(value, index) in values"
       :key="index"
     >
       <div class="viewer__header">
-        <h3 class="viewer__title">{{item.value.userMail}}</h3>
+        <h3 class="viewer__title">{{value.userMail}}</h3>
         <div class="viewer__date-wrapper">
-          <span wrap class="viewer__date">{{new Date(item.value.timeStamp).toLocaleDateString("en-US")}}</span>
-          <span wrap class="viewer__time">{{new Date(item.value.timeStamp).toLocaleTimeString("en-US")}}</span>
+          <span wrap class="viewer__date">{{new Date(value.timeStamp).toLocaleDateString("en-US")}}</span>
+          <span wrap class="viewer__time">{{new Date(value.timeStamp).toLocaleTimeString("en-US")}}</span>
         </div>
       </div>
       <div class="viewer__body">
-        <p class="viewer__description">{{item.value.description}}</p>
+        <p class="viewer__description">{{value.description}}</p>
       </div>
       <div class="viewer__footer"></div>
     </div>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  props: ['values']
+  props: ['values'],
 }
 
 </script>

@@ -29,23 +29,19 @@ const actions = {
   },
 
 
-  FETCH_REVIEW({ commit }, { id }) {
-    // const commentRef = firebase.database().ref(`REVIEWS/${id}`)
-    // commentRef.on('child_added', data => {
-    //   console.log(data.key,  data.val())
-    // })
-  },
-
 
   ADD_REVIEW({}, { contentId, userId, userMail, timeStamp, description }) {
-    const commentRef = firebase.database().ref(`REVIEWS/${contentId}/${userId}`)
-    commentRef.set({
-      userId,
-      userMail,
-      timeStamp,
-      description
+    const USER_COMMENT_REF = firebase.database().ref(`REVIEWS/${contentId}/${userId}`)
+    USER_COMMENT_REF.once('value', snapshot => {
+      if (!snapshot.exists()) {
+        USER_COMMENT_REF.set({
+          userId,
+          userMail,
+          timeStamp,
+          description
+        })
+      }
     })
-
   },
 
 

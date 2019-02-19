@@ -87,6 +87,8 @@ export default {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+    max-height: 200px;
+    overflow-y: scroll;
     .tab-list__synopsis-paragraph {
       line-height: 1.5;
       text-indent: 1rem;
