@@ -1,22 +1,31 @@
 $baseline-color: #151d23;
 $baseline-shadow-color: #2c3338;
-
 $baseline-secondary-color: #1d2229;
 
 
+$gradient-color: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%);
+$gradient-color-hover: linear-gradient(120deg,#89f7fe 0%, #66a6ff 100%);
 
 $secondary-gradient-color: linear-gradient(120deg, #25aae1, #4481eb, #04befe, #3f86ed);
 $secondary-gradient-color-shadow: rgba(65, 132, 234, 0.75);
 
 
-
-$gradient-color: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%);
-$gradient-color-hover: linear-gradient(120deg,#89f7fe 0%, #66a6ff 100%);
 $gradient-error-color: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
-
-
-
 
 $error-color: #ff758c;
 $pass-color: #00cdac;
-// background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
+
+
+
+
+
+$GRAY-0: #f8f9fa;
+$GRAY-1: #f1f3f5;
+$GRAY-2: #e9ecef;
+$GRAY-3: #dee2e6;
+$GRAY-4: #ced4da;
+$GRAY-5: #adb5bd;
+$GRAY-6: #868e96;
+$GRAY-7: #495057;
+$GRAY-8: #343a40;
+$GRAY-9: #212529;

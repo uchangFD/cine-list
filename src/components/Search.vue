@@ -13,6 +13,7 @@
         @keyup="onKeyup"
         placeholder="보고싶은 영화를 검색하세요"
       />
+
       <div
         v-show="query.length"
         type="remove"
@@ -22,10 +23,9 @@
         <span class="reset-btn-text">&times;</span>
       </div>
     </form>
-    <div v-if="results.length">
-      <div v-if="isShowResults">
-        <SearchResult :data="results" @close="isShowResults = false" />
-      </div>
+
+    <div v-if="results.length && isShowResults">
+      <SearchResult :data="results" @close="isShowResults = false" />
     </div>
   </section>
 </template>
@@ -40,6 +40,7 @@ export default {
   components: {
     SearchResult
   },
+
   data() {
     return {
       query: '',
@@ -52,7 +53,7 @@ export default {
       results: 'results',
     }),
 
-    invalid() {
+    invalidForm() {
       return !this.query.trim()
     }
   },
@@ -61,15 +62,18 @@ export default {
     this.$refs.searchInput.focus()
   },
 
+
   watch: {
     query: function(searchText) {
       this.onSearching(searchText)
     },
+    
     '$route.params.contentId': 'onReset',
     
     isShowResults: function() {
       if (!this.isShowResults) this.onReset()
     }
+
   },
   
   methods: {
@@ -79,8 +83,8 @@ export default {
     ]),
 
     onSearching: _.debounce(
-      function(searchText) {        
-        if (this.invalid) return
+      function(searchText) {
+        if (this.invalidForm) return
         this.isShowResults = true
         this.FETCH_SEARCH({query: searchText})
       }, 500),
@@ -92,13 +96,13 @@ export default {
 
 
     onSearched: function() {
-      if (this.invalid) return  
-      this.isShowResults = true    
+      if (this.invalidForm) return
+      this.isShowResults = true
       this.FETCH_SEARCH({query: this.query})
     },
 
 
-    onKeyup: function() {      
+    onKeyup: function() {
       if (!this.query) this.RESET_RESULTS()
     },
     
@@ -123,7 +127,7 @@ export default {
     width: 350px;
     .search__input {
       box-sizing: border-box;
-      padding-bottom: 15px;
+      padding-bottom: 12px;
       width: 350px;
       line-height: 1.5;
       background: transparent;
@@ -137,10 +141,10 @@ export default {
       position: absolute;
       top: 26px;
       right: 0;
-      height: 18px;
-      width: 18px;
+      height: 22px;
+      width: 22px;
       margin-right: 1rem;
-      line-height: 18px;
+      line-height: 22px;
       border-radius: 50%;
       background-color: #ccc;
       color: white;
@@ -149,7 +153,7 @@ export default {
       span {
         position: absolute;
         top: -1.5px;
-        right: 4px;
+        left: 6.2px;
       }
     }
   }

@@ -15,7 +15,7 @@
         :selected-tab="selectedTab" 
         v-on:@change="onClickedTab" 
       />
-      <AddReview />
+      <ContentAddReview />
     </div>
   </section>
 </template>
@@ -24,12 +24,12 @@
 import ContentImage from './ContentImage.vue'
 import ContentInfo from './ContentInfo.vue'
 import ContentTab from './ContentTab.vue'
-import AddReview from './AddReview.vue'
+import ContentAddReview from './ContentAddReview.vue'
 import Loader from './Loader.vue'
 import { mapActions } from 'vuex'
 
 export default {
-  components: { ContentImage, ContentInfo, ContentTab, AddReview, Loader },
+  components: { ContentImage, ContentInfo, ContentTab, ContentAddReview, Loader },
   props:['data'],
 
   data() {

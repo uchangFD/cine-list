@@ -49,13 +49,13 @@ export default {
   max-height: 500px;
   overflow: hidden;
   .search-result__list {
-    background: rgba(44, 51, 56, .8);
+    background: rgba(52, 58, 64, .9);
     border-radius: 4px;
     width: 100%;
     max-height: 500px;
     overflow-y: scroll;
     .search-result__item {
-      margin-bottom: .5rem;
+      margin: .5rem 0;
       text-indent: .5rem;
       opacity: .9;
       &:hover {
@@ -93,6 +93,4 @@ export default {
     }
   }
 }
-
-
 </style>

@@ -25,7 +25,8 @@ export default {
   grid-row: 1 / 3;
   grid-template-rows: none;
   .contents__image {
-    padding: 1rem;
+    margin: 1rem;
+    border-radius: 8px;
   }
 }
 </style>

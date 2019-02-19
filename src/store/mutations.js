@@ -38,13 +38,13 @@ const mutations = {
   },
 
   SET_REVIEW(state, data) {
-    state.review.push({id: data.id, data: data.data})
+    state.review.push({ id: data.id, data: data.data })
   },
 
   SET_BROWSER(state, browser) {
     state.browser = browser
   },
-
+  
   SET_GENRES(state, genres) {
     state.genres = genres
   },

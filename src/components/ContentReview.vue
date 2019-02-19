@@ -6,9 +6,19 @@
       :key="index"
     >
       <div class="viewer__header">
-        <h3 class="viewer__title">{{value.userMail}}</h3>
+        <div class="viewer__header-author-wrapper">
+          <img src="../assets/images/profile.png" alt="" class="viewer__author-profile">
+          <span class="viewer__author-name">{{value.userMail}}</span>
+        </div>
         <div class="viewer__date-wrapper">
-          <span wrap class="viewer__time">{{`${getTime(value.timeStamp)}`}}</span>
+
+          <span 
+            :title="`${new Date(value.timeStamp)}`" 
+            class="viewer__time"
+          >
+            {{`${getTime(value.timeStamp)}`}}
+          </span>
+
         </div>
       </div>
       <div class="viewer__body">
@@ -23,12 +33,17 @@
 <script>
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 import ko from 'date-fns/locale/ko'
+
 export default {
   props: ['values'],
-
   methods: {
     getTime: function(timeStamp) {
-      return distanceInWordsToNow(new Date(timeStamp), { locale: ko, addSuffix: true })
+      return distanceInWordsToNow(
+        new Date(timeStamp), { 
+          locale: ko, 
+          addSuffix: true 
+        }
+      )
     }
   }
 }
@@ -36,56 +51,73 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../assets/styles/variables.scss";
 .viewer__wrapper {
-  // grid-column: 3 / 8;
-  // grid-row: 4;
   .viewer__container {
-    border-radius: 4px;
+    border-radius: 8px;
     padding-top: .5rem;
-    background: #faa;
+    background: $GRAY-8;
     height: 100%;
     width: 100%;
-    margin: 1.5rem auto;
+    margin: 1.5rem 0;
+    transition: all .3s;
+    &:hover {
+      background: $GRAY-7;
+    }
+
+
     .viewer__header {
-      background: #ad0;
       margin: .5rem;
       padding-right: .5rem;
       padding-left: .5rem;
-      height: 1.5rem;
       display: flex;
-      justify-content: space-between;
-      .viewer__title {
-        color: #333;
-        display: inline;
-        vertical-align: middle;
-        font-size: 1.2rem;
+      justify-content: flex-start;
+      .viewer__header-author-wrapper {
+        height: 30px;
+        line-height: 30px;
+        .viewer__author-profile {
+          height: 100%;
+          line-height: 100%;
+        }
+        .viewer__author-name {
+          color: $GRAY-2;
+          margin-left: .5rem; 
+          vertical-align: top; 
+          font-size: 1.1rem;
+          letter-spacing: 1px;
+        }
       }
       .viewer__date-wrapper {
-        font-size: 1.1rem;
-
-        .viewer__date {
-          color: #888;
-          vertical-align: middle;
-        }
+        height: 30px;
+        line-height: 30px;
+        margin-left: .5rem;
         .viewer__time {
-          color: #888;
-          vertical-align: middle;
-
+          color: $GRAY-5;
+          font-size: .8rem;
         }
       }
     }
-    .viewer__body {
-      background: #0ad;
-      margin: .5rem;
-      height: 100px;
-      .viewer__description {
 
+
+
+
+
+
+    .viewer__body {
+      // background: #0ad;
+      margin: .5rem;
+      .viewer__description {
+        text-indent: 1rem;
+        word-break: break-all;
+        padding: .5rem;
+        font-weight: 300;
+        line-height: 1.4;
+        font-size: .95rem;
+        letter-spacing: .5px;
       }
     }
     .viewer__footer {
-      background: #afa;
       height: 1.5rem;
-      margin: .5rem;
     }
   }
 }

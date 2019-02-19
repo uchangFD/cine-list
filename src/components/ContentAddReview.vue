@@ -10,8 +10,9 @@
           maxlength="250"
           name="review" 
           class="content__review__post__textarea"
-          :id="`review-container-${contentId}`"
+          :id="`content__review-text-container-${contentId}`"
           :disabled="didComment"
+          placeholder="250자 이내로 영화 감상평을 적어주세요."
         />
       </div>
       <div class="content__review__post__footer">
@@ -65,7 +66,6 @@ export default {
     didComment: function() {
       return this.checkComments()
     }
-    
   },
 
   methods: {
@@ -74,7 +74,6 @@ export default {
       ]),
 
     fetch: function() {
-      this.userId = window.localStorage.token
       const commentRef = firebase.database().ref(`REVIEWS/${this.$route.params.contentId}`)
       commentRef.on('child_added', data => {
         this.values.push({
@@ -89,10 +88,7 @@ export default {
 
     checkComments: function() {
       const {contentId, userId} = this
-      firebase.database().ref(`REVIEWS/${contentId}/${userId}`).on('value', snapshot => {
-        this.commented = snapshot.exists()
-      })
-
+      firebase.database().ref(`REVIEWS/${contentId}/${userId}`).on('value', snapshot => this.commented = snapshot.exists())
       return this.commented
     },
 
@@ -108,6 +104,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../assets/styles/variables.scss";
   .content__review__wrapper {
     grid-column: 3 / 8;
     grid-row: 3;
@@ -126,11 +123,12 @@ export default {
           display: block;
           height: 100px;
           background: transparent;
-          border-bottom: 1px solid #fff;
-          color: #fff;
-          border-radius: 4px;
+          border-bottom: 1px solid $GRAY-3;
+          color: $GRAY-3;
+          border-radius: 8px;
           font-size: 1rem;
           padding: .5rem;
+          outline: none;
         }
       }
     
@@ -142,6 +140,7 @@ export default {
           width: 120px;
           height: 40px;
           border-radius: 20px;
+          cursor: pointer;
         }  
       }
     }
