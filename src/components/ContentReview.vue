@@ -8,8 +8,7 @@
       <div class="viewer__header">
         <h3 class="viewer__title">{{value.userMail}}</h3>
         <div class="viewer__date-wrapper">
-          <span wrap class="viewer__date">{{new Date(value.timeStamp).toLocaleDateString("en-US")}}</span>
-          <span wrap class="viewer__time">{{new Date(value.timeStamp).toLocaleTimeString("en-US")}}</span>
+          <span wrap class="viewer__time">{{`${getTime(value.timeStamp)}`}}</span>
         </div>
       </div>
       <div class="viewer__body">
@@ -22,8 +21,16 @@
 
 
 <script>
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
+import ko from 'date-fns/locale/ko'
 export default {
   props: ['values'],
+
+  methods: {
+    getTime: function(timeStamp) {
+      return distanceInWordsToNow(new Date(timeStamp), { locale: ko, addSuffix: true })
+    }
+  }
 }
 
 </script>
