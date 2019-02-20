@@ -1,10 +1,10 @@
 <template>
   <div class="categories__movie-wrapper">
     <h2 class="categories__movie-title">{{title}}</h2>
-
+  
     <div class="categories__movie-list">
       <div 
-        v-for="(item, index) in categoriesList" 
+        v-for="(item, index) in categories.results" 
         :key="index"
         class="categories__movie-item"
       >
@@ -39,10 +39,13 @@ export default {
   props: ['title'],
   computed: {
     ...mapState({
-      categoriesList: 'categoriesList'
+      genres: 'genres',
+      categories: 'categories',
     })
   }
 }
+
+
 </script>
 
 <style lang="scss">
@@ -113,12 +116,31 @@ export default {
         .categories__links {
           margin-top: 1rem;
           .categories__btn {
+            display: block;
             width: 120px;
             height: 35px;
             border-radius: 17.5px;
-            background: $gradient-color;
+            font-size: 0.9rem;
+            letter-spacing: 0.7px;
             color: #fff;
+            text-shadow: 0 1px 2px #ced4da;
             cursor: pointer;
+            background-image: $secondary-gradient-color;
+            background-size: 300% 100%;
+            transition: all .4s ease-in-out;
+            &:hover {
+              background-position: 100% 0;
+              transition: all .4s ease-in-out;
+            }
+            &:focus {
+              outline: none;
+            }
+            // width: 120px;
+            // height: 35px;
+            // border-radius: 17.5px;
+            // background: $gradient-color;
+            // color: #fff;
+            // cursor: pointer;
           }
         }
       }
