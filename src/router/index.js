@@ -7,6 +7,7 @@ import SignUp from '../components/SignUp.vue'
 import Home from '../components/Home.vue'
 import Browser from '../components/Browser.vue'
 import Categories from '../components/Categories.vue'
+import CategoriesList from '../components/CategoriesList.vue'
 import Content from '../components/Content.vue'
 import Person from '../components/Person.vue'
 import NotFound from '../components/NotFound.vue'
@@ -50,9 +51,14 @@ const router = new VueRouter({
           path: 'browser/:browserId',
           component: Browser,
         },
+
         {
           path: 'categories/:categoriesId',
           component: Categories,
+          children: [{
+            path:':pagesId',
+            component: CategoriesList
+          }]
         }
       ]
     },

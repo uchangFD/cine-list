@@ -21,7 +21,7 @@
         >
           <router-link 
             class="categories__item__link" 
-            :to="`/categories/${item.name.toLowerCase()}`"
+            :to="`/categories/${item.name.toLowerCase()}/1`"
           >
             <span class="categories__item__link-text">{{item.name}}</span>
           </router-link>

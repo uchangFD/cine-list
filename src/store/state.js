@@ -19,7 +19,7 @@ const state = {
 
   
   genres: [],
-  categoriesList: []
+  categories: {}
 }
 
 

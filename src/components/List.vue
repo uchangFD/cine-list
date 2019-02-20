@@ -159,7 +159,7 @@ export default {
     color: #fff;
     text-shadow: 0 1px 2px #ced4da;
     cursor: pointer;
-    background-image: $gradient-color;
+    background-image: $secondary-gradient-color;
     background-size: 200% 100%;
     transition: all .4s ease-in-out;
     &:hover {
