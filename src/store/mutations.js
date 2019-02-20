@@ -49,12 +49,15 @@ const mutations = {
     state.genres = genres
   },
 
-  SET_CATEGORIES(state, categoriesList) {
-    state.categoriesList = state.categoriesList.concat(categoriesList)
+  SET_CATEGORIES(state, payload) {    
+    state.categories.page = payload.page
+    state.categories.total_pages = payload.total_pages
+    state.categories.total_results = payload.total_results
+    state.categories.results = payload.results
   },
 
   RESET_CATEGORIES(state) {
-    state.categoriesList = []
+    state.categories = []
   },
 
 
