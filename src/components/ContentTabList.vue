@@ -91,8 +91,7 @@ export default {
     overflow-y: hidden;
     .tab-list__synopsis-paragraph {
       font-size: .85rem;
-      line-height: 1.5;
-      text-indent: 1rem;
+      line-height: 1.6;
       font-weight: 300;
       letter-spacing: .7px;
     }
