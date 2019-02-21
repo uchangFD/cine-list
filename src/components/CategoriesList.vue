@@ -23,7 +23,7 @@
           </div>
           <div class="categories-list__links">
             <router-link :to="`/content/${item.id}`">
-              <button class="categories-list__btn">View Details</button>
+              <PrimaryButton class="categories-list__btn" :name="'View Details'"/>
             </router-link>
           </div>
         </div>
@@ -35,7 +35,9 @@
 
 <script>
 import {mapActions, mapState} from 'vuex'
+import PrimaryButton from './PrimaryButton.vue'
 export default {
+  components: {PrimaryButton},
   props: ['title'],
   computed: {
     ...mapState({
@@ -51,11 +53,10 @@ export default {
 <style lang="scss">
 @import "../assets/styles/variables.scss";
 .categories-list__movie-wrapper {
-  width: 90%;
+  max-width: 1400px;
   min-height: 100%;
-  margin-right: auto;
+  margin: 0 auto;
   position: relative;
-  margin-left: 80px;
   .categories-list__movie-title {
     color: #fff;
     font-size: 1.35rem;
@@ -119,31 +120,11 @@ export default {
         .categories-list__links {
           margin-top: 1rem;
           .categories-list__btn {
-            display: block;
             width: 120px;
             height: 35px;
             border-radius: 17.5px;
-            font-size: 0.9rem;
-            letter-spacing: 0.7px;
-            color: #fff;
-            text-shadow: 0 1px 2px #ced4da;
-            cursor: pointer;
-            background-image: $secondary-gradient-color;
             background-size: 300% 100%;
-            transition: all .4s ease-in-out;
-            &:hover {
-              background-position: 100% 0;
-              transition: all .4s ease-in-out;
-            }
-            &:focus {
-              outline: none;
-            }
-            // width: 120px;
-            // height: 35px;
-            // border-radius: 17.5px;
-            // background: $gradient-color;
-            // color: #fff;
-            // cursor: pointer;
+            margin: 0;
           }
         }
       }

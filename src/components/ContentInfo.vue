@@ -20,11 +20,10 @@
       <span class="contents__info__runtime">{{`${runtimes}`}}</span>
     </div>
     <div class="contents__info__wrapper">
-      <button class="contents__imdb__btn">
-        <a
-          class="contents__info__imdb-link"
-          :href="`https://www.imdb.com/title/${contents.imdb_id}/`">View IMDB</a>
-      </button>
+
+      <a class="contents__info__imdb-link" :href="`https://www.imdb.com/title/${contents.imdb_id}/`" target="_blank">
+        <PrimaryButton class="contents__imdb__btn" :name="'View IMDB'"/>
+      </a>
       <button 
         class="contents__like-btn"
         @click.prevent="onClickLikeBtn"
@@ -51,8 +50,10 @@
 <script>
 
 import { mapState, mapActions } from 'vuex'
+import PrimaryButton from './PrimaryButton.vue'
 
 export default {
+  components: { PrimaryButton },
   computed: {
     ...mapState({
       contents: 'contents',
@@ -75,8 +76,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
+
 .contents__info-container {
   grid-column: 3 / 8;
   grid-row: 1;
@@ -126,24 +128,23 @@ export default {
   }
   .contents__info__wrapper {
     margin-top: 1rem;
-    .contents__imdb__btn {
-      margin-bottom: 1rem;
-      width: 120px;
-      height: 35px;
-      border-radius: 17.5px;
-      background: $gradient-color;
+    display: flex;
+    justify-content: flex-start;
       .contents__info__imdb-link {
         color: #fff;
         font-size: 0.9rem;
         letter-spacing: 0.7px;
-        text-shadow: 0 1px 2px #ced4da;
+        // text-shadow: 0 1px 2px #ced4da;
+        .contents__imdb__btn {
+          margin: 0;
+          margin-right: 1rem;
+        }
       }
-    }
     .contents__like-btn,
     .contents__save-btn {
-      margin-bottom: 1rem;
       width: 120px;
       height: 35px;
+      margin: 0;
       border-radius: 17.5px;
       background: transparent;
       border: 1px solid #adb5bd;
@@ -153,6 +154,7 @@ export default {
       }
     }
     .contents__like-btn {
+      margin-right: 1rem;
       &:hover {
         background: #aaa;
         p {

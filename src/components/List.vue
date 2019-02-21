@@ -29,8 +29,8 @@
            <span>{{`${year}`}}</span>
          </p>
       </div>
-      <router-link :to="`/content/${data.id}`">
-        <button class="content-list-detail__btn">Details</button>
+      <router-link class="content-list-detail__btn-link" :to="`/content/${data.id}`">
+        <PrimaryButton class="content-list-detail__btn" :name="'Details'"/>
       </router-link>
     </div>
   </div>
@@ -39,8 +39,11 @@
 <script>
 import _ from 'lodash'
 import {mapActions, mapState} from 'vuex'
+import PrimaryButton from './PrimaryButton.vue'
 
 export default {
+  components: {PrimaryButton},
+
   props:[
     'data'
   ],
@@ -65,10 +68,12 @@ export default {
       this.$el.classList.add('content-list-detail')
       this.isHovered = true   
     },
+
     onLeave: function() {
       this.$el.classList.remove('content-list-detail')
       this.isHovered = false
     },
+
     getReleasedYear: function(data) {
       return data.slice(0, 4)
     }
@@ -89,10 +94,10 @@ export default {
     background: $baseline-shadow-color;
     opacity: 1;
     border-radius: 6px;
+   height: 340px;
   }
   &.content-list-detail {
   width: 180px;
-  height: 320px;
 }
   .content-list__poster-wrapper {
     position: relative;
@@ -133,7 +138,7 @@ export default {
 .content-list-detail__wrapper {
   position: absolute;
   width: 180px;
-  height: 65px;
+  height: 80px;
   margin-top: .5rem;
   .content-list-detail__info {
     text-align: center;
@@ -145,29 +150,9 @@ export default {
       padding: .05rem .1rem;
     }
   }
-  .content-list-detail__btn {
-    display: block;
-    margin-top: .7rem;
-    margin-left: auto;
-    margin-right: auto;
-    width: 120px;
-    height: 30px;
-    border-radius: 45px;
-    bottom: 0;
-    font-size: 0.9rem;
-    letter-spacing: 0.7px;
-    color: #fff;
-    text-shadow: 0 1px 2px #ced4da;
-    cursor: pointer;
-    background-image: $secondary-gradient-color;
-    background-size: 200% 100%;
-    transition: all .4s ease-in-out;
-    &:hover {
-      background-position: 100% 0;
-      transition: all .4s ease-in-out;
-    }
-    &:focus {
-      outline: none;
+  .content-list-detail__btn-link {
+    background: #faa;
+    .content-list-detail__btn {
     }
   }
 }
