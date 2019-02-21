@@ -51,12 +51,17 @@ export default {
     grid-gap: 0rem;
     border-bottom: 3px solid #484848;
     .contents__tab-item {
+      color: $GRAY-4;
       text-align: center;
       position: relative;
       padding: 1rem;
       margin-bottom: -3px;
       font-size: 1.2rem;
       cursor: pointer;
+      transition: color .5s;
+      &:hover {
+        color: $GRAY-1;
+      }
     }
   }
 }
