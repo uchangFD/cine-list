@@ -3,7 +3,8 @@
     <img 
       class="contents__image"
       :src="`https://image.tmdb.org/t/p/w342${contents.poster_path}`"  
-      :alt="contents.original_title"/>
+      :alt="contents.original_title"
+    />
   </div>
 </template>
 
@@ -19,7 +20,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .contents__image-container {
   grid-column: 2;
   grid-row: 1 / 3;

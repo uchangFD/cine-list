@@ -18,12 +18,15 @@
         <li
           v-for="(item, index) in genres" :key="index" 
           class="navbar__categories__item"
+          :class="{'active': selected === item.name.toLowerCase()}"
         >
           <router-link 
             class="categories__item__link" 
             :to="`/categories/${item.name.toLowerCase()}/1`"
           >
-            <span class="categories__item__link-text">{{item.name}}</span>
+            <span class="categories__item__link-text">
+              {{item.name}}
+            </span>
           </router-link>
         </li>
       </ul>
@@ -42,10 +45,12 @@ export default {
   data() {
     return {
       browsers: ['FAVORITES', 'SAVED'],
+      selected: ''
     }
   },
 
   created() {
+    this.selected = this.$route.params.categoriesId
   },
 
   computed: {
@@ -55,11 +60,15 @@ export default {
   },
 
 
+
   watch: {
     '$route': {
       handler :'fetch',
       immediate: true,
-    }
+    },
+
+    '$route.params.categoriesId' : 'getSelectedId'
+
   },
 
   methods: {
@@ -69,13 +78,17 @@ export default {
 
     fetch: function() {
       this.FETCH_GENRES()
-    }  
+    },
+
+    getSelectedId: function() {
+      this.selected = this.$route.params.categoriesId
+    }
   },
 
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
 
 .navbar {
@@ -120,6 +133,14 @@ export default {
         margin-top: 1rem;
         margin-left: 2rem;
         opacity: 0.6;
+        &.active {
+          opacity: 1;
+          .categories__item__link {
+            .categories__item__link-text {
+              color: #66a6ff;
+            }
+          }
+        }
         &:hover {
           opacity: 1;
         }
@@ -129,6 +150,8 @@ export default {
             letter-spacing: 0.1rem;
             font-size: .85rem;
           }
+
+
         }
       }
     }

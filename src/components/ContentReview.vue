@@ -6,19 +6,22 @@
       :key="index"
     >
       <div class="viewer__header">
-        <div class="viewer__header-author-wrapper">
+        <div class="viewer__header-author__wrapper">
           <img src="../assets/images/profile.png" alt="" class="viewer__author-profile">
           <span class="viewer__author-name">{{value.userMail}}</span>
         </div>
         <div class="viewer__date-wrapper">
-
           <span 
             :title="`${new Date(value.timeStamp)}`" 
             class="viewer__time"
           >
             {{`${getTime(value.timeStamp)}`}}
           </span>
-
+        </div>
+        <div class="viewer__remove-btn__wrapper">
+          <button class="viewer__remove-btn">
+            <FontAwesome icon="times" ref="times"></FontAwesome>
+          </button>
         </div>
       </div>
       <div class="viewer__body">
@@ -50,7 +53,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
 .viewer__wrapper {
   .viewer__container {
@@ -71,8 +74,8 @@ export default {
       padding-right: .5rem;
       padding-left: .5rem;
       display: flex;
-      justify-content: flex-start;
-      .viewer__header-author-wrapper {
+      .viewer__header-author__wrapper {
+        flex: none;
         height: 30px;
         line-height: 30px;
         .viewer__author-profile {
@@ -88,36 +91,52 @@ export default {
         }
       }
       .viewer__date-wrapper {
+        flex: none;
         height: 30px;
         line-height: 30px;
-        margin-left: .5rem;
+        margin-left: 1rem;
         .viewer__time {
           color: $GRAY-5;
           font-size: .8rem;
+        }
+      }
+      .viewer__remove-btn__wrapper {
+        margin-left: auto;
+        .viewer__remove-btn {
+          line-height: 30px;
+          width: 30px;
+          background: none;
+          font-weight: 300;
+          color: #fff;
+          font-size: 1.4rem;
+          cursor: pointer;
+          transition: all .3s;
+          &:hover {
+            color: #ddd;
+          }
         }
       }
     }
 
 
 
-
-
-
     .viewer__body {
-      // background: #0ad;
-      margin: .5rem;
+      margin: 1rem auto;
       .viewer__description {
-        text-indent: 1rem;
+        width: 85%;
+        height: 100%;
+        margin-left: auto;
+        margin-right: 2.5rem;
         word-break: break-all;
         padding: .5rem;
         font-weight: 300;
-        line-height: 1.4;
-        font-size: .95rem;
+        line-height: 2;
+        font-size: .85rem;
         letter-spacing: .5px;
       }
     }
     .viewer__footer {
-      height: 1.5rem;
+      height: .5rem;
     }
   }
 }

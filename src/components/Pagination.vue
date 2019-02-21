@@ -1,24 +1,20 @@
 <template>
   <div class="pages__wrapper">
     <div class="pages__list-wrapper">
-
       <button
         class="pages__item__prev-btn"
         :disabled="this.totalPageArray[0] === 1"
         @click.prevent="onClickPrevBtn"
         tag="button"
       >
-        <FontAwesome
-          icon="angle-left"
-          ref="left"
-        >
-        </FontAwesome>
+        <FontAwesome icon="angle-left" ref="left"></FontAwesome>
       </button>
 
       <ul class="pages__item-wrapper">
         <li 
           v-for="(item, index) in this.totalPageArray"
           class="pages__item"
+          :class="{'active': Number(pageNum) === item}"
           :id="`pages__item-${item}`"
           :key="index"
         >
@@ -30,10 +26,7 @@
         @click.prevent="onClickNextBtn"
         :disabled="this.totalPageArray.length !== 10"
       >
-        <FontAwesome
-          icon="angle-right"
-          ref="right">
-        </FontAwesome>
+        <FontAwesome icon="angle-right" ref="right"></FontAwesome>
       </button>
     </div>
   </div>
@@ -55,6 +48,7 @@ export default {
 
   created() {
     this.init()
+    
   },
 
   computed: {
@@ -70,7 +64,7 @@ export default {
   watch: {
     pagePos: function() {
       this.totalPageArray = []
-      this.spliced()
+      this.spliceList()
     }
   },
 
@@ -79,11 +73,15 @@ export default {
       this.totalPage = this.categories.total_pages
       this.pageNum = this.$route.params.pagesId
       this.pagePos = Math.floor(this.$route.params.pagesId / 10)
-      this.spliced()
+      this.spliceList()
     },
 
-    spliced: function() {
-      for (let i = 1 ; i <= this.totalPage; i++) this.totalPageArray.push(i)
+    spliceList: function() {
+      let idx = 1;
+      while (idx <= this.totalPage) {
+        this.totalPageArray.push(idx) 
+        idx++
+      }
       return this.totalPageArray = this.totalPageArray.splice(10 * this.pagePos, 10)
     },
 
@@ -115,23 +113,27 @@ export default {
     align-items: center;
     .pages__item__prev-btn,
     .pages__item__next-btn {
+      margin: 1rem;
       display: inline-block;
+      background: transparent;
+      border: 1px solid $GRAY-1;
       height: 40px;
       width: 40px;
       border-radius: 20px;
       box-shadow: 0 1px 2px $GRAY-5;
-      background: transparent;
+
       color: $GRAY-1;
-      border: 1px solid $GRAY-1;
-      margin: 1rem;
       cursor: pointer;
+      font-size: 1.5rem;
+      transition: all .3s;
       &:hover {
-        background: $GRAY-6;
+        background: $Saint-Petersburg;
+        color: #888;
       }
       &:disabled {
-        color: $GRAY-6;
-        border: 1px solid $GRAY-6;
         background: transparent;
+        border: none;
+        color: #888;
       }
     }
     .pages__item-wrapper {
@@ -141,9 +143,14 @@ export default {
         width: 60px;
         height: 20px;
         text-align: center;
+        &.active {
+          .pages__item-link {
+            color: #66a6ff;
+            font-weight: 700;
+          }
+        }
         .pages__item-link {
           color: #fff;
-
         }
 
       }
