@@ -97,7 +97,7 @@ const actions = {
 
 
   FETCH_CATEGORIES({ commit }, { id, page }) {
-    return api.categories.fetch(id, page).then(data => {
+    return api.categories.fetch(id, page).then(data => {      
       commit('SET_CATEGORIES', data)
     })
   },
