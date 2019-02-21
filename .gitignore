@@ -62,4 +62,4 @@ typings/
 
 
 # firebase.config
-src/store/firebase.config.js
+./src/store/firebase.config.js
