@@ -2,7 +2,6 @@
   <div class="contents__info-container">
     <div class="contetns__info__rate-wrapper">
       <span class="contents__info__tmdb-rate">{{contents.vote_average}}</span>
-      <span class="contents__info__cine-list-rate">{{contents.vote_average}}</span>
     </div>
     <h1 class="contents__info__title">
       {{contents.title}} 
