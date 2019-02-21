@@ -65,6 +65,7 @@ export default {
   .user__email {
     height: 70px;
     line-height: 70px;
+    letter-spacing: 1.1px;
     float: left;
     margin: auto;
   }
