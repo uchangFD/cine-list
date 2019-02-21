@@ -1,29 +1,29 @@
 <template>
-  <div class="categories__movie-wrapper">
-    <h2 class="categories__movie-title">{{title}}</h2>
+  <div class="categories-list__movie-wrapper">
+    <h2 class="categories-list__movie-title">{{title}}</h2>
   
-    <div class="categories__movie-list">
+    <div class="categories-list__movie-list">
       <div 
         v-for="(item, index) in categories.results" 
         :key="index"
-        class="categories__movie-item"
+        class="categories-list__movie-item"
       >
-        <div class="categories__poster">
+        <div class="categories-list__poster">
           <img 
-            class="categories__poster-image"
+            class="categories-list__poster-image"
             :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"  
             :alt="`${item.original_title}`"
           >
         </div>
-        <div class="categories__wrapper">
-          <div class="categories__info">
-            <h3 class="categories__title">{{item.title ? item.title : '제목 없음'}}</h3>
-            <p class="categories__rate">{{item.vote_average}} / 10</p>
-            <p class="categories__synopsis">{{item.overview}}</p>
+        <div class="categories-list__wrapper">
+          <div class="categories-list__info">
+            <h3 class="categories-list__title">{{item.title ? item.title : '제목 없음'}}</h3>
+            <p class="categories-list__rate">{{item.vote_average}} / 10</p>
+            <p class="categories-list__synopsis">{{item.overview}}</p>
           </div>
-          <div class="categories__links">
+          <div class="categories-list__links">
             <router-link :to="`/content/${item.id}`">
-              <button class="categories__btn">View Details</button>
+              <button class="categories-list__btn">View Details</button>
             </router-link>
           </div>
         </div>
@@ -50,13 +50,13 @@ export default {
 
 <style lang="scss">
 @import "../assets/styles/variables.scss";
-.categories__movie-wrapper {
+.categories-list__movie-wrapper {
   width: 90%;
   min-height: 100%;
   margin-right: auto;
   position: relative;
   margin-left: 80px;
-  .categories__movie-title {
+  .categories-list__movie-title {
     color: #fff;
     font-size: 1.35rem;
     font-weight: 700;
@@ -65,10 +65,10 @@ export default {
     margin-bottom: .4rem;
     margin-left: .5rem;
   }
-  .categories__movie-list {
+  .categories-list__movie-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    .categories__movie-item {
+    .categories-list__movie-item {
       display: flex;
       margin-bottom: 2rem;
       opacity: 0.8;
@@ -77,45 +77,48 @@ export default {
       &:hover {
         background: $baseline-shadow-color;
         opacity: 1;
-        border-radius: 2px;
+        border-radius: 8px;
       }
-      .categories__poster{
+      .categories-list__poster{
         flex: none;
-        .categories__poster-image {
+        .categories-list__poster-image {
           object-fit: cover;
           width: 150px;
           height: 225px;
-          border-radius: 2px;
+          border-radius: 8px;
           margin-right: 1rem;
         }
       }
-      .categories__wrapper {
+      .categories-list__wrapper {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        .categories__info {  
-          .categories__title {
+        .categories-list__info {  
+          .categories-list__title {
             color: #fff;
             font-size: 1.2rem;
             letter-spacing: 1.2px;
           }
-          .categories__rate {
+          .categories-list__rate {
             color: #fff;
             margin-top: 1rem;
             letter-spacing: 1.2px;
           }
-          .categories__synopsis {
+          .categories-list__synopsis {
+            text-indent: 1rem;
             margin-top: 1rem;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
             font-weight: 300;
-            line-height: 1.4;
+            line-height: 1.6;
             color: #fff;
+            text-overflow: ellipsis;
+            overflow: hidden;
           }
         }
-        .categories__links {
+        .categories-list__links {
           margin-top: 1rem;
-          .categories__btn {
+          .categories-list__btn {
             display: block;
             width: 120px;
             height: 35px;
