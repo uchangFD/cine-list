@@ -7,7 +7,7 @@
     <div v-else>
       <!-- <CategoriesList :title="title" /> -->
       <router-view :title="title"></router-view>
-      <Pages />
+      <Pagination />
     </div>
   </div>
 </template>
@@ -16,12 +16,12 @@
 import {mapActions, mapState} from 'vuex'
 import CategoriesList from './CategoriesList.vue'
 import Loader from './Loader.vue'
-import Pages from './Pages.vue'
+import Pagination from './Pagination.vue'
 
 
 export default {
   components: {
-    CategoriesList, Loader, Pages
+    CategoriesList, Loader, Pagination
   },
 
 
