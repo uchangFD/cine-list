@@ -78,6 +78,7 @@ export default {
       commentRef.on('child_added', data => {
         this.values.push({
           userId: data.key, 
+          authorId: data.key,
           userMail: data.val().userMail, 
           timeStamp: data.val().timeStamp, 
           description: data.val().description

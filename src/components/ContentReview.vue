@@ -19,7 +19,11 @@
           </span>
         </div>
         <div class="viewer__remove-btn__wrapper">
-          <button class="viewer__remove-btn">
+          <button
+            :disabled="value.userId !== authorId"
+            class="viewer__remove-btn"
+            @click="removeComment"
+          > 
             <FontAwesome icon="times" ref="times"></FontAwesome>
           </button>
         </div>
@@ -36,9 +40,27 @@
 <script>
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 import ko from 'date-fns/locale/ko'
+import firebase from 'firebase'
 
 export default {
-  props: ['values'],
+  props: ['values', 'temp'],
+
+  data() {
+    return {
+      contentId: 0,
+      userId: '',
+      userMail: '',
+      authorId: ''
+    }
+  },
+
+  created() {
+    const user = firebase.auth().currentUser
+    user && (this.authorId = user.uid)
+    this.contentId = this.$route.params.contentId
+    this.userId = window.localStorage.token
+  },
+
   methods: {
     getTime: function(timeStamp) {
       return distanceInWordsToNow(
@@ -47,6 +69,12 @@ export default {
           addSuffix: true 
         }
       )
+    },
+
+    removeComment: function() {
+      const commentRef = firebase.database().ref(`REVIEWS/${this.$route.params.contentId}/${this.userId}`)
+      commentRef.on('child_removed', function(data) {})
+      commentRef.remove()
     }
   }
 }
