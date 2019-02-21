@@ -3,9 +3,7 @@
     <div v-if="isLoading" class="categories__loading">
       <Loader />
     </div>
-
     <div v-else>
-      <!-- <CategoriesList :title="title" /> -->
       <router-view :title="title"></router-view>
       <Pagination />
     </div>
