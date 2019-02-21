@@ -90,6 +90,7 @@ export default {
     max-height: 200px;
     overflow-y: hidden;
     .tab-list__synopsis-paragraph {
+      font-size: .85rem;
       line-height: 1.5;
       text-indent: 1rem;
       font-weight: 300;
