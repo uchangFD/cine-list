@@ -20,7 +20,9 @@
           class="content__review__post__post-btn"
           @click.prevent="onSubmit"
           :disabled="checkReview"
-        >Post Review</button>
+        >
+          Post Review
+        </button>
       </div>
     </div>
     <ContentReview :values="comments" />
@@ -46,14 +48,8 @@ export default {
     }
   },
 
-  created() {
-    firebase.auth().onAuthStateChanged(user => {
-      this.userMail = user.email
-    })
-    this.contentId = this.$route.params.contentId
-    this.userId = window.localStorage.token
-
-    
+  created() { 
+    this.init()   
   },
 
   watch: {
@@ -80,11 +76,18 @@ export default {
       'CHECK_REVIEW',
       ]),
 
+    init: function() {
+      firebase.auth().onAuthStateChanged(user => {
+        this.userMail = user.email
+      })
+      this.contentId = this.$route.params.contentId
+      this.userId = window.localStorage.token
+    },
+
     fetch: function() {
       this.FETCH_REVIEW({contentId: this.$route.params.contentId})
     },
     
-
     onSubmit: function() {
       this.timeStamp = Date.now()
       this.description = document.querySelector('.content__review__post__textarea').value
@@ -93,7 +96,6 @@ export default {
       this.description = ''
       this.FETCH_REVIEW({contentId: this.$route.params.contentId})
     },
-
 
     onCheck: function() {
       const USER_COMMENT_REF = firebase.database().ref(`REVIEWS/${this.contentId}/${this.userId}`)

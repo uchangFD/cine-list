@@ -21,28 +21,34 @@
     </div>
     <div class="contents__info__wrapper">
 
-      <a class="contents__info__imdb-link" :href="`https://www.imdb.com/title/${contents.imdb_id}/`" target="_blank">
-        <PrimaryButton class="contents__imdb__btn" :name="'View IMDB'"/>
+      <a 
+        class="contents__info__imdb-link" 
+        :href="`https://www.imdb.com/title/${contents.imdb_id}/`" 
+        target="_blank"
+      >
+        <PrimaryButton 
+          class="contents__imdb__btn" 
+          :name="'View IMDB'"
+        />
       </a>
+      
       <button 
         class="contents__like-btn"
         @click.prevent="onClickLikeBtn"
       >
         <p>
-        <FontAwesome
-          icon="thumbs-up"
-          ref="like">
-        </FontAwesome>
-          Like it</p>
+          <FontAwesome icon="thumbs-up" ref="like" />
+          <span>Like it</span>
+        </p>
       </button>
+
       <button class="contents__save-btn">
         <p>
-        <FontAwesome
-          icon="bookmark"
-          ref="like">
-        </FontAwesome>
-          Save it</p>
+          <FontAwesome icon="bookmark" ref="like" />
+          <span>Save it</span>
+        </p>
       </button>
+
     </div>
   </div>
 </template>

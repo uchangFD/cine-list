@@ -7,7 +7,11 @@
     >
       <div class="viewer__header">
         <div class="viewer__header-author__wrapper">
-          <img src="../assets/images/profile.png" alt="" class="viewer__author-profile">
+          <img 
+            src="../assets/images/profile.png" 
+            alt="profile_image" 
+            class="viewer__author-profile"
+          >
           <span class="viewer__author-name">{{value.userMail}}</span>
         </div>
         <div class="viewer__date-wrapper">
@@ -25,7 +29,7 @@
             class="viewer__remove-btn"
             @click.prevent="removeComment"
           > 
-            <FontAwesome icon="times" ref="times"></FontAwesome>
+            <FontAwesome icon="times" ref="times" />
           </button>
         </div>
       </div>
@@ -51,7 +55,6 @@ export default {
     return {
       contentId: 0,
       userId: '',
-      userMail: '',
       authorId: ''
     }
   },
@@ -66,7 +69,6 @@ export default {
   methods: {
     ...mapActions([
       'DELETE_REVIEW',
-      'FETCH_REVIEW'
     ]),
 
     getTime: function(timeStamp) {
@@ -79,8 +81,10 @@ export default {
     },
 
     removeComment: function() {
-      this.DELETE_REVIEW({contentId: this.$route.params.contentId, userId: this.userId})
-      // this.FETCH_REVIEW({contentId: this.$route.params.contentId})
+      this.DELETE_REVIEW({
+        contentId: this.$route.params.contentId, 
+        userId: this.userId
+      })
     }
   }
 }
@@ -101,8 +105,6 @@ export default {
     &:hover {
       background: $GRAY-7;
     }
-
-
     .viewer__header {
       margin: .5rem;
       padding-right: .5rem;
@@ -151,11 +153,8 @@ export default {
         }
       }
     }
-
-
-
     .viewer__body {
-      margin: 1rem auto;
+      margin: .25rem auto;
       .viewer__description {
         width: 85%;
         height: 100%;

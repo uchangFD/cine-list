@@ -1,9 +1,11 @@
 <template>
   <section class="header">
     <Search class="header__search"/>
+    
     <div v-if="isAuth">
       <AuthSuccess />
     </div>
+
     <div v-else>
       <router-link to="/login">login</router-link>
     </div>

@@ -1,12 +1,18 @@
 <template>
   <div class="tab-list__container">
-    <div v-if="selectedTab === 'Synopsis'" class="tab-list__synopsis">
+    <div 
+      v-if="selectedTab === 'Synopsis'" 
+      class="tab-list__synopsis"
+    >
       <p class="tab-list__synopsis-paragraph">{{contents.overview}}</p>
     </div>
 
 
 
-    <div v-if="selectedTab === 'Cast'" class="tab-list__cast">
+    <div 
+      v-if="selectedTab === 'Cast'" 
+      class="tab-list__cast"
+    >
       <div 
         v-for="(actor, idx) in casts.cast.slice(0, 5)" 
         :key="idx"
@@ -67,14 +73,14 @@ export default {
       profileImage: require('../assets/images/profile.png')
     }
   },
+
   computed: {
     ...mapState({
       contents: 'contents',
       videoId: 'videoId',
       casts: 'casts',
     })
-  },
-
+  }
 
 }
 </script>

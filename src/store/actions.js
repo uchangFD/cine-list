@@ -22,6 +22,7 @@ const actions = {
       })
   },
 
+
   FETCH_CONTENTS({ commit }, { id }) {
     return api.content.fetch(id).then(data => {
       commit('SET_CONTENTS', data)
@@ -33,9 +34,12 @@ const actions = {
     const USER_COMMENT_REF = firebase.database().ref(`REVIEWS/${contentId}`)
     commit('SET_COMMENT', [])
     USER_COMMENT_REF.on('value', data => {
-      data.exists() ?
-        commit('SET_COMMENT', Object.values(data.val())) :
+      if(data.exists()) {
+        let values = Object.values(data.val()).sort((a, b) => b.timeStamp - a.timeStamp)
+        commit('SET_COMMENT', values)
+      } else {
         commit('SET_COMMENT', [])
+      }
     })
   },
 
@@ -54,11 +58,11 @@ const actions = {
     })
   },
 
+
   DELETE_REVIEW({}, { contentId, userId }) {
     const COMMENT_REF = firebase.database().ref(`REVIEWS/${contentId}`)
     COMMENT_REF.child(userId).remove()
   },
-
 
 
   FETCH_VIDEOS({ commit }, { id }) {
@@ -66,7 +70,6 @@ const actions = {
       commit('SET_VIDEOS', data)
     })
   },
-
 
 
   FETCH_CAST({ commit }, { id }) {
@@ -77,17 +80,19 @@ const actions = {
 
 
   FETCH_PERSON({ commit }, { id }) {
+    commit('SET_PERSON', [])
     return api.person.fetch(id).then(data => {
       commit('SET_PERSON', data)
     })
   },
 
+
   FETCH_PERSON_CREDITS({ commit }, { id }) {
+    commit('SET_PERSON_CREDITS', [])
     return api.personCredits.fetch(id).then(data => {
       commit('SET_PERSON_CREDITS', data)
     })
   },
-
 
 
   FETCH_SEARCH({ commit }, { query }) {
@@ -122,13 +127,10 @@ const actions = {
     commit('RESET_CATEGORIES')
   },
 
+
   RESET_RESULTS({ commit }) {
     commit('RESET_STATES')
-  },
-
-
-
-
+  }
 }
 
 export default actions

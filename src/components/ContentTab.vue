@@ -15,7 +15,10 @@
     </ul>
 
     <div v-if="selectedTab">
-      <TabList :tabs="tabs" :selected-tab="selectedTab" />
+      <TabList 
+        :tabs="tabs" 
+        :selected-tab="selectedTab" 
+      />
     </div>
   </div>
 </template>
