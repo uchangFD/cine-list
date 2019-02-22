@@ -8,7 +8,7 @@
       <div class="viewer__header">
         <div class="viewer__header-author__wrapper">
           <img 
-            src="../assets/images/profile.png" 
+            src="https://user-images.githubusercontent.com/23162772/53229626-15e1f600-36c8-11e9-8e39-ce7ae4fb0fdb.png" 
             alt="profile_image" 
             class="viewer__author-profile"
           >

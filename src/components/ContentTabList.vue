@@ -70,7 +70,7 @@ export default {
 
   data() {
     return {
-      profileImage: require('../assets/images/profile.png')
+      profileImage: 'https://user-images.githubusercontent.com/23162772/53229626-15e1f600-36c8-11e9-8e39-ce7ae4fb0fdb.png'
     }
   },
 

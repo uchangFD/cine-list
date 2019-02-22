@@ -2,7 +2,7 @@
   <div class="user__container"> 
     <img 
       class="user__profile"
-      src="../assets/images/profile.png"
+      src="https://user-images.githubusercontent.com/23162772/53229626-15e1f600-36c8-11e9-8e39-ce7ae4fb0fdb.png"
     >
     <p class="user__email">
       {{email}}
