@@ -15,11 +15,11 @@ const state = {
   browser: [],
   review: [],
 
-
-
-  
   genres: [],
-  categories: {}
+  categories: {},
+
+  comments: []
+
 }
 
 

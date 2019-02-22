@@ -11,7 +11,7 @@
           name="review" 
           class="content__review__post__textarea"
           :id="`content__review-text-container-${contentId}`"
-          :disabled="didComment"
+          :disabled="checkReview"
           placeholder="250자 이내로 영화 감상평을 적어주세요."
         />
       </div>
@@ -19,11 +19,11 @@
         <button 
           class="content__review__post__post-btn"
           @click.prevent="onSubmit"
-          :disabled="didComment"
+          :disabled="checkReview"
         >Post Review</button>
       </div>
     </div>
-    <ContentReview :values="values" />
+    <ContentReview :values="comments" />
   </div>
 </template>
 
@@ -31,7 +31,7 @@
 import ContentReview from './ContentReview.vue'
 
 import firebase from 'firebase'
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   components: {ContentReview},
@@ -42,8 +42,7 @@ export default {
       userMail: '',
       timeStamp: '',
       description: '',
-      commented: false,
-      values: [],
+      iscommented: false,
     }
   },
 
@@ -52,7 +51,9 @@ export default {
       this.userMail = user.email
     })
     this.contentId = this.$route.params.contentId
-    this.userId = window.localStorage.token    
+    this.userId = window.localStorage.token
+
+    
   },
 
   watch: {
@@ -63,43 +64,45 @@ export default {
   },
 
   computed: {
-    didComment: function() {
-      return this.checkComments()
+    ...mapState({
+      comments: 'comments'
+    }),
+
+    checkReview: function() {
+      return this.onCheck()
     }
   },
 
   methods: {
     ...mapActions([
-      'ADD_REVIEW',
+      'FETCH_REVIEW',
+      'UPDATE_REVIEW',
+      'CHECK_REVIEW',
       ]),
 
     fetch: function() {
-      const commentRef = firebase.database().ref(`REVIEWS/${this.$route.params.contentId}`)
-      commentRef.on('child_added', data => {
-        this.values.push({
-          userId: data.key, 
-          authorId: data.key,
-          userMail: data.val().userMail, 
-          timeStamp: data.val().timeStamp, 
-          description: data.val().description
-        })
-        this.values = this.values.sort((a, b) => b["timeStamp"] - a["timeStamp"])
-      })
+      this.FETCH_REVIEW({contentId: this.$route.params.contentId})
     },
-
-    checkComments: function() {
-      const {contentId, userId} = this
-      firebase.database().ref(`REVIEWS/${contentId}/${userId}`).on('value', snapshot => this.commented = snapshot.exists())
-      return this.commented
-    },
+    
 
     onSubmit: function() {
       this.timeStamp = Date.now()
       this.description = document.querySelector('.content__review__post__textarea').value
       const {contentId, userId, userMail, timeStamp, description} = this
-      this.ADD_REVIEW({contentId, userId, userMail,timeStamp, description})
+      this.UPDATE_REVIEW({contentId, userId, userMail,timeStamp, description})
       this.description = ''
+      this.FETCH_REVIEW({contentId: this.$route.params.contentId})
+    },
+
+
+    onCheck: function() {
+      const USER_COMMENT_REF = firebase.database().ref(`REVIEWS/${this.contentId}/${this.userId}`)
+      USER_COMMENT_REF.on('value', data => {
+        this.iscommented = !!data.val()
+      })
+      return this.iscommented
     }
+
   }
 }
 </script>

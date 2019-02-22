@@ -29,11 +29,21 @@ const actions = {
   },
 
 
+  FETCH_REVIEW({ commit }, { contentId }) {
+    const USER_COMMENT_REF = firebase.database().ref(`REVIEWS/${contentId}`)
+    commit('SET_COMMENT', [])
+    USER_COMMENT_REF.on('value', data => {
+      data.exists() ?
+        commit('SET_COMMENT', Object.values(data.val())) :
+        commit('SET_COMMENT', [])
+    })
+  },
 
-  ADD_REVIEW({}, { contentId, userId, userMail, timeStamp, description }) {
+
+  UPDATE_REVIEW({}, { contentId, userId, userMail, timeStamp, description }) {
     const USER_COMMENT_REF = firebase.database().ref(`REVIEWS/${contentId}/${userId}`)
-    USER_COMMENT_REF.once('value', snapshot => {
-      if (!snapshot.exists()) {
+    USER_COMMENT_REF.once('value', data => {
+      if (!data.exists()) {
         USER_COMMENT_REF.set({
           userId,
           userMail,
@@ -43,6 +53,12 @@ const actions = {
       }
     })
   },
+
+  DELETE_REVIEW({}, { contentId, userId }) {
+    const COMMENT_REF = firebase.database().ref(`REVIEWS/${contentId}`)
+    COMMENT_REF.child(userId).remove()
+  },
+
 
 
   FETCH_VIDEOS({ commit }, { id }) {
@@ -97,7 +113,7 @@ const actions = {
 
 
   FETCH_CATEGORIES({ commit }, { id, page }) {
-    return api.categories.fetch(id, page).then(data => {      
+    return api.categories.fetch(id, page).then(data => {
       commit('SET_CATEGORIES', data)
     })
   },

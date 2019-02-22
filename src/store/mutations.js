@@ -44,27 +44,29 @@ const mutations = {
   SET_BROWSER(state, browser) {
     state.browser = browser
   },
-  
+
   SET_GENRES(state, genres) {
     state.genres = genres
   },
 
-  SET_CATEGORIES(state, payload) {    
+  SET_CATEGORIES(state, payload) {
     state.categories.page = payload.page
     state.categories.total_pages = payload.total_pages
     state.categories.total_results = payload.total_results
     state.categories.results = payload.results
   },
 
+  SET_COMMENT(state, payload) {   
+    state.comments = payload    
+  },
+
   RESET_CATEGORIES(state) {
     state.categories = []
   },
 
-
   RESET_STATES(state) {
     state.results = []
-  },
-
+  }
 
 }
 

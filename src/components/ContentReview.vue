@@ -20,9 +20,10 @@
         </div>
         <div class="viewer__remove-btn__wrapper">
           <button
+            v-show="value.userId === authorId"
             :disabled="value.userId !== authorId"
             class="viewer__remove-btn"
-            @click="removeComment"
+            @click.prevent="removeComment"
           > 
             <FontAwesome icon="times" ref="times"></FontAwesome>
           </button>
@@ -38,6 +39,7 @@
 
 
 <script>
+import { mapActions, mapState } from 'vuex'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 import ko from 'date-fns/locale/ko'
 import firebase from 'firebase'
@@ -62,6 +64,11 @@ export default {
   },
 
   methods: {
+    ...mapActions([
+      'DELETE_REVIEW',
+      'FETCH_REVIEW'
+    ]),
+
     getTime: function(timeStamp) {
       return distanceInWordsToNow(
         new Date(timeStamp), { 
@@ -72,9 +79,8 @@ export default {
     },
 
     removeComment: function() {
-      const commentRef = firebase.database().ref(`REVIEWS/${this.$route.params.contentId}/${this.userId}`)
-      commentRef.on('child_removed', function(data) {})
-      commentRef.remove()
+      this.DELETE_REVIEW({contentId: this.$route.params.contentId, userId: this.userId})
+      // this.FETCH_REVIEW({contentId: this.$route.params.contentId})
     }
   }
 }
