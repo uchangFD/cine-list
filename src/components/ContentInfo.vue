@@ -103,6 +103,7 @@ export default {
 
   .contents__info__title {
     font-size: 2.4rem;
+    word-break: keep-all;
     margin-bottom: .4rem;
     .contents__info__year {
       font-size: 1.2rem;

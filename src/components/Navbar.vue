@@ -93,7 +93,7 @@ export default {
 
 .navbar {
   position: fixed;
-  width: 250px;
+  width: 225px;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -130,11 +130,15 @@ export default {
     }
     .navbar__categories__list {
       .navbar__categories__item {
-        margin-top: 1rem;
-        margin-left: 2rem;
+        padding-left: 2rem;
+        margin: .5rem 0;
+        margin-left: 2px;
+        height: 30px;
+        line-height: 30px;
         opacity: 0.6;
         &.active {
           opacity: 1;
+          border-left: 2px solid #66a6ff;
           .categories__item__link {
             .categories__item__link-text {
               color: #66a6ff;

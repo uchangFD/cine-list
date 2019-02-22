@@ -27,7 +27,6 @@
                 class="tab-list__cast-info__profile-image"
               >
             </router-link>
-            <p class="tab-list__cast-info__profile__character">{{actor.character}} 역</p>
             <p class="tab-list__cast-info__profile__name">{{actor.name}}</p>
           </div>
         </div>
@@ -49,6 +48,7 @@
           :src="`https://www.youtube.com/embed/${video.key}`" 
           frameborder="0" 
           allowfullscreen
+          target="_blank"
         >
         </iframe>
       </div>
@@ -70,7 +70,7 @@ export default {
 
   data() {
     return {
-      profileImage: 'https://user-images.githubusercontent.com/23162772/53229626-15e1f600-36c8-11e9-8e39-ce7ae4fb0fdb.png'
+      profileImage: 'https://user-images.githubusercontent.com/23162772/53229626-15e1f600-36c8-11e9-8e39-ce7ae4fb0fdb.png',
     }
   },
 
@@ -80,7 +80,7 @@ export default {
       videoId: 'videoId',
       casts: 'casts',
     })
-  }
+  },
 
 }
 </script>
@@ -105,38 +105,39 @@ export default {
 
   .tab-list__cast {
     margin-top: .8rem;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 2px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
     .tab-list__cast-item {
-      display: inline-block;
+      max-width: 18%;
       .tab-list__cast-info {
-        display: block;
-        font-size: .8rem;
-        margin: 0 auto;
+        width: 100%;
         .tab-list__cast-info__profile {
-          width: 100%;
+          height: 100%;
+          min-width: 100%;
           opacity: 0.5;
           transition: opacity 750ms;
+          
           &:hover {
             opacity: 1;
           }
           .tab-list__cast-info__profile-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 60px;
-            object-fit: cover;
-            margin: 0 auto;
             display: block;
+            margin: 0 auto;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 40px;
             box-shadow: 0 1px 2px #181818;
           } 
-          p {
-            text-align: center;
-          }
           .tab-list__cast-info__profile__name, 
           .tab-list__cast-info__profile__character {
+            text-align: center;
             margin-top: .5rem;
-            letter-spacing: .8px;
+            font-size: .75rem;
+            font-weight: 300;
+            word-break: keep-all;
+            letter-spacing: 1.2px;
           }
         }
       }

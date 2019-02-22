@@ -78,10 +78,12 @@ export default {
 
     spliceList: function() {
       let idx = 1;
+
       while (idx <= this.totalPage) {
         this.totalPageArray.push(idx) 
         idx++
       }
+      
       return this.totalPageArray = this.totalPageArray.splice(10 * this.pagePos, 10)
     },
 
@@ -116,25 +118,25 @@ export default {
       margin: 1rem;
       display: inline-block;
       background: transparent;
-      border: 1px solid $GRAY-1;
+      border: 1px solid #66a6ff;
       height: 40px;
       width: 40px;
       border-radius: 20px;
       box-shadow: 0 1px 2px $GRAY-5;
-
-      color: $GRAY-1;
+      color: #66a6ff;
       cursor: pointer;
       font-size: 1.5rem;
       transition: all .3s;
       &:hover {
-        background: $Saint-Petersburg;
-        color: #888;
+        background: #66a6ff;
+        color: #fff;
       }
       &:disabled {
         background: transparent;
         border: none;
-        color: #888;
+        color: $GRAY-7;
       }
+      
     }
     .pages__item-wrapper {
       width: 600px;

@@ -90,7 +90,7 @@ export default {
     grid-template-columns: repeat(8, 1fr);
     grid-gap: 5px;
     grid-auto-rows: minmax(5px, auto);
-    max-width: 1400px;
+    max-width: 1190px;
     margin: 0 auto;
   }
 }

@@ -106,12 +106,16 @@ export default {
             letter-spacing: 1.2px;
           }
           .categories-list__synopsis {
-            text-indent: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* 라인수 */
+            -webkit-box-orient: vertical;
+            word-wrap: break-word; 
+            line-height: 1.4rem;
+            height: 4.2rem; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
             margin-top: 1rem;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
             font-weight: 300;
-            line-height: 1.6;
             color: #fff;
             text-overflow: ellipsis;
             overflow: hidden;
