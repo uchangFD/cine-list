@@ -60,16 +60,23 @@ export default {
   },
 
   created() {
-    const user = firebase.auth().currentUser
-    user && (this.authorId = user.uid)
-    this.contentId = this.$route.params.contentId
-    this.userId = window.localStorage.token
+    this.init()
   },
 
   methods: {
     ...mapActions([
       'DELETE_REVIEW',
     ]),
+
+    init: function() {
+      const user = firebase.auth().currentUser
+      if (user) {
+        this.authorId = user.uid
+      }
+      
+      this.contentId = this.$route.params.contentId
+      this.userId = window.localStorage.token
+    },
 
     getTime: function(timeStamp) {
       return distanceInWordsToNow(

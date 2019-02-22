@@ -2,7 +2,7 @@
   <div class="user__container"> 
     <img 
       class="user__profile"
-      src="https://user-images.githubusercontent.com/23162772/53229626-15e1f600-36c8-11e9-8e39-ce7ae4fb0fdb.png"
+      :src="profileImage"
     >
     <p class="user__email">
       {{email}}
@@ -21,6 +21,7 @@ import firebase from 'firebase'
 export default {
   data() {
     return {
+      profileImage: 'https://user-images.githubusercontent.com/23162772/53229626-15e1f600-36c8-11e9-8e39-ce7ae4fb0fdb.png',
       photo: "",
       userId: "",
       name: "",
@@ -28,23 +29,32 @@ export default {
       user: {}
     }
   },
+
   created() {
-    this.user = firebase.auth().currentUser; 
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.name = user.displayName; 
-        this.email = user.email; 
-        this.photo = user.photoURL; 
-        this.userId = user.uid; 
-      }
-    })
+    this.init()
   },
-  methods: { 
-    logOut() { 
+
+  methods: {
+
+    init: function() {
+      this.user = firebase.auth().currentUser;
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.name = user.displayName; 
+          this.email = user.email; 
+          this.photo = user.photoURL; 
+          this.userId = user.uid; 
+        }
+      })
+    },
+
+
+    logOut: function() { 
       delete localStorage.token
       firebase.auth().signOut()
       this.$router.push('/login')
-    } 
+    }
+
   }
 };
 

@@ -92,9 +92,7 @@
 <script>
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
-
 import firebase from 'firebase'
-
 Vue.use(VeeValidate);
 
 export default {

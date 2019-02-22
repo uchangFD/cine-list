@@ -66,9 +66,7 @@ export default {
       handler :'fetch',
       immediate: true,
     },
-
     '$route.params.categoriesId' : 'getSelectedId'
-
   },
 
   methods: {
@@ -132,13 +130,13 @@ export default {
       .navbar__categories__item {
         padding-left: 2rem;
         margin: .5rem 0;
-        margin-left: 2px;
-        height: 30px;
-        line-height: 30px;
+        height: 32px;
+        line-height: 32px;
         opacity: 0.6;
+        border-left: 4px solid transparent;
         &.active {
           opacity: 1;
-          border-left: 2px solid #66a6ff;
+          border-left: 4px solid #66a6ff;
           .categories__item__link {
             .categories__item__link-text {
               color: #66a6ff;

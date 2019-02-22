@@ -7,8 +7,6 @@
       <p class="tab-list__synopsis-paragraph">{{contents.overview}}</p>
     </div>
 
-
-
     <div 
       v-if="selectedTab === 'Cast'" 
       class="tab-list__cast"

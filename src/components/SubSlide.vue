@@ -11,7 +11,7 @@
               :key="index"
               ref="slides"
             >
-              <List :data="list"/>
+              <List :data="list" />
             </li>
           </ul>
         </div>
@@ -21,13 +21,13 @@
          icon="angle-left"
          ref="prev"
          @click.prevent="onClickPrevBtn(4)"
-       ></FontAwesome>
-       <FontAwesome
-         class="sub-slides__navigation-btn slides__next-btn"
-         icon="angle-right"
-         ref="next"
-         @click.prevent="onClickNextBtn(-4)"
-       ></FontAwesome>
+      />
+      <FontAwesome
+        class="sub-slides__navigation-btn slides__next-btn"
+        icon="angle-right"
+        ref="next"
+        @click.prevent="onClickNextBtn(-4)"
+      />
     </div>
   </section>
 </template>
@@ -38,11 +38,14 @@ import List from './List.vue'
 import _ from 'lodash'
 
 export default {
-
-  components: {
-    List
-  },
+  components: {List},
   props: ['data'],
+  computed: {
+    ...mapState({
+      upcoming: 'upcoming'
+    })
+  },
+
 
   methods: {
     onClickNextBtn: function(direction) {
@@ -58,13 +61,13 @@ export default {
     },
 
     increaseIdx:_.debounce(function() {
-        this.$store.state.upcoming = this.$store.state.upcoming.concat(this.$store.state.upcoming.splice(0,4))
+        this.upcoming = this.upcoming.concat(this.upcoming.splice(0,4))
         document.querySelector('.sub-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.sub-slide__lists').classList.remove('transition')
       }, 800),
 
     decreaseIdx: _.debounce(function() {
-        this.$store.state.upcoming = this.$store.state.upcoming.splice(this.$store.state.upcoming.length - 4, 4).concat(this.$store.state.upcoming)
+        this.upcoming = this.upcoming.splice(this.upcoming.length - 4, 4).concat(this.upcoming)
         document.querySelector('.sub-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.sub-slide__lists').classList.remove('transition')
       }, 800)
