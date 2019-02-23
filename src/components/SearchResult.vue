@@ -79,6 +79,7 @@ export default {
             width: 50%;
             line-height: 1.6;
             color: #efefef;
+            font-size: .8rem;
             text-shadow: 0 1px 2px #777;
             flex-direction:column;
             align-content: center;

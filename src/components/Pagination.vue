@@ -1,14 +1,16 @@
 <template>
   <div class="pages__wrapper">
     <div class="pages__list-wrapper">
-      <button
-        class="pages__item__prev-btn"
+
+      <router-link
+        class="pages__item__prev-btn__link"
+        :to="`${this.totalPageArray[0] - 10}`"
         :disabled="this.totalPageArray[0] === 1"
         @click.prevent="onClickPrevBtn"
         tag="button"
       >
         <FontAwesome icon="angle-left" ref="left"></FontAwesome>
-      </button>
+      </router-link>
 
       <ul class="pages__item-wrapper">
         <li 
@@ -21,13 +23,16 @@
           <router-link class="pages__item-link" :to="`${item}`">{{item}}</router-link>
         </li>
       </ul>
-      <button 
-        class="pages__item__next-btn"
-        @click.prevent="onClickNextBtn"
+
+      <router-link 
+        class="pages__item__next-btn__link" 
         :disabled="this.totalPageArray.length !== 10"
+        :to="`${this.totalPageArray[this.totalPageArray.length - 1] + 1}`"
+        @click.prevent="onClickNextBtn"
+        tag="button"
       >
         <FontAwesome icon="angle-right" ref="right"></FontAwesome>
-      </button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -48,13 +53,13 @@ export default {
 
   created() {
     this.init()
-    
   },
 
   computed: {
     ...mapState({
       categories: 'categories',
     }),
+    
     getPage : function() {
       this.pageNum = this.$route.params.pagesId
       return this.pageNum
@@ -113,8 +118,9 @@ export default {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    .pages__item__prev-btn,
-    .pages__item__next-btn {
+
+    .pages__item__prev-btn__link,
+    .pages__item__next-btn__link {
       margin: 1rem;
       display: inline-block;
       background: transparent;
@@ -136,7 +142,6 @@ export default {
         border: none;
         color: $GRAY-7;
       }
-      
     }
     .pages__item-wrapper {
       width: 600px;

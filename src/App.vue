@@ -6,6 +6,9 @@
 
 <style lang="scss">
 @import "./assets/styles/variables.scss";
+@import url('https://fonts.googleapis.com/css?family=Lato|Noto+Sans+KR|Roboto');
+
+
 
   html, body, div, span, 
   h1, h2, h3, h4, h5, h6, 
@@ -16,16 +19,18 @@
 	  padding: 0;
 	  border: 0;
 	  font-size: 100%;
-	  font: inherit;
-	  vertical-align: baseline;
+    vertical-align: baseline;
+    font-family: 'Lato', 'Noto Sans KR', sans-serif;
   }
   html {
+    font-family: 'Lato', 'Noto Sans KR', sans-serif;
     height: 100%;
     margin: 0;
     background: $baseline-color;
   }
 
   body {
+    font-family: 'Lato', 'Noto Sans KR', sans-serif;
     height: 100%;
     margin: 0;
     line-height: 1;
@@ -33,11 +38,7 @@
   }
 
   #app {
-    position: absolute; 
-    top: 0; 
-    bottom: 0;
-    right: 0;
-    left:0;
+    font-family: 'Lato', 'Noto Sans KR', sans-serif;
   }
   ul, li {
 	  list-style: none;
@@ -47,8 +48,6 @@
     text-decoration: none;
     color: #181818
   }
-
-  
 
   .transition {
     transition: 800ms;

@@ -11,7 +11,9 @@
       class="user__logout-btn"
       @click.prevent="logOut"
     >
-      Log out
+      <span class="user__logout-btn__text">
+        Log out
+      </span>
     </button> 
   </div>
 </template>
@@ -61,6 +63,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../assets/styles/variables.scss";
+
 .user__container {
   display: flex;
   justify-content: flex-start;
@@ -88,5 +92,28 @@ export default {
     cursor: pointer;
   }
 }
+
+
+@media screen and (max-width: $mobile) {
+  .user__container {
+    width: 50px;
+    .user__profile {
+      display: none;
+    }
+    .user__email {
+      display: none;
+    }
+    .user__logout-btn {
+      background: #faa;
+      margin: 0;
+      display: block;
+      width: 100px;
+      .user__logout-btn__text {
+        width: 100px;
+      }
+    }
+  }
+}
+
 
 </style>

@@ -3,7 +3,6 @@
     <div v-if="isLoading">
       <Loader />
     </div>
-    
     <div 
       v-else 
       class="contents__wrapper"
@@ -77,22 +76,37 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
 
-.contents__section {
-  background: $baseline-color;
-  margin-left: 250px;
-  color: #fff;
-  width: calc(100% - 250px);
-  min-height: 100%;
-  .contents__wrapper {
-    padding-top: 50px;
+
+@media screen and (min-width: $desktop) {
+  .contents__section {
+    background: $baseline-color;
+    margin-left: 250px;
+    color: #fff;
+    width: calc(100% - 250px);
     min-height: 100%;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-gap: 5px;
-    grid-auto-rows: minmax(5px, auto);
-    max-width: 1190px;
-    margin: 0 auto;
+    .contents__wrapper {
+      padding-top: 50px;
+      min-height: 100%;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-gap: 5px;
+      grid-auto-rows: minmax(5px, auto);
+      max-width: 1190px;
+      margin: 0 auto;
+    }
   }
 }
+
+
+@media screen and (max-width: $mobile) {
+  .contents__section {
+    display: block;
+    margin: 0;
+    width: 100%;
+  }
+}
+
+
+
 
 </style>

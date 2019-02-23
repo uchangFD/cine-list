@@ -99,8 +99,6 @@ export default {
   overflow-y:unset;
   background: $baseline-secondary-color;
   opacity: 0.98;
-
-
   .navbar__logo {
     background: $baseline-secondary-color;
     text-align: center;
@@ -130,8 +128,8 @@ export default {
       .navbar__categories__item {
         padding-left: 2rem;
         margin: .5rem 0;
-        height: 32px;
-        line-height: 32px;
+        height: 24px;
+        line-height: 24px;
         opacity: 0.6;
         border-left: 4px solid transparent;
         &.active {
@@ -152,13 +150,10 @@ export default {
             letter-spacing: 0.1rem;
             font-size: .85rem;
           }
-
-
         }
       }
     }
   }
-
 
   .navbar__logo, .navbar__categories {
     flex: none;
@@ -166,4 +161,9 @@ export default {
 }
 
 
+@media screen and (max-width: $mobile) {
+  .navbar {
+    display: none;
+  }
+}
 </style>

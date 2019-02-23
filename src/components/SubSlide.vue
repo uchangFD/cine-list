@@ -78,6 +78,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/variables.scss";
+
 .slides {
   padding-top: 50px;
   padding-bottom: 50px;
@@ -139,4 +141,13 @@ export default {
     }
   }
 }
+
+
+
+@media screen and (max-width: $mobile) {
+  .slides {
+    display: none;
+  }
+}
+
 </style>

@@ -4,6 +4,8 @@
     @mouseover.prevent="onHover"
     @mouseleave.prevent="onLeave"
   >
+
+
     <div class="content-list__poster-wrapper">
       <img 
         class="content-list__poster-image"
@@ -32,6 +34,24 @@
       <router-link class="content-list-detail__btn-link" :to="`/content/${data.id}`">
         <PrimaryButton class="content-list-detail__btn" :name="'Details'"/>
       </router-link>
+    </div>
+
+<!---------------------------------------MOBILE----------------------------------------->
+
+    <div class="content-list__wrapper__mobile">
+      <img 
+        class="content-list__poster-image-mobile"
+        :src="`https://image.tmdb.org/t/p/w500${data.backdrop_path}`"  
+        :alt="`${data.original_title}`"
+      />
+      <span class="content-list__rate__mobile">{{data.vote_average}}</span>
+      <p class="content-list__title__mobile">{{data.title}}</p>
+
+      <div class="content-list-detail__wrapper__mobile">
+        <router-link class="content-list-detail__btn-link__mobile" :to="`/content/${data.id}`">
+          <PrimaryButton class="content-list-detail__btn__mobile" :name="'Details'"/>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -65,13 +85,17 @@ export default {
 
   methods: {
     onHover: function() {
-      this.$el.classList.add('content-list-detail')
-      this.isHovered = true   
+      if(document.querySelector('body').offsetWidth > 400) {
+        this.$el.classList.add('content-list-detail')
+        this.isHovered = true
+      }
     },
 
     onLeave: function() {
-      this.$el.classList.remove('content-list-detail')
-      this.isHovered = false
+      if(document.querySelector('body').offsetWidth > 400) {
+        this.$el.classList.remove('content-list-detail')
+        this.isHovered = false
+      }
     },
 
     getReleasedYear: function(data) {
@@ -101,18 +125,19 @@ export default {
 }
   .content-list__poster-wrapper {
     position: relative;
+    width: 150px;
+    margin: 0 auto;
     .content-list__poster-image {
-        display: block;
-        margin: 0 auto;
-        object-fit: cover;
-        width: 150px;
-        height: 225px;
-        border-radius: 4px;
-      }
+      display: block;
+      object-fit: cover;
+      width: 150px;
+      height: 225px;
+      border-radius: 4px;
+    }
     .content-list__rate {
       position: absolute;
       top: 10px;
-      left: 10px;
+      right: 10px;
       border-radius: 4px;
       background: rgba(33, 37, 41, 0.9);
       color: #fff;
@@ -120,6 +145,10 @@ export default {
     }
   }
 
+
+  .content-list__wrapper__mobile {
+    display: none;
+  }
   
   .content-list__title {
     color: #fff;
@@ -153,6 +182,78 @@ export default {
   .content-list-detail__btn-link {
     background: #faa;
     .content-list-detail__btn {
+    }
+  }
+}
+
+
+@media screen and (max-width: $mobile) {
+  .content-list {
+    position: relative;
+    width: 100%;
+    padding: 1rem 0;
+    &:hover {
+      background: none;
+      height: 100%;
+    }
+    &.content-list-detail {
+      position: absolute;
+      top: 0;
+    }
+    .content-list__poster-wrapper {
+      display: none;
+    }
+
+    .content-list__wrapper__mobile {
+      display: block;
+      position: relative;
+      .content-list__poster-image-mobile {
+        display: block;
+        margin: 0 auto;
+        width: 90%;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .content-list__rate__mobile {
+        position: absolute;
+        top: 165px;
+        left: 30px;
+        border-radius: 4px;
+        background: rgba(33, 37, 41, 0.9);
+        color: #fff;
+        padding: .25rem .5rem;
+      }
+      .content-list__title__mobile {
+        position: absolute;
+        top: 10px;
+        left: 30px;
+        width: 70%;
+        text-align-last: left;
+        font-size: 1.2rem;
+        word-break: keep-all;
+        word-wrap: break-word;
+        text-shadow: 0 1px 4px #000;
+        color: #fff;;
+      }
+      .content-list-detail__wrapper__mobile {
+        .content-list-detail__info__mobile {
+          display: none;
+        }
+        .content-list-detail__btn-link__mobile {
+          position: absolute;
+          bottom: 10px;
+          right: 30px;
+          .content-list-detail__btn__mobile {
+
+          }
+        }
+      }
+    }
+
+
+
+    .content-list__title {
+      display: none;
     }
   }
 }

@@ -117,18 +117,20 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../assets/styles/variables.scss";
+
 .search {
   display: inline-block;
-  width: 350px;
+  width: 300px;
   margin: 0;
   .search__form {
     position: relative;
     text-align: center;
-    width: 350px;
+    width: 300px;
     .search__input {
+      width: 300px;
       box-sizing: border-box;
       padding-bottom: 12px;
-      width: 350px;
       line-height: 1.5;
       background: transparent;
       border-bottom: 1.25px solid #fff;
@@ -141,19 +143,32 @@ export default {
       position: absolute;
       top: 26px;
       right: 0;
-      height: 22px;
-      width: 22px;
-      margin-right: 1rem;
-      line-height: 22px;
+      height: 18px;
+      width: 18px;
+      margin-right: .5rem;
+      line-height: 18px;
       border-radius: 50%;
-      background-color: #ccc;
+      background-color: #bbb;
       color: white;
       font-size: 1rem;
       border: none;
       span {
         position: absolute;
-        top: -1.5px;
-        left: 6.2px;
+        top: -1px;
+        left: 4.5px;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: $mobile) {
+  .search {
+    display: none;
+    .search__form {
+      width: 50px;
+      .search__input {
+
       }
     }
   }

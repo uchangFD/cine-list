@@ -57,4 +57,11 @@ export default {
   background: $baseline-color;
 }
 
+@media screen and (max-width: $mobile) {
+  .home__container {
+    width: 100%;
+    margin: 0;
+  }
+}
+
 </style>

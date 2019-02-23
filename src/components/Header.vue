@@ -64,4 +64,19 @@ export default {
   }
 }
 
+
+
+@media screen and (max-width: $mobile) {
+  .header {
+    margin: 0;
+    display: block;
+    .header__search, .header__login {
+      height: 70px;
+      line-height: 70px;
+      padding: 0 40px;
+    }
+  }
+}
+
+
 </style>

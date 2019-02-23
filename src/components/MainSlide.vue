@@ -76,6 +76,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/variables.scss";
+
 .slides {
   padding-top: 50px;
   padding-bottom: 50px;
@@ -138,4 +140,52 @@ export default {
     }
   }
 }
+
+
+
+@media screen and (max-width: $mobile) {
+  .slides {
+    width: 100%;
+    height: 100%;
+    .main-slides {
+      position: relative;
+      overflow: visible;
+      margin: 0;
+      width: 100%;
+      .main-slides__container {
+        margin: 0;
+        overflow: visible;
+        .main-slides__container__title {
+
+        }
+        .main-slide__lists__wrapper {
+          width: 100%;
+          overflow: visible;
+        }
+        .main-slide__lists {
+          width: 100%;
+          left: 0;
+          display: block;
+          height: 100%;
+          .main-slide__item {
+            display: block;
+            margin: 0 auto;
+
+          }
+        }
+      }
+      .main-slides__navigation-btn {
+        display: none;
+      &:hover {
+      }
+      &.main-slides__prev-btn {
+      }
+      &.main-slides__next-btn {
+      }
+      }
+    }
+  }
+}
+
+
 </style>
