@@ -88,10 +88,13 @@ export default {
     },
 
     removeComment: function() {
-      this.DELETE_REVIEW({
-        contentId: this.$route.params.contentId, 
-        userId: this.userId
-      })
+      let confirmMessage = confirm('정말 삭제하시겠습니까?')
+      if (confirmMessage) {
+        this.DELETE_REVIEW({
+          contentId: this.$route.params.contentId, 
+          userId: this.userId
+        })
+      }
     }
   }
 }
