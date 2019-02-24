@@ -119,56 +119,61 @@ export default {
 <style lang="scss">
 @import "../assets/styles/variables.scss";
 
-.search {
-  display: inline-block;
-  width: 300px;
-  margin: 0;
-  .search__form {
-    position: relative;
-    text-align: center;
+
+
+
+@media screen and (min-width: $desktop) {
+  .search {
+    display: inline-block;
     width: 300px;
-    .search__input {
+    margin: 0;
+    .search__form {
+      position: relative;
+      text-align: center;
       width: 300px;
-      box-sizing: border-box;
-      padding-bottom: 12px;
-      line-height: 1.5;
-      background: transparent;
-      border-bottom: 1.25px solid #fff;
-      box-shadow: none;
-      outline: 0;
-      color: #aaa;
-      text-indent: 1rem;
-    }
-    .reset-btn {
-      position: absolute;
-      top: 26px;
-      right: 0;
-      height: 18px;
-      width: 18px;
-      margin-right: .5rem;
-      line-height: 18px;
-      border-radius: 50%;
-      background-color: #bbb;
-      color: white;
-      font-size: 1rem;
-      border: none;
-      span {
+      .search__input {
+        width: 300px;
+        box-sizing: border-box;
+        padding-bottom: 12px;
+        line-height: 1.5;
+        background: transparent;
+        border-bottom: 1.25px solid #fff;
+        box-shadow: none;
+        outline: 0;
+        color: #aaa;
+        text-indent: 1rem;
+      }
+      .reset-btn {
         position: absolute;
-        top: -1px;
-        left: 4.5px;
+        top: 26px;
+        right: 0;
+        height: 18px;
+        width: 18px;
+        margin-right: .5rem;
+        line-height: 18px;
+        border-radius: 50%;
+        background-color: #bbb;
+        color: white;
+        font-size: 1rem;
+        border: none;
+        span {
+          position: absolute;
+          top: -1px;
+          left: 4.5px;
+        }
       }
     }
   }
 }
 
-
 @media screen and (max-width: $mobile) {
   .search {
-    display: none;
     .search__form {
-      width: 50px;
       .search__input {
-
+      }
+      .reset-btn {
+        span {
+        }
       }
     }
   }

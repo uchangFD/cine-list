@@ -17,17 +17,16 @@
 
 <script>
 export default {
-  props: ['list'],
-  computed: {
-    
-  },
+  props: ['list']
 }
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import "../assets/styles/variables.scss";
+
+@media screen and (min-width: $desktop) {
   .navbar__browser {
-    justify-content: space-around;
     margin: 2.5rem auto;
     padding-left: 2rem;
     .navbar__browser__title {
@@ -49,4 +48,22 @@ export default {
       }
     }
   }
+}
+
+@media screen and (max-width: $mobile) {
+  .navbar__browser {
+    .navbar__browser__title {
+
+    }
+    .navbar__browser__list {
+      .navbar__browser__item {
+        .browser__item__link {
+          .browser__item__link-text{
+            
+          }
+        }
+      }
+    }
+  }
+}
 </style>

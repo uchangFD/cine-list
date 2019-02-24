@@ -65,52 +65,43 @@ export default {
 <style lang="scss">
 @import "../assets/styles/variables.scss";
 
-.user__container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 350px;
-  color: #fff;
-  .user__profile {
-    width: 30px;
-    margin: 1rem;
-    border-radius: 50%;
-  }
-  .user__email {
-    height: 70px;
-    line-height: 70px;
-    letter-spacing: 1.1px;
-    float: left;
-    margin: auto;
-  }
-  .user__logout-btn {
-    height: 70px;
-    padding: 0 2rem;
-    background: none;
+@media screen and (min-width: $desktop) {
+  .user__container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 350px;
     color: #fff;
-    margin-left: auto;
-    cursor: pointer;
+    .user__profile {
+      width: 30px;
+      margin: 1rem;
+      border-radius: 50%;
+    }
+    .user__email {
+      height: 70px;
+      line-height: 70px;
+      letter-spacing: 1.1px;
+      float: left;
+      margin: auto;
+    }
+    .user__logout-btn {
+      height: 70px;
+      padding: 0 2rem;
+      background: none;
+      color: #fff;
+      margin-left: auto;
+      cursor: pointer;
+    }
   }
 }
 
-
 @media screen and (max-width: $mobile) {
   .user__container {
-    width: 50px;
     .user__profile {
-      display: none;
     }
     .user__email {
-      display: none;
     }
     .user__logout-btn {
-      background: #faa;
-      margin: 0;
-      display: block;
-      width: 100px;
-      .user__logout-btn__text {
-        width: 100px;
-      }
     }
   }
 }

@@ -36,45 +36,36 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
-
-.header {
-  margin-left: 250px;
-  display: flex;
-  background-color: $baseline-color;
-  .header__search, .header__login {
-    flex: none;
-    height: 70px;
-    line-height: 70px;
-    padding: 0 40px;
-  }
-
-  .header__login-btn {
-    cursor: pointer;
-    color: #fff;
-  }
-
-  .header__search {
-    margin-left: auto;
-    padding: 0;
-    z-index: 1;
-  }
-
-  .header__login {
-    margin: 0;
-  }
-}
-
-
-
-@media screen and (max-width: $mobile) {
+@media screen and (min-width: $desktop) {
   .header {
-    margin: 0;
-    display: block;
+    margin-left: 250px;
+    display: flex;
+    background-color: $baseline-color;
     .header__search, .header__login {
+      flex: none;
       height: 70px;
       line-height: 70px;
       padding: 0 40px;
     }
+    .header__login-btn {
+      cursor: pointer;
+      color: #fff;
+    }
+    .header__search {
+      margin-left: auto;
+      padding: 0;
+      z-index: 1;
+    }
+    .header__login {
+      margin: 0;
+    }
+  }
+}
+
+
+@media screen and (max-width: $mobile) {
+  .header {
+    display: none;
   }
 }
 

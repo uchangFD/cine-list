@@ -4,8 +4,6 @@
     @mouseover.prevent="onHover"
     @mouseleave.prevent="onLeave"
   >
-
-
     <div class="content-list__poster-wrapper">
       <img 
         class="content-list__poster-image"
@@ -34,24 +32,6 @@
       <router-link class="content-list-detail__btn-link" :to="`/content/${data.id}`">
         <PrimaryButton class="content-list-detail__btn" :name="'Details'"/>
       </router-link>
-    </div>
-
-<!---------------------------------------MOBILE----------------------------------------->
-
-    <div class="content-list__wrapper__mobile">
-      <img 
-        class="content-list__poster-image-mobile"
-        :src="`https://image.tmdb.org/t/p/w500${data.backdrop_path}`"  
-        :alt="`${data.original_title}`"
-      />
-      <span class="content-list__rate__mobile">{{data.vote_average}}</span>
-      <p class="content-list__title__mobile">{{data.title}}</p>
-
-      <div class="content-list-detail__wrapper__mobile">
-        <router-link class="content-list-detail__btn-link__mobile" :to="`/content/${data.id}`">
-          <PrimaryButton class="content-list-detail__btn__mobile" :name="'Details'"/>
-        </router-link>
-      </div>
     </div>
   </div>
 </template>
@@ -85,14 +65,14 @@ export default {
 
   methods: {
     onHover: function() {
-      if(document.querySelector('body').offsetWidth > 400) {
+      if(document.querySelector('body').offsetWidth > 414) {
         this.$el.classList.add('content-list-detail')
         this.isHovered = true
       }
     },
 
     onLeave: function() {
-      if(document.querySelector('body').offsetWidth > 400) {
+      if(document.querySelector('body').offsetWidth > 414) {
         this.$el.classList.remove('content-list-detail')
         this.isHovered = false
       }
@@ -107,81 +87,81 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
-
+@media screen and (min-width: $desktop) {
 .content-list {
-  position: relative;
-  width: 150px;
-  opacity: 0.8;
-  padding: 10px;
-  transition: 300ms;
-  &:hover {
-    background: $baseline-shadow-color;
-    opacity: 1;
-    border-radius: 6px;
-   height: 340px;
-  }
-  &.content-list-detail {
-  width: 180px;
-}
-  .content-list__poster-wrapper {
     position: relative;
     width: 150px;
-    margin: 0 auto;
-    .content-list__poster-image {
-      display: block;
-      object-fit: cover;
+    opacity: 0.8;
+    padding: 10px;
+    transition: 300ms;
+    background-image: none;
+    &:hover {
+      background: $baseline-shadow-color;
+      opacity: 1;
+      border-radius: 8px;
+      height: 320px;
+    }
+    &.content-list-detail {
+    width: 180px;
+  }
+    .content-list__poster-wrapper {
+      position: relative;
       width: 150px;
-      height: 225px;
-      border-radius: 4px;
+      margin: 0 auto;
+      .content-list__poster-image {
+        display: block;
+        object-fit: cover;
+        width: 150px;
+        height: 225px;
+        border-radius: 4px;
+      }
+      .content-list__rate {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border-radius: 12.5px;
+        background: rgba(33, 37, 41, 0.7);
+        color: #fff;
+        width: 45px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+      }
     }
-    .content-list__rate {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      border-radius: 4px;
-      background: rgba(33, 37, 41, 0.9);
+    .content-list__title {
       color: #fff;
-      padding: .25rem .5rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding-top: 10px;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
     }
   }
-
-
-  .content-list__wrapper__mobile {
-    display: none;
-  }
-  
-  .content-list__title {
-    color: #fff;
-    font-weight: 700;
-    font-size: 0.85rem;
-    padding-top: 10px;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
-}
-
-
-.content-list-detail__wrapper {
-  position: absolute;
-  width: 180px;
-  height: 80px;
-  margin-top: .5rem;
-  .content-list-detail__info {
-    text-align: center;
-    span {
-      font-size: 0.8rem;
-      color: #aaa;
-      font-weight: 300;
-      letter-spacing: 1px;
-      padding: .05rem .1rem;
+  .content-list-detail__wrapper {
+    position: absolute;
+    width: 180px;
+    height: 80px;
+    margin-top: .5rem;
+    display: block;
+    .content-list-detail__info {
+      text-align: center;
+      span {
+        font-size: 0.8rem;
+        color: #aaa;
+        font-weight: 300;
+        letter-spacing: 1px;
+        padding: .05rem .1rem;
+      }
     }
-  }
-  .content-list-detail__btn-link {
-    background: #faa;
-    .content-list-detail__btn {
+    .content-list-detail__btn-link {
+      display: block;
+      width: 120px;
+      margin: 0 auto;
+      .content-list-detail__btn {
+      }
     }
   }
 }
@@ -189,71 +169,28 @@ export default {
 
 @media screen and (max-width: $mobile) {
   .content-list {
-    position: relative;
-    width: 100%;
-    padding: 1rem 0;
     &:hover {
-      background: none;
-      height: 100%;
     }
     &.content-list-detail {
-      position: absolute;
-      top: 0;
+
     }
     .content-list__poster-wrapper {
-      display: none;
-    }
-
-    .content-list__wrapper__mobile {
-      display: block;
-      position: relative;
-      .content-list__poster-image-mobile {
-        display: block;
-        margin: 0 auto;
-        width: 90%;
-        object-fit: cover;
-        border-radius: 8px;
+      .content-list__poster-image {
       }
-      .content-list__rate__mobile {
-        position: absolute;
-        top: 165px;
-        left: 30px;
-        border-radius: 4px;
-        background: rgba(33, 37, 41, 0.9);
-        color: #fff;
-        padding: .25rem .5rem;
-      }
-      .content-list__title__mobile {
-        position: absolute;
-        top: 10px;
-        left: 30px;
-        width: 70%;
-        text-align-last: left;
-        font-size: 1.2rem;
-        word-break: keep-all;
-        word-wrap: break-word;
-        text-shadow: 0 1px 4px #000;
-        color: #fff;;
-      }
-      .content-list-detail__wrapper__mobile {
-        .content-list-detail__info__mobile {
-          display: none;
-        }
-        .content-list-detail__btn-link__mobile {
-          position: absolute;
-          bottom: 10px;
-          right: 30px;
-          .content-list-detail__btn__mobile {
-
-          }
-        }
+      .content-list__rate {
       }
     }
-
-
-
     .content-list__title {
-      display: none;
+    }
+  }
+  .content-list-detail__wrapper {
+    .content-list-detail__info {
+      span {
+      }
+    }
+    .content-list-detail__btn-link {
+      .content-list-detail__btn {
+      }
     }
   }
 }

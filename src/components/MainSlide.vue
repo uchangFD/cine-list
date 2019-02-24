@@ -184,12 +184,6 @@ export default {
       }
       .main-slides__navigation-btn {
         display: none;
-      &:hover {
-      }
-      &.main-slides__prev-btn {
-      }
-      &.main-slides__next-btn {
-      }
       }
     }
   }

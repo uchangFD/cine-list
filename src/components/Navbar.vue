@@ -89,74 +89,74 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
 
-.navbar {
-  position: fixed;
-  width: 225px;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  z-index: 1;
-  overflow-y:unset;
-  background: $baseline-secondary-color;
-  opacity: 0.98;
-  .navbar__logo {
+@media screen and (min-width: $desktop) {
+  .navbar {
+    position: fixed;
+    width: 225px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    overflow-y:unset;
     background: $baseline-secondary-color;
-    text-align: center;
-    .logo-btn {
-      .logo__title {
-        color: #aaa;
-        font-size: 1rem;
-        height: 100px;
-        line-height: 100px;
-        font-weight: 700;
-        font-size: 2rem;
+    opacity: 0.98;
+    .navbar__logo {
+      background: $baseline-secondary-color;
+      text-align: center;
+      .logo-btn {
+        .logo__title {
+          color: #aaa;
+          font-size: 1rem;
+          height: 100px;
+          line-height: 100px;
+          font-weight: 700;
+          font-size: 2rem;
+        }
       }
     }
-  }
-
-  .navbar__categories {
-    justify-content: space-around;
-    margin: 2.5rem auto;
-    .navbar__categories__title {
-      letter-spacing: 0.2rem;
-      color: #666;
-      font-size: 0.8rem;
-      padding-bottom: 0.6rem;
-      padding-left: 2rem;
-    }
-    .navbar__categories__list {
-      .navbar__categories__item {
+    .navbar__categories {
+      justify-content: space-around;
+      margin: 2.5rem auto;
+      .navbar__categories__title {
+        letter-spacing: 0.2rem;
+        color: #666;
+        font-size: 0.8rem;
+        padding-bottom: 0.6rem;
         padding-left: 2rem;
-        margin: .5rem 0;
-        height: 24px;
-        line-height: 24px;
-        opacity: 0.6;
-        border-left: 4px solid transparent;
-        &.active {
-          opacity: 1;
-          border-left: 4px solid #66a6ff;
+      }
+      .navbar__categories__list {
+        .navbar__categories__item {
+          padding-left: 2rem;
+          margin: .5rem 0;
+          height: 24px;
+          line-height: 24px;
+          opacity: 0.6;
+          border-left: 4px solid transparent;
+          &.active {
+            opacity: 1;
+            border-left: 4px solid #66a6ff;
+            .categories__item__link {
+              .categories__item__link-text {
+                color: #66a6ff;
+              }
+            }
+          }
+          &:hover {
+            opacity: 1;
+          }
           .categories__item__link {
-            .categories__item__link-text {
-              color: #66a6ff;
+            .categories__item__link-text{
+              color: #aaa;
+              letter-spacing: 0.1rem;
+              font-size: .85rem;
             }
           }
         }
-        &:hover {
-          opacity: 1;
-        }
-        .categories__item__link {
-          .categories__item__link-text{
-            color: #aaa;
-            letter-spacing: 0.1rem;
-            font-size: .85rem;
-          }
-        }
       }
     }
-  }
-
-  .navbar__logo, .navbar__categories {
-    flex: none;
+    .navbar__logo, .navbar__categories {
+      flex: none;
+    }
   }
 }
 
@@ -164,6 +164,33 @@ export default {
 @media screen and (max-width: $mobile) {
   .navbar {
     display: none;
+    .navbar__logo {
+      .logo-btn {
+        .logo__title {
+        }
+      }
+    }
+    .navbar__categories {
+      .navbar__categories__title {}
+      .navbar__categories__list {
+        .navbar__categories__item {
+          &.active {
+            .categories__item__link {
+              .categories__item__link-text {
+              }
+            }
+          }
+          &:hover {
+          }
+          .categories__item__link {
+            .categories__item__link-text{
+            }
+          }
+        }
+      }
+    }
+    .navbar__logo, .navbar__categories {
+    }
   }
 }
 </style>
