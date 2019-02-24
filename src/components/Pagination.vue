@@ -59,11 +59,12 @@ export default {
     ...mapState({
       categories: 'categories',
     }),
-    
+
     getPage : function() {
       this.pageNum = this.$route.params.pagesId
       return this.pageNum
     }
+
   },
 
   watch: {
@@ -143,6 +144,8 @@ export default {
         color: $GRAY-7;
       }
     }
+
+    
     .pages__item-wrapper {
       width: 600px;
       .pages__item {

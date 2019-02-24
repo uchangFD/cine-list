@@ -49,12 +49,16 @@ export default {
 
 <style lang="scss">
 @import "../assets/styles/variables.scss";
-.home__container {
-  width: calc(100% - 250px);
-  min-height: 100%;
-  margin-left: 250px;
-  z-index: 0;
-  background: $baseline-color;
+
+
+@media screen and (min-width: $desktop) {
+  .home__container {
+    width: calc(100% - 250px);
+    min-height: 100%;
+    margin-left: 250px;
+    z-index: 0;
+    background: $baseline-color;
+  }
 }
 
 @media screen and (max-width: $mobile) {
