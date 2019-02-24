@@ -11,7 +11,7 @@ export default {
 <style lang="scss">
 @import "../assets/styles/variables.scss";
   .primary-btn {
-    display: block;
+    display: inline-block;
     margin-top: .7rem;
     margin-left: auto;
     margin-right: auto;

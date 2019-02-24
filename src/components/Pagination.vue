@@ -157,10 +157,16 @@ export default {
           .pages__item-link {
             color: #66a6ff;
             font-weight: 700;
+            opacity: 1;
           }
         }
+
         .pages__item-link {
           color: #fff;
+          opacity: .5;
+          &:hover {
+            opacity: .8;
+          }
         }
 
       }

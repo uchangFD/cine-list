@@ -134,6 +134,7 @@ export default {
             margin-top: .5rem;
             font-size: .75rem;
             font-weight: 300;
+            width: 80px;
             word-break: keep-all;
             letter-spacing: 1.2px;
           }

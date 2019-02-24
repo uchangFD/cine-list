@@ -8,6 +8,7 @@
         :key="index"
         class="categories-list__movie-item"
       >
+
         <div class="categories-list__poster">
           <img 
             class="categories-list__poster-image"
@@ -15,17 +16,25 @@
             :alt="`${item.original_title}`"
           >
         </div>
+
         <div class="categories-list__wrapper">
           <div class="categories-list__info">
             <h3 class="categories-list__title">{{item.title ? item.title : '제목 없음'}}</h3>
             <p class="categories-list__rate">{{item.vote_average}} / 10</p>
             <p class="categories-list__synopsis">{{item.overview}}</p>
           </div>
+
           <div class="categories-list__links">
             <router-link :to="`/content/${item.id}`">
               <PrimaryButton class="categories-list__btn" :name="'View Details'"/>
             </router-link>
           </div>
+        </div>
+
+        <div 
+          class="categories-list__blur"
+          :style="{backgroundImage: `url(https://image.tmdb.org/t/p/w500${item.poster_path})`}"
+        >
         </div>
       </div>
     </div>
@@ -70,17 +79,35 @@ export default {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     .categories-list__movie-item {
+      position: relative;
       display: flex;
       margin-bottom: 2rem;
       opacity: 0.8;
       padding: 1rem;
       margin: 0 2rem 2rem 0;
+
       &:hover {
-        background: $baseline-shadow-color;
-        opacity: 1;
+        overflow: hidden;
         border-radius: 8px;
+        .categories-list__blur {
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: -1;
+          position: absolute;
+          background-size: cover;
+          background-position: center;
+          transform: scale(1);
+          -webkit-filter: blur(32px);
+          -moz-filter: blur(32px);
+          -ms-filter: blur(32px);
+          -o-filter: blur(32px);
+          filter: blur(32px);
+          opacity: 0.28;
+        }
       }
-      .categories-list__poster{
+      .categories-list__poster {
         flex: none;
         .categories-list__poster-image {
           object-fit: cover;
@@ -94,7 +121,7 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        .categories-list__info {  
+        .categories-list__info {
           .categories-list__title {
             color: #fff;
             font-size: 1.2rem;
@@ -121,6 +148,7 @@ export default {
             overflow: hidden;
           }
         }
+
         .categories-list__links {
           margin-top: 1rem;
           .categories-list__btn {
@@ -132,6 +160,12 @@ export default {
           }
         }
       }
+      .categories-list__blur {
+        position: absolute;
+      }
+
+
+
     }
   }
 }

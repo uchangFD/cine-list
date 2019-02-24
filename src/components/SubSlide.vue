@@ -1,8 +1,8 @@
 <template>
   <section class="slides">
     <div class="sub-slides">
-      <div class="sub-slides-container">
-        <h2 class="sub-slides-container__title">Upcoming Movies</h2>
+      <div class="sub-slides__container">
+        <h2 class="sub-slides__container__title">Upcoming Movies</h2>
         <div class="sub-slide__lists__wrapper">
           <ul class="sub-slide__lists">
             <li
@@ -80,73 +80,110 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
 
-.slides {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  position: relative;
-  width: 90%;
-  height: 320px;
-  .sub-slides {
+
+@media screen and (min-width: $desktop) {
+  .slides {
+    padding-top: 50px;
+    padding-bottom: 50px;
     position: relative;
-    overflow: hidden;
-    margin-right: auto;
-    width: 110%;
-    .sub-slides-container {
-      margin-left: 80px;
-      margin-right: 80px;
+    width: 90%;
+    height: 320px;
+    .sub-slides {
+      position: relative;
       overflow: hidden;
-      .sub-slides-container__title {
-        color: #fff;
-        font-size: 1.35rem;
-        font-weight: 700;
-        letter-spacing: .5px;
-        padding-left: 10px;
-        margin-bottom: .4rem;
-      }
-      .sub-slide__lists__wrapper{
-        width: 100%;
+      margin-right: auto;
+      width: 110%;
+      .sub-slides__container {
+        margin-left: 80px;
+        margin-right: 80px;
         overflow: hidden;
-      }
-      .sub-slide__lists {
-        width: 10000%;
-        position: relative;
-        left: -680px;
-        .slide__item {
-          display: inline-block;
+        .sub-slides__container__title {
+          color: #fff;
+          font-size: 1.35rem;
+          font-weight: 700;
+          letter-spacing: .5px;
+          padding-left: 10px;
+          margin-bottom: .4rem;
+        }
+        .sub-slide__lists__wrapper{
+          width: 100%;
+          overflow: hidden;
+        }
+        .sub-slide__lists {
+          width: 10000%;
+          position: relative;
+          left: -680px;
+          .slide__item {
+            display: inline-block;
+          }
         }
       }
-    }
-    .sub-slides__navigation-btn {
-      position: absolute;
-      top: 137px;
-      font-size: 4rem;
-      opacity: 0.5;
-      color: #e2e4df;
-      cursor: pointer;
-      height: 44px;
-      width: 44px;
-      background: #000;
-      transition: 0.3s;
-      border-radius: 4px;
-      &:hover {
-        opacity: 1;
+      .sub-slides__navigation-btn {
+        position: absolute;
+        top: 137px;
+        font-size: 4rem;
+        opacity: 0.5;
         color: #e2e4df;
-      }
-      &.slides__prev-btn {
-        left: 3rem;
-      }
-      &.slides__next-btn {
-        right: 3rem;
+        cursor: pointer;
+        height: 44px;
+        width: 44px;
+        background: #000;
+        transition: 0.3s;
+        border-radius: 4px;
+        &:hover {
+          opacity: 1;
+          color: #e2e4df;
+        }
+        &.slides__prev-btn {
+          left: 3rem;
+        }
+        &.slides__next-btn {
+          right: 3rem;
+        }
       }
     }
   }
 }
 
-
-
 @media screen and (max-width: $mobile) {
   .slides {
-    display: none;
+    width: 100%;
+    height: 100%;
+    .sub-slides {
+      position: relative;
+      overflow: visible;
+      margin: 0;
+      width: 100%;
+      .sub-slides__container {
+        margin-top: 2rem;
+        overflow: visible;
+        .sub-slides__container__title {
+          color: #fff;
+          font-size: 1.35rem;
+          font-weight: 700;
+          letter-spacing: .5px;
+          padding-left: 2rem;
+          height: 3rem;
+        }
+        .sub-slide__lists__wrapper {
+          width: 100%;
+          overflow: visible;
+        }
+        .sub-slide__lists {
+          width: 100%;
+          left: 0;
+          display: block;
+          height: 100%;
+          .sub-slide__item {
+            display: block;
+            margin: 0 auto;
+          }
+        }
+      }
+      .sub-slides__navigation-btn {
+        display: none;
+      }
+    }
   }
 }
 
