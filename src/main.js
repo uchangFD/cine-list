@@ -5,8 +5,8 @@ import store from './store'
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {faAngleLeft, faThumbsUp, faBookmark, faEnvelope, faTimesCircle, faCheckCircle, faTimes } from '@fortawesome/fontawesome-free-solid'
-// import { } from '@fortawesome/free-solid-svg-icons'
+import { faAngleLeft, faThumbsUp, faBookmark, faEnvelope, faTimesCircle, faCheckCircle, faTimes } from '@fortawesome/fontawesome-free-solid'
+import { fab, faYoutube, faYoutubeSquare } from '@fortawesome/free-brands-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 // import { config } from './store/firebase.config'
 
 
-library.add(faAngleLeft, faThumbsUp, faBookmark, faEnvelope, faTimesCircle, faCheckCircle, faTimes )
+library.add(faAngleLeft, faThumbsUp, faBookmark, faEnvelope, faTimesCircle, faCheckCircle, fab, faTimes, faYoutube, faYoutubeSquare)
 Vue.component('FontAwesome', FontAwesomeIcon)
 
 
