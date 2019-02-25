@@ -6,7 +6,7 @@
         <div class="sub-slide__lists__wrapper">
           <ul class="sub-slide__lists">
             <li
-              class="slide__item"
+              class="sub-slide__item"
               v-for="(list, index) in data"
               :key="index"
               ref="slides"
@@ -55,19 +55,20 @@ export default {
     },
   
     onClickPrevBtn: function(direction) {
+      
       document.querySelector('.sub-slide__lists').classList.add('transition')
       document.querySelector('.sub-slide__lists').style.transform = `translateX(${direction * 170}px)`
       this.decreaseIdx()
     },
 
     increaseIdx:_.debounce(function() {
-        this.upcoming = this.upcoming.concat(this.upcoming.splice(0,4))
+        this.$store.state.upcoming = this.$store.state.upcoming.concat(this.$store.state.upcoming.splice(0,4))
         document.querySelector('.sub-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.sub-slide__lists').classList.remove('transition')
       }, 800),
 
     decreaseIdx: _.debounce(function() {
-        this.upcoming = this.upcoming.splice(this.upcoming.length - 4, 4).concat(this.upcoming)
+        this.$store.state.upcoming = this.$store.state.upcoming.splice(this.$store.state.upcoming.length - 4, 4).concat(this.$store.state.upcoming)
         document.querySelector('.sub-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.sub-slide__lists').classList.remove('transition')
       }, 800)
@@ -113,7 +114,7 @@ export default {
           width: 10000%;
           position: relative;
           left: -680px;
-          .slide__item {
+          .sub-slide__item {
             display: inline-block;
           }
         }

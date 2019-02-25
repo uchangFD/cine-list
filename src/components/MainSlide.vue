@@ -11,7 +11,7 @@
               :key="index"
               ref="slides"
             >
-              <List :data="list"/>
+              <List :data="list" />
             </li>
           </ul>
         </div>
@@ -31,6 +31,7 @@
     </div>
   </section>
 </template>
+
 
 <script>
 import {mapActions, mapState} from 'vuex'
