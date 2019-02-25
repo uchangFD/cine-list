@@ -88,8 +88,8 @@ export default {
 .tab-list__container {
   .tab-list__synopsis {
     margin-top: .8rem;
-    margin-left: auto;
     margin-right: auto;
+    margin: 1rem;
     width: 90%;
     max-height: 200px;
     overflow-y: hidden;

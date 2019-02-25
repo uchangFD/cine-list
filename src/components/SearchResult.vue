@@ -50,7 +50,7 @@ export default {
   overflow: hidden;
   .search-result__list {
     background: rgba(52, 58, 64, .9);
-    border-radius: 4px;
+    border-radius: 0 0 8px 8px;
     width: 100%;
     max-height: 500px;
     overflow-y: scroll;

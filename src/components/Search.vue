@@ -11,7 +11,7 @@
         ref="searchInput"
         v-model="query"
         @keyup="onKeyup"
-        placeholder="보고싶은 영화를 검색하세요"
+        placeholder="좋아하는 영화, 보고 싶은 영화를 검색하세요 "
       />
 
       <div
@@ -125,14 +125,13 @@ export default {
 @media screen and (min-width: $desktop) {
   .search {
     display: inline-block;
-    width: 300px;
+    width: 320px;
     margin: 0;
     .search__form {
       position: relative;
-      text-align: center;
-      width: 300px;
+      width: 320px;
       .search__input {
-        width: 300px;
+        width: 320px;
         box-sizing: border-box;
         padding-bottom: 12px;
         line-height: 1.5;
@@ -141,7 +140,7 @@ export default {
         box-shadow: none;
         outline: 0;
         color: #aaa;
-        text-indent: 1rem;
+        text-indent: .5rem;
       }
       .reset-btn {
         position: absolute;

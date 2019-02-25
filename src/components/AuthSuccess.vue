@@ -86,7 +86,7 @@ export default {
     }
     .user__logout-btn {
       height: 70px;
-      padding: 0 2rem;
+      width: 100px;
       background: none;
       color: #fff;
       margin-left: auto;

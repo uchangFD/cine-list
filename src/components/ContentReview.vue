@@ -153,12 +153,14 @@ export default {
           width: 30px;
           background: none;
           font-weight: 300;
-          color: #fff;
+          color: #ddd;
+          opacity: .6;
           font-size: 1.4rem;
           cursor: pointer;
           transition: all .3s;
           &:hover {
-            color: #ddd;
+            color: #fff;
+            opacity: 1;
           }
         }
       }
