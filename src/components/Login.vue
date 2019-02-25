@@ -119,7 +119,6 @@ export default {
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 4px 15px 0 $baseline-shadow-color;
   .sign-in__header {
     padding-top: 2.5rem;
     width: 320px;
@@ -153,14 +152,17 @@ export default {
           position: relative;
           .sign-in__input {
             letter-spacing: .7px;
-            box-shadow: 0 .25px .5px #acacac;
             margin-top: .5rem;
-            border: 1px solid #ddd;
+            border: 1px solid #aaa;
             height: 2rem;
             text-indent: 1rem;
             border-radius: 1rem;
             width: 100%;
             outline: none;
+            &::placeholder {
+              font-size: .8rem;
+              color: #ccc;
+            }
           }
           .sign-in__input__validate-icon {
              position: absolute;
@@ -190,7 +192,6 @@ export default {
           color: #fff;
           cursor: pointer;
           transition: all .4s ease-in-out;
-          box-shadow: 0 4px 15px 0 $secondary-gradient-color-shadow;
           &:hover {
             background-position: 100% 0;
             transition: all .4s ease-in-out;
@@ -203,7 +204,6 @@ export default {
           }
           &:disabled {
             background: $GRAY-3;
-            box-shadow: 0 4px 15px 0 $GRAY-4;
             transition: all .4s ease-in-out;
             cursor: not-allowed;
           }

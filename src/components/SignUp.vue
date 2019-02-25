@@ -169,7 +169,6 @@ export default {
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 4px 15px 0 $baseline-secondary-color;
   .sign-up__header {
     padding-top: 2.5rem;
     width: 320px;
@@ -208,6 +207,10 @@ export default {
             border-radius: 1rem;
             width: 100%;
             outline: none;
+            &::placeholder {
+              font-size: .8rem;
+              color: #ccc;
+            }
           }
           .sign-up__input__validate-icon {
              position: absolute;
@@ -235,9 +238,8 @@ export default {
           background-image: $secondary-gradient-color;
           background-size: 400% 100%;
           color: #fff;
-          cursor: pointer;
           transition: all .4s ease-in-out;
-          box-shadow: 0 4px 15px 0 $secondary-gradient-color-shadow;
+          cursor: pointer;
           &:hover {
             background-position: 100% 0;
             transition: all .4s ease-in-out;
@@ -250,11 +252,9 @@ export default {
           }
           &:disabled {
             background: $GRAY-3;
-            box-shadow: 0 4px 15px 0 $GRAY-4;
             transition: all .4s ease-in-out;
             cursor: not-allowed;
           }
-
         }
       }
     }
