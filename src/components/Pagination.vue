@@ -90,10 +90,7 @@ export default {
         idx++
       }
       
-      this.totalPageArray = this.totalPageArray.splice(10 * this.pagePos, 10)
-      console.log(this.totalPageArray)
-      return this.totalPageArray
-      
+      return this.totalPageArray = this.totalPageArray.splice(10 * this.pagePos, 10)
     },
 
     onClickPrevBtn: function() {
