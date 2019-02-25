@@ -40,18 +40,24 @@
         style="display: inline;"
         class="tab-list__videos-embed"
       >
-        <iframe 
-          width="95%" 
-          height="125" 
-          :src="`https://www.youtube.com/embed/${video.key}`" 
-          frameborder="0" 
-          allowfullscreen
-          target="_blank"
-        >
-        </iframe>
+        <div class="tab-list__videos-wrapper">
+            <FontAwesome 
+              class="video__icon" 
+              :icon="['fab', 'youtube']" 
+              ref="youtube"
+              @click.prevent="onClickVideo(video.key)"
+            />
+          <img 
+            class="tab-list__videos-image"
+            :src="`https://img.youtube.com/vi/${video.key}/0.jpg`"
+          />
+
+          <div v-if="isShowModal && video.key === clicked">
+            <VideoModal :video="video" @close="isShowModal = false" />
+          </div>
+        </div>
       </div>
     </div>
-
 
 
     <div v-if="selectedTab === 'Related'" class="tab-list__related">
@@ -61,14 +67,18 @@
 </template>
 
 <script>
+import VideoModal from './VideoModal.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
+  components: { VideoModal },
   props: ['tabs', 'selectedTab'],
 
   data() {
     return {
       profileImage: 'https://user-images.githubusercontent.com/23162772/53229626-15e1f600-36c8-11e9-8e39-ce7ae4fb0fdb.png',
+      isShowModal: false,
+      clicked: ''
     }
   },
 
@@ -79,11 +89,19 @@ export default {
       casts: 'casts',
     })
   },
+  methods: {
+    onClickVideo: function(key) {
+      this.isShowModal = true
+      this.clicked = key
+    }
+  }
+
 
 }
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/variables.scss";
 
 .tab-list__container {
   .tab-list__synopsis {
@@ -115,7 +133,6 @@ export default {
           min-width: 100%;
           opacity: 0.5;
           transition: opacity 750ms;
-          
           &:hover {
             opacity: 1;
           }
@@ -134,7 +151,7 @@ export default {
             margin-top: .5rem;
             font-size: .75rem;
             font-weight: 300;
-            width: 80px;
+            max-width: 80px;
             word-break: keep-all;
             letter-spacing: 1.2px;
           }
@@ -147,9 +164,29 @@ export default {
     margin-top: .8rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2px;
+    grid-gap: 5px;
     .tab-list__videos-embed {
       margin: 0 auto;
+      .tab-list__videos-wrapper {
+        position: relative;
+        .video__icon {
+          color: #000;
+          opacity: .7;
+          font-size: 4rem;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          cursor: pointer;
+          &:hover {
+            color: #f00;
+            opacity: 1;
+          }
+        }
+        .tab-list__videos-image {
+          width: 100%;
+        }
+      }
     }
   }
 
