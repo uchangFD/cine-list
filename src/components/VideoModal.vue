@@ -22,12 +22,21 @@ export default {
 
   mounted() {
     this.onClickOutside(this.$el)
+    this.onPressEscapeKey(this.$el)
   },
   
   methods: {
     onClickOutside: function(el) {
       document.querySelector('body').addEventListener('click', e => {
         this.$emit('close')
+      })
+    },
+    
+    onPressEscapeKey: function(el) {
+      document.querySelector('body').addEventListener('keyup', e => { 
+        if (e.keyCode === 27) {
+          this.$emit('close')
+        }
       })
     }
   }
