@@ -26,7 +26,7 @@
               class="sign-up__input__validate-icon"
             >
               <FontAwesome 
-                v-if="errors.has('email')" 
+                v-if="errors.has('email') || isError" 
                 icon="times-circle"
                 class="validate-error"
               />
@@ -122,6 +122,8 @@
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 import firebase from 'firebase'
+import _ from 'lodash'
+
 Vue.use(VeeValidate);
 
 export default {
@@ -129,16 +131,24 @@ export default {
   data() {
     return {
       email: '',
+      isError: false,
       password: '',
-      confirm: ''
+      confirm: '',
     }
   },
 
   computed: {
     invalidForm() {
-      return !this.email || !this.password || (this.confirm !== this.password)
+      return !this.email || !this.password || (this.confirm !== this.password) || this.isError
     }
   },
+
+  watch:  {
+    email: function(mail) {
+      this.onValidate(mail)
+    }
+  },
+
   methods: {
     onSubmit: function() {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
@@ -146,8 +156,22 @@ export default {
           localStorage.setItem('token', user.user.uid)
           this.$router.push('/home')
         })
-        .catch(err => {alert(err.message)})
+        .catch(err => {
+          alert(err.message)
+        })
     },
+
+    onValidate: _.debounce(
+      function(mail) {
+        firebase.auth().fetchProvidersForEmail(mail)
+          .then(provider => {
+          if (provider.length === 0) {
+            this.isError = false
+            } else {
+            this.isError = true
+          }
+        })
+      }, 100),
 
     checkErrors: function() {
       this.$validator.validateAll().then(result => {
