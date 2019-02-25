@@ -78,7 +78,7 @@ export default {
     init: function() {
       this.totalPage = this.categories.total_pages
       this.pageNum = this.$route.params.pagesId
-      this.pagePos = Math.floor(this.$route.params.pagesId / 10)
+      this.pagePos = this.pageNum % 10 === 0 ? Math.floor(this.$route.params.pagesId / 10) - 1 : Math.floor(this.$route.params.pagesId / 10)
       this.spliceList()
     },
 
@@ -90,7 +90,10 @@ export default {
         idx++
       }
       
-      return this.totalPageArray = this.totalPageArray.splice(10 * this.pagePos, 10)
+      this.totalPageArray = this.totalPageArray.splice(10 * this.pagePos, 10)
+      console.log(this.totalPageArray)
+      return this.totalPageArray
+      
     },
 
     onClickPrevBtn: function() {
