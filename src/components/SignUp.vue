@@ -68,6 +68,35 @@
           </div>
         </div>
 
+        <div class="sign-up__form-wrapper">
+          <label class="sign-up__label">Confirm Password</label>
+          <div class="sign-up__input-wrapper">
+            <input
+              name="password-confirm"
+              type="password" 
+              placeholder="Password Again"
+              v-model="confirm" 
+              v-validate="'required|min:6'"
+              class="sign-up__input sign-up__input-password-confirm"
+            />
+            <div 
+              v-if="confirm.length"
+              class="sign-up__input__validate-icon"
+            >
+              <FontAwesome 
+                v-if="confirm !== password" 
+                icon="times-circle"
+                class="validate-error"
+              />
+              <FontAwesome 
+                v-else
+                icon="check-circle"
+                class="validate-pass"
+              />
+            </div>
+          </div>
+        </div>
+
         <div class="sign-up__btn-wrapper">
           <button 
             class="sign-up__btn"
@@ -100,13 +129,14 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      confirm: ''
     }
   },
 
   computed: {
     invalidForm() {
-      return !this.email || !this.password
+      return !this.email || !this.password || (this.confirm !== this.password)
     }
   },
   methods: {
@@ -135,7 +165,7 @@ export default {
 .sign-up__wrapper {
   background: #fff;
   margin-top: 50px;
-  border-radius: 4px;
+  border-radius: 8px;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -160,7 +190,7 @@ export default {
       margin: 20px auto;
       .sign-up__form-wrapper {
         position: relative;
-        padding: 1rem 0 1.2rem;
+        margin: 1rem 0 1.2rem;
         .sign-up__label {
           margin-bottom: .5rem;
           font-size: .7rem;
@@ -218,6 +248,13 @@ export default {
           &:focus {
             outline: none;
           }
+          &:disabled {
+            background: $GRAY-3;
+            box-shadow: 0 4px 15px 0 $GRAY-4;
+            transition: all .4s ease-in-out;
+            cursor: not-allowed;
+          }
+
         }
       }
     }

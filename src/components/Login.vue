@@ -201,6 +201,12 @@ export default {
           &:focus {
             outline: none;
           }
+          &:disabled {
+            background: $GRAY-3;
+            box-shadow: 0 4px 15px 0 $GRAY-4;
+            transition: all .4s ease-in-out;
+            cursor: not-allowed;
+          }
         }
       }
     }
