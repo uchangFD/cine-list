@@ -98,12 +98,12 @@ export default {
           position: absolute;
           background-size: cover;
           background-position: center;
-          transform: scale(1);
-          -webkit-filter: blur(32px);
-          -moz-filter: blur(32px);
-          -ms-filter: blur(32px);
-          -o-filter: blur(32px);
-          filter: blur(32px);
+          transform: scale(1.1);
+          -webkit-filter: blur(28px);
+          -moz-filter: blur(28px);
+          -ms-filter: blur(28px);
+          -o-filter: blur(28px);
+          filter: blur(28px);
           opacity: 0.28;
         }
       }
