@@ -200,6 +200,7 @@ export default {
         .sign-up__input-wrapper {
           position: relative;
           .sign-up__input {
+            box-shadow: none;
             margin-top: .5rem;
             border: 1px solid #aaa;
             height: 2rem;

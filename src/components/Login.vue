@@ -151,6 +151,7 @@ export default {
         .sign-in__input-wrapper {
           position: relative;
           .sign-in__input {
+            box-shadow: none;
             letter-spacing: .7px;
             margin-top: .5rem;
             border: 1px solid #aaa;
