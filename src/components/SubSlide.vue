@@ -62,16 +62,16 @@ export default {
     },
 
     increaseIdx:_.debounce(function() {
-        this.$store.state.upcoming = this.$store.state.upcoming.concat(this.$store.state.upcoming.splice(0,4))
+        this.$store.state.upcoming = this.$store.state.upcoming.concat(this.$store.state.upcoming.splice(0, 4))
         document.querySelector('.sub-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.sub-slide__lists').classList.remove('transition')
-      }, 800),
+      }, 400),
 
     decreaseIdx: _.debounce(function() {
         this.$store.state.upcoming = this.$store.state.upcoming.splice(this.$store.state.upcoming.length - 4, 4).concat(this.$store.state.upcoming)
         document.querySelector('.sub-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.sub-slide__lists').classList.remove('transition')
-      }, 800)
+      }, 400)
   }
 }
 
@@ -143,6 +143,9 @@ export default {
         }
       }
     }
+  }
+  .transition {
+    transition: 400ms ease-in-out;
   }
 }
 

@@ -47,9 +47,6 @@
     color: #181818
   }
 
-  .transition {
-    transition: 800ms;
-  }
 
 
 </style>

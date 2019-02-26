@@ -58,16 +58,17 @@ export default {
     },
 
     increaseIdx:_.debounce(function() {
+      console.log("clicked")
         this.$store.state.mains = this.$store.state.mains.concat(this.$store.state.mains.splice(0,4))
         document.querySelector('.main-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.main-slide__lists').classList.remove('transition')
-      }, 800),
+      }, 400),
 
     decreaseIdx: _.debounce(function() {
         this.$store.state.mains = this.$store.state.mains.splice(this.$store.state.mains.length - 4, 4).concat(this.$store.state.mains)
         document.querySelector('.main-slide__lists').style.transform = `translateX(0px)`
         document.querySelector('.main-slide__lists').classList.remove('transition')
-      }, 800)
+      }, 400)
   }
 
 
@@ -142,6 +143,11 @@ export default {
         }
       }
     }
+  }
+
+
+  .transition {
+    transition: 400ms ease-in-out;
   }
 }
 
