@@ -136,6 +136,7 @@ export default {
         padding-bottom: 12px;
         line-height: 1.5;
         background: transparent;
+        border: none;
         border-bottom: 1.25px solid #fff;
         box-shadow: none;
         outline: 0;
@@ -178,6 +179,7 @@ export default {
         padding-bottom: 6px;
         line-height: 1.5;
         background: transparent;
+        border: none;
         border-bottom: 1.25px solid #fff;
         box-shadow: none;
         outline: 0;
