@@ -24,6 +24,7 @@ const actions = {
 
 
   FETCH_CONTENTS({ commit }, { id }) {
+    commit('SET_CONTENTS', [])
     return api.content.fetch(id).then(data => {
       commit('SET_CONTENTS', data)
     })
@@ -66,6 +67,7 @@ const actions = {
 
 
   FETCH_VIDEOS({ commit }, { id }) {
+    commit('SET_VIDEOS', [])
     return api.videos.fetch(id).then(data => {
       commit('SET_VIDEOS', data)
     })
@@ -73,6 +75,7 @@ const actions = {
 
 
   FETCH_CAST({ commit }, { id }) {
+    commit('SET_CAST', [])
     return api.cast.fetch(id).then(data => {
       commit('SET_CAST', data)
     })

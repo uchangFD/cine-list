@@ -8,6 +8,20 @@
   },
   "hosting": {
     "public": "dist",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/categories/**",
+        "destination": "categories/index.html"
+      },
+      {
+        "source": "/content/**",
+        "destination": "content/index.html"
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -15,3 +29,6 @@
     ]
   }
 }
+
+
+
