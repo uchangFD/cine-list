@@ -2,8 +2,8 @@
 <Modal>
   <div slot="body">
     <iframe     
-      width="560px" 
-      height="315px"
+      width="854" 
+      height="480"
       :src="`https://www.youtube.com/embed/${video.key}?autoplay=1`"
       frameborder="0" 
       allowfullscreen

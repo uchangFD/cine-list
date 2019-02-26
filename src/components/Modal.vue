@@ -48,8 +48,8 @@ export default {
 }
 
 .modal-container {
-  width: 560px;
-  height: 315px;
+  width: 854px;
+  height: 480px;
   margin: 0px auto;
   background-color: #000;
   border-radius: 2px;
