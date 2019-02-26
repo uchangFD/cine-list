@@ -42,6 +42,7 @@
       >
         <div class="tab-list__videos-wrapper">
             <FontAwesome 
+              v-if="isVideoLoaded"
               class="video__icon" 
               :icon="['fab', 'youtube']" 
               ref="youtube"
@@ -50,6 +51,7 @@
           <img 
             class="tab-list__videos-image"
             :src="`https://img.youtube.com/vi/${video.key}/0.jpg`"
+            @load="onLoad"
           />
 
           <div v-if="isShowModal && video.key === clicked">
@@ -78,6 +80,7 @@ export default {
     return {
       profileImage: 'https://user-images.githubusercontent.com/23162772/53229626-15e1f600-36c8-11e9-8e39-ce7ae4fb0fdb.png',
       isShowModal: false,
+      isVideoLoaded: false,
       clicked: ''
     }
   },
@@ -93,6 +96,10 @@ export default {
     onClickVideo: function(key) {
       this.isShowModal = true
       this.clicked = key
+    },
+    onLoad: function() {
+      this.isVideoLoaded = true
+      
     }
   }
 
