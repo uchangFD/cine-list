@@ -84,12 +84,10 @@ export default {
 
     spliceList: function() {
       let idx = 1;
-
       while (idx <= this.totalPage) {
         this.totalPageArray.push(idx) 
         idx++
       }
-      
       return this.totalPageArray = this.totalPageArray.splice(10 * this.pagePos, 10)
     },
 

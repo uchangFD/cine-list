@@ -11,7 +11,7 @@
         ref="searchInput"
         v-model="query"
         @keyup="onKeyup"
-        placeholder="좋아하는 영화, 보고 싶은 영화를 검색하세요 "
+        placeholder="보고 싶은 영화를 검색하세요 "
       />
 
       <div
@@ -167,19 +167,44 @@ export default {
 
 @media screen and (max-width: $mobile) {
   .search {
+    display: inline-block;
+    margin: 0;
     .search__form {
+      position: relative;
+      width: 200px;
       .search__input {
+        width: 100%;
+        box-sizing: border-box;
+        padding-bottom: 6px;
+        line-height: 1.5;
+        background: transparent;
+        border-bottom: 1.25px solid #fff;
+        box-shadow: none;
+        outline: 0;
+        color: #aaa;
+        font-size: .85rem;
+        text-indent: .5rem;
       }
       .reset-btn {
+        position: absolute;
+        top: 2px;
+        right: 0;
+        height: 18px;
+        width: 18px;
+        margin-right: .2rem;
+        line-height: 18px;
+        border-radius: 50%;
+        background-color: #bbb;
+        color: white;
+        font-size: 1rem;
+        border: none;
         span {
+          position: absolute;
+          top: -1px;
+          left: 4.5px;
         }
       }
     }
   }
 }
-
-
-
-
-
 </style>

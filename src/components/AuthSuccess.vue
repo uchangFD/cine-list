@@ -97,11 +97,20 @@ export default {
 
 @media screen and (max-width: $mobile) {
   .user__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
     .user__profile {
+      width: 30px;
+      height: 30px;
+      margin-right: 1rem;
     }
     .user__email {
+      display: none;
     }
     .user__logout-btn {
+      margin-right: 1rem;
     }
   }
 }

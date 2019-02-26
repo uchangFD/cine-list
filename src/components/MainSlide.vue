@@ -177,7 +177,8 @@ export default {
           display: block;
           height: 100%;
           .main-slide__item {
-            display: block;
+            width: 50%;
+            display: inline-block;
             margin: 0 auto;
 
           }

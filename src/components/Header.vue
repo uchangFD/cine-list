@@ -1,13 +1,13 @@
 <template>
   <section class="header">
-    <Search class="header__search"/>
-    
-    <div v-if="isAuth">
-      <AuthSuccess />
+    <div class="header__search">
+      <Search />
     </div>
-
-    <div v-else>
-      <router-link to="/login">login</router-link>
+    <div 
+      v-if="isAuth"
+      class="header__auth"
+    >
+      <AuthSuccess />
     </div>
   </section>
 </template>
@@ -40,23 +40,19 @@ export default {
   .header {
     margin-left: 250px;
     display: flex;
-    background-color: $baseline-color;
-    .header__search, .header__login {
-      flex: none;
-      height: 70px;
-      line-height: 70px;
+    .header__search, .header__auth {
+      height: 80px;
+      line-height: 80px;
       padding: 0 40px;
     }
-    .header__login-btn {
-      cursor: pointer;
-      color: #fff;
-    }
+
     .header__search {
       margin-left: auto;
       padding: 0;
       z-index: 1;
     }
-    .header__login {
+
+    .header__auth {
       margin: 0;
     }
   }
@@ -65,7 +61,26 @@ export default {
 
 @media screen and (max-width: $mobile) {
   .header {
-    display: none;
+    position: fixed;
+    background: $baseline-secondary-color;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    z-index: 3;
+    top: 0;
+    .header__search, .header__auth {
+
+    }
+    .header__search {
+      margin-left: auto;
+      padding: 0;
+      z-index: 1;
+    }
+    .header__auth {
+      margin-left: 1rem;
+
+    }
   }
 }
 

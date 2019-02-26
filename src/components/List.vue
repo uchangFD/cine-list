@@ -12,7 +12,15 @@
       />
       <span class="content-list__rate">{{data.vote_average}}</span>
     </div>
+
+    <div v-if="isMobile" class="content-list__btn-wrapper">
+      <router-link class="content-list__btn-link" :to="`/content/${data.id}`">
+        <PrimaryButton class="content-list__btn" :name="'Details'"/>
+      </router-link>
+    </div>
     <p class="content-list__title">{{data.title}}</p>
+
+
     <div
       v-if="isHovered"
       class="content-list-detail__wrapper"
@@ -49,8 +57,17 @@ export default {
   ],
   data() {
     return {
-      isHovered: false
+      isHovered: false,
+      isMobile: false
     }
+  },
+
+  created() {
+    this.checkClientwidth()
+  },
+
+  mounted: function () {
+    window.addEventListener('resize', this.checkClientwidth)
   },
 
   computed: {
@@ -63,6 +80,8 @@ export default {
     }
   },
 
+
+
   methods: {
     onHover: function() {
       if(document.querySelector('body').offsetWidth > 414) {
@@ -72,7 +91,7 @@ export default {
     },
 
     onLeave: function() {
-      if(document.querySelector('body').offsetWidth > 414) {
+      if( document.querySelector('body').offsetWidth > 414 ) {
         this.$el.classList.remove('content-list-detail')
         this.isHovered = false
       }
@@ -80,6 +99,11 @@ export default {
 
     getReleasedYear: function(data) {
       return data.slice(0, 4)
+    },
+
+    checkClientwidth () {
+      document.querySelector('body').offsetWidth > 414 ? 
+      this.isMobile = false : this.isMobile = true
     }
   }
 }
@@ -169,18 +193,49 @@ export default {
 
 @media screen and (max-width: $mobile) {
   .content-list {
-    &:hover {
-    }
-    &.content-list-detail {
-
-    }
+    display: block;
+    margin: 2rem 0;
+    position: relative;
     .content-list__poster-wrapper {
+      position: relative;
       .content-list__poster-image {
+        border-radius: 8px;
+        display: block;
+        margin: 0 auto;
+        max-width: 150px;
       }
       .content-list__rate {
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: #fff;
+        margin: .5rem 1.5rem;
+        width: 50px;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 12.5px;
+        background: rgba(25, 25, 25, .5);
+        text-align: center;
       }
     }
+
+    .content-list__btn-wrapper {
+      width: 100%;
+      display: block;
+      .content-list__btn-link {
+        .content-list__btn {
+          display: block;
+          margin: .75rem auto;
+        }
+      }
+    }
+
     .content-list__title {
+      position: absolute;
+      bottom: 2.5rem;
+      margin: 1.5rem;
+      color: #fff;
+      text-shadow: 0 1px 2px #888;
     }
   }
   .content-list-detail__wrapper {

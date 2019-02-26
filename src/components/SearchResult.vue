@@ -27,11 +27,11 @@ export default {
   props: ['data'],
 
   mounted() {
-    this.onClickOutside(this.$el)
+    this.onClickOutside()
   },
   
   methods: {
-    onClickOutside: function(el) {
+    onClickOutside: function() {
       document.querySelector('body').addEventListener('click', e => {
         this.$emit('close')
       })
@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss">
 @import "../assets/styles/variables.scss";
-
+@media screen and (min-width: $desktop) {
 .search-result__wrapper {
   padding-bottom: 1rem;
   width: 100%;
@@ -93,5 +93,6 @@ export default {
       }
     }
   }
+}
 }
 </style>
