@@ -67,10 +67,12 @@ export default {
     align-items: center;
     width: 100%;
     height: 80px;
+    line-height: 80px;
     z-index: 3;
     top: 0;
     .header__search, .header__auth {
-
+      line-height: 80px;
+      height: 80px;
     }
     .header__search {
       margin-left: auto;

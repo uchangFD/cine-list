@@ -99,7 +99,6 @@ export default {
     },
     onLoad: function() {
       this.isVideoLoaded = true
-      
     }
   }
 
@@ -119,10 +118,11 @@ export default {
     max-height: 200px;
     overflow-y: hidden;
     .tab-list__synopsis-paragraph {
-      font-size: .85rem;
-      line-height: 1.6;
+      font-size: .8rem;
+      line-height: 1.8;
       font-weight: 300;
-      letter-spacing: .7px;
+      text-align: left;
+      letter-spacing: .5px;
     }
   }
 

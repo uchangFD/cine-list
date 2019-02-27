@@ -53,9 +53,9 @@ export default {
 
 @media screen and (min-width: $desktop) {
   .home__container {
-    width: calc(100% - 250px);
+    width: calc(100% - 225px);
     min-height: 100%;
-    margin-left: 250px;
+    margin-left: 225px;
     z-index: 0;
     background: $baseline-color;
   }

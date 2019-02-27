@@ -65,7 +65,7 @@ export default {
     }),
 
     checkReview: function() {
-      return this.onCheck()
+      return this.check()
     }
   },
 
@@ -97,7 +97,7 @@ export default {
       this.FETCH_REVIEW({contentId: this.$route.params.contentId})
     },
 
-    onCheck: function() {
+    check: function() {
       const USER_COMMENT_REF = firebase.database().ref(`REVIEWS/${this.contentId}/${this.userId}`)
       USER_COMMENT_REF.on('value', data => {
         this.iscommented = !!data.val()

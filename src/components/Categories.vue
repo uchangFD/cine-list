@@ -81,7 +81,7 @@ export default {
 @import "../assets/styles/variables.scss";
 
 .categories__container {
-  margin-left: 250px;
+  margin-left: 225px;
   background: $baseline-color;
   padding-top: 30px;
   min-height: 100%;

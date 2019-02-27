@@ -177,9 +177,9 @@ export default {
         width: 100%;
         box-sizing: border-box;
         padding-bottom: 6px;
-        line-height: 1.5;
         background: transparent;
         border: none;
+        line-height: 1.5;
         border-bottom: 1.25px solid #fff;
         box-shadow: none;
         outline: 0;
@@ -189,7 +189,7 @@ export default {
       }
       .reset-btn {
         position: absolute;
-        top: 2px;
+        bottom: 33px;
         right: 0;
         height: 18px;
         width: 18px;
