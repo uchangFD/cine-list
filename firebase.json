@@ -11,15 +11,8 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/categories/**",
-        "destination": "categories/index.html"
-      },
-      {
-        "source": "/content/**",
-        "destination": "content/index.html"
+        "destination": "/index.html",
+        "function": "app"
       }
     ],
     "ignore": [
