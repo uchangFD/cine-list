@@ -53,14 +53,14 @@ export default {
   
   methods: {
     ...mapActions([
-      'FETCH_CONTENTS',
+      'FETCH_CONTENT',
       'FETCH_VIDEOS',
       'FETCH_CAST'
     ]),
 
     fetch: function() {
       this.isLoading = true
-      this.FETCH_CONTENTS({id: this.$route.params.contentId})
+      this.FETCH_CONTENT({id: this.$route.params.contentId})
       this.FETCH_VIDEOS({id: this.$route.params.contentId})
       this.FETCH_CAST({id: this.$route.params.contentId})
         .finally(_ =>{ this.isLoading = false})
@@ -80,9 +80,9 @@ export default {
 @media screen and (min-width: $desktop) {
   .contents__section {
     background: $baseline-color;
-    margin-left: 250px;
+    margin-left: 225px;
     color: #fff;
-    width: calc(100% - 250px);
+    width: calc(100% - 225px);
     min-height: 100%;
     .contents__wrapper {
       padding-top: 50px;

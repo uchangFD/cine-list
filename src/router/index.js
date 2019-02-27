@@ -5,11 +5,13 @@ import Main from '../components/Main.vue'
 import Login from '../components/Login.vue'
 import SignUp from '../components/SignUp.vue'
 import Home from '../components/Home.vue'
+import User from '../components/User.vue'
 import Browser from '../components/Browser.vue'
 import Categories from '../components/Categories.vue'
 import CategoriesList from '../components/CategoriesList.vue'
 import Content from '../components/Content.vue'
 import Person from '../components/Person.vue'
+
 import NotFound from '../components/NotFound.vue'
 
 import firebase from 'firebase'
@@ -27,6 +29,9 @@ const requireAuth = (to, from, next) => {
   })
 }
 
+const rewrite = (to, from, next) => {
+  next()
+}
 
 const router = new VueRouter({
   mode: 'history',
@@ -37,33 +42,42 @@ const router = new VueRouter({
       beforeEnter: requireAuth,
       children: [{
           path: '/home',
-          component: Home,
+          component: Home
+        },
+        {
+          path:'user/:userId',
+          component: User
         },
         {
           path: 'person/:personId',
-          component: Person,
+          component: Person
         },
         {
           path: 'content/:contentId',
-          component: Content,
+          component: Content
         },
         {
           path: 'browser/:browserId',
-          component: Browser,
+          component: Browser
         },
-
         {
           path: 'categories/:categoriesId',
           component: Categories,
           children: [{
-            path:':pagesId',
+            path: ':pagesId',
             component: CategoriesList
           }]
         }
       ]
     },
-    { path: '/login', component: Login },
-    { path: '/sign-up', component: SignUp },
+    {
+      path: '/login',
+      component: Login
+    },
+    {
+      path: '/sign-up',
+      component: SignUp
+    },
     {
       path: '*',
       component: NotFound,

@@ -11,15 +11,25 @@ const mutations = {
     state.results = results
   },
 
+
+  SET_USER(state, payload) {
+    state.users = payload
+  },
+  
   SET_LISTS(state, lists) {
     lists.forEach(list => {
       state.lists.push(list)
     })
   },
 
-  SET_CONTENTS(state, contents) {
-    state.contents = contents
+  SET_CONTENTS(state, payload) {
+    state.contents = payload
   },
+  
+  SET_CONTENTS_ARRAY(state, payload) {
+    state.contents.push(payload)
+  },
+
 
   SET_VIDEOS(state, videoId) {
     state.videoId = videoId

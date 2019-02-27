@@ -78,6 +78,7 @@ import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 
 import firebase from 'firebase'
+import { mapActions } from 'vuex';
 
 export default {
   name: 'login',
@@ -95,17 +96,27 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'UPDATE_USER'
+    ]),
+
+
     onSubmit: function() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         .then(user => {
           localStorage.setItem('token', user.user.uid)
-          this.$router.push('/home')
+          this.$router.push('/home')          
+          this.UPDATE_USER({
+            userId: user.user.uid,
+            userMail: user.user.email
+          })
         })
         .catch(err => {
           alert(err.message)
         })
       }
-    }
+    },
+
   }
 </script>
 

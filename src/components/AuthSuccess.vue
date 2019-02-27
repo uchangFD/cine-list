@@ -1,12 +1,9 @@
 <template>
   <div class="user__container"> 
-    <img 
-      class="user__profile"
-      :src="profileImage"
-    >
-    <p class="user__email">
-      {{email}}
-    </p> 
+    <router-link class="user__info__link" :to="`/user/${userId}`">
+      <img class="user__profile" :src="profileImage" />
+      <p class="user__email">{{email}}</p> 
+    </router-link>
     <button 
       class="user__logout-btn"
       @click.prevent="logOut"
@@ -71,19 +68,29 @@ export default {
     justify-content: flex-start;
     align-items: center;
     width: 350px;
-    color: #fff;
-    .user__profile {
-      width: 30px;
-      margin: 1rem;
-      border-radius: 50%;
+    height: 80px;
+    line-height: 80px;
+
+    .user__info__link {
+      height: 80px;
+      line-height: 80px;
+
+      .user__profile {
+        width: 30px;
+        height: auto;
+        vertical-align: middle;
+        margin-right: 1rem;
+        border-radius: 50%;
+      }
+
+      .user__email {
+        letter-spacing: 1.1px;
+        display: inline;
+        margin: auto;
+        color: #fff;
+      }
     }
-    .user__email {
-      height: 70px;
-      line-height: 70px;
-      letter-spacing: 1.1px;
-      float: left;
-      margin: auto;
-    }
+    
     .user__logout-btn {
       height: 70px;
       width: 100px;
@@ -100,7 +107,8 @@ export default {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 100%;
+    line-height: 80px;
+    height: 80px;
     .user__profile {
       width: 30px;
       height: 30px;
@@ -110,7 +118,10 @@ export default {
       display: none;
     }
     .user__logout-btn {
-      margin-right: 1rem;
+      height: 100%;
+      width: 100px;
+      background: none;
+      color: #fff;
     }
   }
 }

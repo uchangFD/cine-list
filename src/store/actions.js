@@ -23,7 +23,7 @@ const actions = {
   },
 
 
-  FETCH_CONTENTS({ commit }, { id }) {
+  FETCH_CONTENT({ commit }, { id }) {
     commit('SET_CONTENTS', [])
     return api.content.fetch(id).then(data => {
       commit('SET_CONTENTS', data)
@@ -31,26 +31,68 @@ const actions = {
   },
 
 
+  FETCH_CONTENTS({ commit }, { id }) {
+    commit('SET_CONTENTS_ARRAY', [])
+    return api.content.fetch(id).then(data => {
+      commit('SET_CONTENTS_ARRAY', data)
+    })
+  },
+
+
   FETCH_REVIEW({ commit }, { contentId }) {
-    const USER_COMMENT_REF = firebase.database().ref(`REVIEWS/${contentId}`)
     commit('SET_COMMENT', [])
-    USER_COMMENT_REF.on('value', data => {
+    const COMMENT_USER_REF = firebase.database().ref(`REVIEWS/${contentId}`)
+    COMMENT_USER_REF.on('value', data => {
       if(data.exists()) {
         let values = Object.values(data.val()).sort((a, b) => b.timeStamp - a.timeStamp)
         commit('SET_COMMENT', values)
-      } else {
-        commit('SET_COMMENT', [])
+      }
+    })
+  },
+
+
+  FETCH_USER({commit}, {userId}) {
+    commit('SET_USER', [])
+    const USER_REF = firebase.database().ref(`USER/${userId}`)
+    USER_REF.on('value', data => {
+      if (data.exists()) {
+        commit('SET_USER', data.val())
+      }
+    })
+  },
+
+
+  UPDATE_USER({commit}, {userId, userMail}) {
+    const USER_REF = firebase.database().ref(`USER/${userId}/INFO`)
+    USER_REF.once('value', data => {
+      if(!data.exists()) {
+        USER_REF.set({
+          userId,
+          userMail
+        })
       }
     })
   },
 
 
   UPDATE_REVIEW({}, { contentId, userId, userMail, timeStamp, description }) {
-    const USER_COMMENT_REF = firebase.database().ref(`REVIEWS/${contentId}/${userId}`)
-    USER_COMMENT_REF.once('value', data => {
+    const COMMENT_USER_REF = firebase.database().ref(`REVIEWS/${contentId}/${userId}`)
+    COMMENT_USER_REF.once('value', data => {
       if (!data.exists()) {
-        USER_COMMENT_REF.set({
+        COMMENT_USER_REF.set({
           userId,
+          userMail,
+          timeStamp,
+          description
+        })
+      }
+    })
+
+    const USER_REF = firebase.database().ref(`USER/${userId}/REVIEWS/${contentId}`)
+
+    USER_REF.once('value', data => {
+      if (!data.exists()) {
+        USER_REF.set({
           userMail,
           timeStamp,
           description
@@ -62,7 +104,9 @@ const actions = {
 
   DELETE_REVIEW({}, { contentId, userId }) {
     const COMMENT_REF = firebase.database().ref(`REVIEWS/${contentId}`)
+    const USER_REF = firebase.database().ref(`USER/${userId}/REVIEWS/${contentId}`)
     COMMENT_REF.child(userId).remove()
+    USER_REF.remove()
   },
 
 

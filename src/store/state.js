@@ -7,6 +7,8 @@ const state = {
   contents: [],
   videoId: '',
 
+  users: [],
+
   casts: [],
   person: [],
   credits: [],
