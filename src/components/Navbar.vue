@@ -94,10 +94,10 @@ export default {
     position: fixed;
     width: 225px;
     height: 100%;
+    overflow: hidden;
     margin: 0;
     padding: 0;
     z-index: 1;
-    overflow-y:unset;
     background: $baseline-secondary-color;
     opacity: 0.98;
     .navbar__logo {
@@ -114,7 +114,10 @@ export default {
         }
       }
     }
+
     .navbar__categories {
+      height: 80%;
+      overflow: hidden;
       justify-content: space-around;
       margin: 2.5rem auto;
       .navbar__categories__title {
@@ -125,6 +128,12 @@ export default {
         padding-left: 2rem;
       }
       .navbar__categories__list {
+        width: 100%;
+        height: 80%;
+        overflow-y: scroll;
+        padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
+        box-sizing: content-box; /* So the width will be 100% + 17px */
+        padding-bottom: 2rem;
         .navbar__categories__item {
           padding-left: 2rem;
           margin: .5rem 0;
