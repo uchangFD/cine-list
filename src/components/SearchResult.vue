@@ -46,15 +46,18 @@ export default {
   .search-result__wrapper {
     padding-bottom: 1rem;
     width: 100%;
-    max-height: 500px;
+    height: 500px;
     overflow: hidden;
     .search-result__list {
       background: rgba(52, 58, 64, .9);
-      border-radius: 0 0 8px 8px;
       width: 100%;
-      max-height: 500px;
+      height: 100%;
+      padding-right: 17px;
+
       overflow-y: scroll;
       .search-result__item {
+        width: 100%;
+        padding-right: 17px;
         margin: .5rem 0;
         text-indent: .5rem;
         opacity: .9;
