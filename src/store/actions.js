@@ -43,7 +43,7 @@ const actions = {
     commit('SET_COMMENT', [])
     const COMMENT_USER_REF = firebase.database().ref(`REVIEWS/${contentId}`)
     COMMENT_USER_REF.on('value', data => {
-      if(data.exists()) {
+      if (data.exists()) {
         let values = Object.values(data.val()).sort((a, b) => b.timeStamp - a.timeStamp)
         commit('SET_COMMENT', values)
       }
@@ -51,7 +51,10 @@ const actions = {
   },
 
 
-  FETCH_USER({commit}, {userId}) {
+
+
+
+  FETCH_USER({ commit }, { userId }) {
     commit('SET_USER', [])
     const USER_REF = firebase.database().ref(`USER/${userId}`)
     USER_REF.on('value', data => {
@@ -61,11 +64,23 @@ const actions = {
     })
   },
 
+  FETCH_USER_REVIEWS({ commit }, { userId }) {
+    commit('SET_USER_REVIEWS', [])
+    const USER_REF = firebase.database().ref(`USER/${userId}/REVIEWS`)
+    USER_REF.on('value', data => {
+      if (data.exists()) {
+        let values = Object.values(data.val()).sort((a, b) => b.timeStamp - a.timeStamp)
+        commit('SET_USER_REVIEWS', values)
+      }
+    })
+  },
 
-  UPDATE_USER({commit}, {userId, userMail}) {
+
+
+  UPDATE_USER({}, { userId, userMail }) {
     const USER_REF = firebase.database().ref(`USER/${userId}/INFO`)
     USER_REF.once('value', data => {
-      if(!data.exists()) {
+      if (!data.exists()) {
         USER_REF.set({
           userId,
           userMail
@@ -73,6 +88,24 @@ const actions = {
       }
     })
   },
+
+  UPDATE_USER_PROFILE({}, { userId, userMail }) {
+    const USER_REF = firebase.database().ref(`USER/${userId}/INFO`)
+    USER_REF.once('value', data => {
+      if (!data.exists()) {
+        USER_REF.set({
+          userId,
+          userMail
+        })
+      }
+    })
+  },
+
+
+
+
+
+
 
 
   UPDATE_REVIEW({}, { contentId, userId, userMail, timeStamp, description }) {
@@ -93,6 +126,7 @@ const actions = {
     USER_REF.once('value', data => {
       if (!data.exists()) {
         USER_REF.set({
+          contentId,
           userMail,
           timeStamp,
           description

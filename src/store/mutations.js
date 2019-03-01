@@ -15,6 +15,10 @@ const mutations = {
   SET_USER(state, payload) {
     state.users = payload
   },
+
+  SET_USER_REVIEWS(state, payload) {
+    state.userReviews = payload
+  },
   
   SET_LISTS(state, lists) {
     lists.forEach(list => {
