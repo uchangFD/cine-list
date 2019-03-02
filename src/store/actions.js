@@ -111,7 +111,7 @@ const actions = {
 
 
 
-  UPDATE_REVIEW({}, { contentId, userId, posterId, userMail, timeStamp, description }) {
+  UPDATE_REVIEW({}, { contentId, userId, posterId, title, userMail, timeStamp, description }) {
     const COMMENT_USER_REF = firebase.database().ref(`REVIEWS/${contentId}/${userId}`)
     COMMENT_USER_REF.once('value', data => {
       if (!data.exists()) {
@@ -132,6 +132,7 @@ const actions = {
         USER_REF.set({
           contentId,
           posterId,
+          title,
           userMail,
           timeStamp,
           description
