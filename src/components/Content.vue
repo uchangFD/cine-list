@@ -7,14 +7,16 @@
       v-else 
       class="contents__wrapper"
     >
-      <ContentImage />
-      <ContentInfo />
-      <ContentTab 
-        :tabs="tabs" 
-        :selected-tab="selectedTab" 
-        v-on:@change="onClickedTab" 
-      />
-      <ContentAddReview />
+      <div class="contents__container">
+        <ContentImage />
+        <ContentInfo />
+        <ContentTab 
+          :tabs="tabs" 
+          :selected-tab="selectedTab" 
+          v-on:@change="onClickedTab" 
+        />
+        <ContentAddReview />
+      </div>
     </div>
   </section>
 </template>
@@ -25,7 +27,7 @@ import ContentInfo from './ContentInfo.vue'
 import ContentTab from './ContentTab.vue'
 import ContentAddReview from './ContentAddReview.vue'
 import Loader from './Loader.vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   components: { ContentImage, ContentInfo, ContentTab, ContentAddReview, Loader },
@@ -42,6 +44,12 @@ export default {
 
   created() {
     this.selectedTab = this.tabs[0]
+  },
+
+  computed: {
+    ...mapState({
+      contents: 'contents'
+    })
   },
 
   watch: {
@@ -84,15 +92,18 @@ export default {
     color: #fff;
     width: calc(100% - 225px);
     min-height: 100%;
+
     .contents__wrapper {
-      padding-top: 50px;
-      min-height: 100%;
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      grid-gap: 5px;
-      grid-auto-rows: minmax(5px, auto);
-      max-width: 1190px;
-      margin: 0 auto;
+      .contents__container {
+        padding-top: 50px;
+        min-height: 100%;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-gap: 5px;
+        grid-auto-rows: minmax(5px, auto);
+        max-width: 1190px;
+        margin: 0 auto;
+      }
     }
   }
 }

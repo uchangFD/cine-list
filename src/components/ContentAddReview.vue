@@ -42,6 +42,7 @@ export default {
       contentId: 0,
       userId: '',
       posterId: '',
+      title: '',
       userMail: '',
       timeStamp: '',
       description: '',
@@ -94,10 +95,11 @@ export default {
     onSubmit: function() {
       this.timeStamp = Date.now()
       this.description = document.querySelector('.content__review__post__textarea').value
+      this.title = this.contents.title
       this.posterId = this.contents.poster_path
       
-      const {contentId, userId, posterId, userMail, timeStamp, description} = this
-      this.UPDATE_REVIEW({contentId, userId, posterId, userMail, timeStamp, description})
+      const {contentId, userId, posterId, title, userMail, timeStamp, description} = this
+      this.UPDATE_REVIEW({contentId, userId, posterId, title, userMail, timeStamp, description})
       this.description = ''
       this.FETCH_REVIEW({contentId: this.$route.params.contentId})
     },
