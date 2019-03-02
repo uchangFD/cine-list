@@ -8,11 +8,14 @@ const actions = {
     })
   },
 
+
+
   FETCH_SUB_SLIDE({ commit }, { options }) {
     return api.subSlide.fetch().then(data => {
       commit(options, data.results)
     })
   },
+
 
 
   FETCH_LISTS({ commit }, { id, pages }) {
@@ -23,6 +26,7 @@ const actions = {
   },
 
 
+
   FETCH_CONTENT({ commit }, { id }) {
     commit('SET_CONTENTS', [])
     return api.content.fetch(id).then(data => {
@@ -31,12 +35,14 @@ const actions = {
   },
 
 
+
   FETCH_CONTENTS({ commit }, { id }) {
     commit('SET_CONTENTS_ARRAY', [])
     return api.content.fetch(id).then(data => {
       commit('SET_CONTENTS_ARRAY', data)
     })
   },
+
 
 
   FETCH_REVIEW({ commit }, { contentId }) {
@@ -52,8 +58,6 @@ const actions = {
 
 
 
-
-
   FETCH_USER({ commit }, { userId }) {
     commit('SET_USER', [])
     const USER_REF = firebase.database().ref(`USER/${userId}`)
@@ -63,6 +67,8 @@ const actions = {
       }
     })
   },
+
+
 
   FETCH_USER_REVIEWS({ commit }, { userId }) {
     commit('SET_USER_REVIEWS', [])
@@ -89,6 +95,8 @@ const actions = {
     })
   },
 
+
+
   UPDATE_USER_PROFILE({}, { userId, userMail }) {
     const USER_REF = firebase.database().ref(`USER/${userId}/INFO`)
     USER_REF.once('value', data => {
@@ -103,12 +111,7 @@ const actions = {
 
 
 
-
-
-
-
-
-  UPDATE_REVIEW({}, { contentId, userId, userMail, timeStamp, description }) {
+  UPDATE_REVIEW({}, { contentId, userId, posterId, userMail, timeStamp, description }) {
     const COMMENT_USER_REF = firebase.database().ref(`REVIEWS/${contentId}/${userId}`)
     COMMENT_USER_REF.once('value', data => {
       if (!data.exists()) {
@@ -121,12 +124,14 @@ const actions = {
       }
     })
 
-    const USER_REF = firebase.database().ref(`USER/${userId}/REVIEWS/${contentId}`)
 
+
+    const USER_REF = firebase.database().ref(`USER/${userId}/REVIEWS/${contentId}`)
     USER_REF.once('value', data => {
       if (!data.exists()) {
         USER_REF.set({
           contentId,
+          posterId,
           userMail,
           timeStamp,
           description
@@ -134,6 +139,7 @@ const actions = {
       }
     })
   },
+
 
 
   DELETE_REVIEW({}, { contentId, userId }) {
@@ -144,12 +150,14 @@ const actions = {
   },
 
 
+
   FETCH_VIDEOS({ commit }, { id }) {
     commit('SET_VIDEOS', [])
     return api.videos.fetch(id).then(data => {
       commit('SET_VIDEOS', data)
     })
   },
+
 
 
   FETCH_CAST({ commit }, { id }) {
@@ -160,12 +168,14 @@ const actions = {
   },
 
 
+
   FETCH_PERSON({ commit }, { id }) {
     commit('SET_PERSON', [])
     return api.person.fetch(id).then(data => {
       commit('SET_PERSON', data)
     })
   },
+
 
 
   FETCH_PERSON_CREDITS({ commit }, { id }) {
@@ -176,12 +186,13 @@ const actions = {
   },
 
 
-  FETCH_SEARCH({ commit }, { query }) {
 
+  FETCH_SEARCH({ commit }, { query }) {
     return api.search.fetch(query).then(data => {
       commit('SET_SEARCH', data.results)
     })
   },
+
 
 
   FETCH_BROWSER({ commit }, { item }) {
@@ -191,6 +202,7 @@ const actions = {
   },
 
 
+
   FETCH_GENRES({ commit }) {
     return api.genre.fetch().then(data => {
       commit('SET_GENRES', data.genres)
@@ -198,11 +210,14 @@ const actions = {
   },
 
 
+
   FETCH_CATEGORIES({ commit }, { id, page }) {
     return api.categories.fetch(id, page).then(data => {
       commit('SET_CATEGORIES', data)
     })
   },
+
+
 
   RESET_CATEGORIES({ commit }) {
     commit('RESET_CATEGORIES')
@@ -213,5 +228,7 @@ const actions = {
     commit('RESET_STATES')
   }
 }
+
+
 
 export default actions

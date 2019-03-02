@@ -19,6 +19,10 @@
           class="user-info__comments-link"
         >
           <div class="user-info__comments">
+            <img 
+              class="user-info__comment-poster" 
+              :src="`https://image.tmdb.org/t/p/w342${value.posterId}`"
+            />
             <p class="user-info__comment-description">{{value.description}}</p>
             <p class="user-info__comments-time">{{`${getTime(value.timeStamp)}`}}</p>
           </div>
@@ -132,10 +136,15 @@ export default {
             padding: .5rem;
             border-radius: 8px;
             background: #faa;
+            display: flex;
+            justify-content: flex-start;
+            .user-info__comment-poster {
+              height: 100%;
+            }
             .user-info__comment-description{
-
             }
             .user-info__comment-time{
+              margin-left: auto;
 
             }
           }
