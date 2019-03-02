@@ -41,6 +41,7 @@ export default {
     return {
       contentId: 0,
       userId: '',
+      posterId: '',
       userMail: '',
       timeStamp: '',
       description: '',
@@ -61,7 +62,9 @@ export default {
 
   computed: {
     ...mapState({
-      comments: 'comments'
+      comments: 'comments',
+      contents: 'contents'
+      
     }),
 
     checkReview: function() {
@@ -91,8 +94,10 @@ export default {
     onSubmit: function() {
       this.timeStamp = Date.now()
       this.description = document.querySelector('.content__review__post__textarea').value
-      const {contentId, userId, userMail, timeStamp, description} = this
-      this.UPDATE_REVIEW({contentId, userId, userMail,timeStamp, description})
+      this.posterId = this.contents.poster_path
+      
+      const {contentId, userId, posterId, userMail, timeStamp, description} = this
+      this.UPDATE_REVIEW({contentId, userId, posterId, userMail, timeStamp, description})
       this.description = ''
       this.FETCH_REVIEW({contentId: this.$route.params.contentId})
     },

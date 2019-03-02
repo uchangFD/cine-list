@@ -66,6 +66,7 @@ export default {
   methods: {
     ...mapActions([
       'DELETE_REVIEW',
+      'FETCH_REVIEW'
     ]),
 
     init: function() {
@@ -93,6 +94,10 @@ export default {
         this.DELETE_REVIEW({
           contentId: this.$route.params.contentId, 
           userId: this.userId
+        })
+
+        this.FETCH_REVIEW({
+          contentId: this.$route.params.contentId
         })
       }
     }
