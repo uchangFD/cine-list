@@ -1,6 +1,6 @@
 
 const state = {
-  mains: [],
+  popular: [],
   upcoming: [],
   lists: [],
 

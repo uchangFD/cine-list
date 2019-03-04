@@ -1,16 +1,16 @@
 const mutations = {
-  SET_MAIN_SLIDES(state, mains) {
-    state.mains = mains
+
+  SET_MAIN_SLIDES(state, payload) {
+    state.popular = payload
   },
 
-  SET_SUB_SLIDES(state, upcoming) {
-    state.upcoming = upcoming
+  SET_SUB_SLIDES(state, payload) {
+    state.upcoming = payload
   },
 
-  SET_SEARCH(state, results) {
-    state.results = results
+  SET_SEARCH(state, payload) {
+    state.results = payload
   },
-
 
   SET_USER(state, payload) {
     state.users = payload
@@ -30,10 +30,6 @@ const mutations = {
     state.contents = payload
   },
   
-  SET_CONTENTS_ARRAY(state, payload) {
-    state.contents.push(payload)
-  },
-
 
   SET_VIDEOS(state, videoId) {
     state.videoId = videoId

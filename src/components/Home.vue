@@ -1,6 +1,6 @@
 <template>
   <div class="home__container">
-    <MainSlide :data="mains" />
+    <MainSlide :data="popular" />
     <SubSlide :data="upcoming" />
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
 
   computed: {
     ...mapState({
-      mains: 'mains',
+      popular: 'popular',
       upcoming: 'upcoming',
     })
   },
@@ -34,14 +34,19 @@ export default {
 
   methods: {
     ...mapActions([
-      'FETCH_MAIN_SLIDE',
-      'FETCH_SUB_SLIDE'
+      'FETCH_SLIDE',
     ]),
 
 
     fetch: function() {
-      this.FETCH_MAIN_SLIDE({options: 'SET_MAIN_SLIDES'})
-      this.FETCH_SUB_SLIDE({options: 'SET_SUB_SLIDES'})
+      this.FETCH_SLIDE({
+        category: 'popular',
+        options: 'SET_MAIN_SLIDES'
+        })
+      this.FETCH_SLIDE({
+        category: 'upcoming',
+        options: 'SET_SUB_SLIDES'
+        })
     }
   }
 }

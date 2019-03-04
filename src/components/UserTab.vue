@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import UserTabList from './UserTabList.vue'
+import UserTabDetails from './UserTabDetails.vue'
 export default {
-  components: { 'TabDetail': UserTabList },
+  components: { 'TabDetail': UserTabDetails },
   props: ['tabs', 'selectedTab'],
 
   methods: {

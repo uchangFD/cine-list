@@ -4,7 +4,6 @@ const API_KEY = '64391ca210dbae0d44b0a622177ef8d3'
 const ROOT_URL = `https://api.themoviedb.org/3/`
 const LANGUAGE_KO = 'ko-KR'
 const LANGUAGE_EN = 'en-US'
-const TRENDING = `${ROOT_URL}trending/movie/week?api_key=${API_KEY}&language=${LANGUAGE_EN}&page=1`
 const UPCOMING = `${ROOT_URL}movie/upcoming?api_key=${API_KEY}&language=${LANGUAGE_EN}&page=1`
 const SEARCH = `${ROOT_URL}search/movie?api_key=${API_KEY}&language=${LANGUAGE_EN}&vote_count.gte=50&query=`
 const GENRES = `${ROOT_URL}genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE_EN}`
@@ -15,17 +14,12 @@ const request = (method, url, data) => {
     .then(result => result.data)
 }
 
-export const mainSlide = {
-  fetch() {
-    return request('get', TRENDING)
+export const slide = {
+  fetch(category, page) {
+    return request('get', `${ROOT_URL}movie/${category}?api_key=${API_KEY}&language=${LANGUAGE_EN}&page=${page}`)
   }
 }
 
-export const subSlide = {
-  fetch() {
-    return request('get', UPCOMING)
-  }
-}
 
 export const search = {
   fetch(query) {
