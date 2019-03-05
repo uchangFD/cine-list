@@ -14,7 +14,6 @@ const state = {
 const mutations = {
   SET_GENRES(state, genres) {
     state.genres = genres.slice();
-    console.log(state.genres);
   },
   SET_CATEGORIES(state, { id, data }) {
     // id => action, drama... 확인
