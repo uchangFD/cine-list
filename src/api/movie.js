@@ -8,9 +8,7 @@ const UPCOMING = `${ROOT_URL}movie/upcoming?api_key=${API_KEY}&language=${LANGUA
 const SEARCH = `${ROOT_URL}search/movie?api_key=${API_KEY}&language=${LANGUAGE_EN}&vote_count.gte=50&query=`;
 const GENRES = `${ROOT_URL}genre/movie/list?api_key=${API_KEY}&language=${LANGUAGE_EN}`;
 
-const movie = {};
-
-movie.fetch = type => {
+export const fetch = type => {
   switch (type) {
     case "categories":
       return (id, page) =>
@@ -52,5 +50,3 @@ movie.fetch = type => {
       throw Error("Not found type");
   }
 };
-
-export default movie;

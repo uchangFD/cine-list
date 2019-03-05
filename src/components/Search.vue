@@ -31,10 +31,9 @@
 </template>
 
 <script>
-import SearchResult from './SearchResult.vue'
-import {mapActions, mapState} from 'vuex'
-import _ from 'lodash'
-
+import SearchResult from "./SearchResult.vue";
+import { mapActions, mapState } from "vuex";
+import _ from "lodash";
 
 export default {
   components: {
@@ -43,84 +42,75 @@ export default {
 
   data() {
     return {
-      query: '',
-      isShowResults: true,
-    }
+      query: "",
+      isShowResults: true
+    };
   },
 
   computed: {
     ...mapState({
-      results: 'results',
+      results: "results"
     }),
 
     invalidForm() {
-      return !this.query.trim()
+      return !this.query.trim();
     }
   },
 
   mounted() {
-    this.$refs.searchInput.focus()
+    this.$refs.searchInput.focus();
+    this.getGenres();
   },
-
 
   watch: {
     query: function(searchText) {
-      this.onSearching(searchText)
+      this.onSearching(searchText);
     },
-    
-    '$route.params.contentId': 'onReset',
-    
+
+    "$route.params.contentId": "onReset",
+
     isShowResults: function() {
-      if (!this.isShowResults) this.onReset()
+      if (!this.isShowResults) this.onReset();
     }
-
   },
-  
+
   methods: {
-    ...mapActions([
-      'FETCH_SEARCH',
-      'RESET_RESULTS'
-    ]),
+    ...mapActions(["FETCH_SEARCH", "RESET_RESULTS", "movies/GET_GENRES"]),
 
-    onSearching: _.debounce(
-      function(searchText) {
-        if (this.invalidForm) return
-        this.isShowResults = true
-        this.FETCH_SEARCH({query: searchText})
-      }, 500),
-
+    onSearching: _.debounce(function(searchText) {
+      if (this.invalidForm) return;
+      this.isShowResults = true;
+      this.FETCH_SEARCH({ query: searchText });
+    }, 500),
 
     onSubmit: function() {
-      this.onSearched()
+      this.onSearched();
     },
-
 
     onSearched: function() {
-      if (this.invalidForm) return
-      this.isShowResults = true
-      this.FETCH_SEARCH({query: this.query})
+      if (this.invalidForm) return;
+      this.isShowResults = true;
+      this.FETCH_SEARCH({ query: this.query });
     },
-
 
     onKeyup: function() {
-      if (!this.query) this.RESET_RESULTS()
+      if (!this.query) this.RESET_RESULTS();
     },
-    
 
     onReset: function() {
-      this.query = ''
-      this.RESET_RESULTS()
-    }
+      this.query = "";
+      this.RESET_RESULTS();
+    },
 
+    getGenres: function() {
+      this["movies/GET_GENRES"]();
+    }
   }
-}
+};
 </script>
 
 <style lang="scss">
 @import "../assets/styles/variables.scss";
-
-
-
 
 @media screen and (min-width: $desktop) {
   .search {
@@ -141,7 +131,7 @@ export default {
         box-shadow: none;
         outline: 0;
         color: #aaa;
-        text-indent: .5rem;
+        text-indent: 0.5rem;
       }
       .reset-btn {
         position: absolute;
@@ -149,7 +139,7 @@ export default {
         right: 0;
         height: 18px;
         width: 18px;
-        margin-right: .5rem;
+        margin-right: 0.5rem;
         line-height: 18px;
         border-radius: 50%;
         background-color: #bbb;
@@ -184,8 +174,8 @@ export default {
         box-shadow: none;
         outline: 0;
         color: #aaa;
-        font-size: .85rem;
-        text-indent: .5rem;
+        font-size: 0.85rem;
+        text-indent: 0.5rem;
       }
       .reset-btn {
         position: absolute;
@@ -193,7 +183,7 @@ export default {
         right: 0;
         height: 18px;
         width: 18px;
-        margin-right: .2rem;
+        margin-right: 0.2rem;
         line-height: 18px;
         border-radius: 50%;
         background-color: #bbb;
