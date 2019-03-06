@@ -47,9 +47,13 @@ const mutations = {
 };
 
 const actions = {
-  GET_GENRES({ commit }) {
+  GET_GENRES({ dispatch, commit }) {
+    dispatch("start", null, { root: true });
     getGenres().then(({ data }) => {
       commit("SET_GENRES", data.genres);
+      setTimeout(() => {
+        dispatch("stop", null, { root: true });
+      }, 3000);
     });
   },
   GET_CATEGORY({ commit }, { id, page }) {

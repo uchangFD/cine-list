@@ -45,74 +45,71 @@
 </template>
 
 <script>
-import _ from 'lodash'
-import {mapActions, mapState} from 'vuex'
-import PrimaryButton from './PrimaryButton.vue'
+import _ from "lodash";
+import { mapActions, mapState } from "vuex";
+import PrimaryButton from "./PrimaryButton.vue";
 
 export default {
-  components: {PrimaryButton},
+  components: { PrimaryButton },
 
-  props:[
-    'data'
-  ],
+  props: ["data"],
   data() {
     return {
       isHovered: false,
       isMobile: false
-    }
+    };
   },
 
   created() {
-    this.checkClientwidth()
+    this.checkClientwidth();
   },
 
-  mounted: function () {
-    window.addEventListener('resize', this.checkClientwidth)
+  mounted: function() {
+    window.addEventListener("resize", this.checkClientwidth);
   },
 
   computed: {
     ...mapState({
-      genres: 'genres'
+      genres: "genres"
     }),
 
-    year: function() {      
-      return this.getReleasedYear(this.data.release_date) 
+    year: function() {
+      return this.getReleasedYear(this.data.release_date);
     }
   },
 
-
-
   methods: {
     onHover: function() {
-      if(document.querySelector('body').offsetWidth > 414) {
-        this.$el.classList.add('content-list-detail')
-        this.isHovered = true
+      if (document.querySelector("body").offsetWidth > 414) {
+        this.$el.classList.add("content-list-detail");
+        this.isHovered = true;
       }
     },
 
     onLeave: function() {
-      if( document.querySelector('body').offsetWidth > 414 ) {
-        this.$el.classList.remove('content-list-detail')
-        this.isHovered = false
+      if (document.querySelector("body").offsetWidth > 414) {
+        this.$el.classList.remove("content-list-detail");
+        this.isHovered = false;
       }
     },
 
     getReleasedYear: function(data) {
-      return data.slice(0, 4)
+      return data.slice(0, 4);
     },
 
-    checkClientwidth () {
-      document.querySelector('body').offsetWidth > 414 ? 
-      this.isMobile = false : this.isMobile = true
+    checkClientwidth() {
+      document.querySelector("body").offsetWidth > 414
+        ? (this.isMobile = false)
+        : (this.isMobile = true);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
 @media screen and (min-width: $desktop) {
-.content-list {
+  .content-list {
     position: relative;
     width: 150px;
     opacity: 0.8;
@@ -126,8 +123,8 @@ export default {
       height: 320px;
     }
     &.content-list-detail {
-    width: 180px;
-  }
+      width: 180px;
+    }
     .content-list__poster-wrapper {
       position: relative;
       width: 150px;
@@ -168,7 +165,7 @@ export default {
     position: absolute;
     width: 180px;
     height: 80px;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     display: block;
     .content-list-detail__info {
       text-align: center;
@@ -177,7 +174,7 @@ export default {
         color: #aaa;
         font-weight: 300;
         letter-spacing: 1px;
-        padding: .05rem .1rem;
+        padding: 0.05rem 0.1rem;
       }
     }
     .content-list-detail__btn-link {
@@ -189,7 +186,6 @@ export default {
     }
   }
 }
-
 
 @media screen and (max-width: $mobile) {
   .content-list {
@@ -209,12 +205,12 @@ export default {
         top: 0;
         left: 0;
         color: #fff;
-        margin: .5rem 1.5rem;
+        margin: 0.5rem 1.5rem;
         width: 50px;
         height: 25px;
         line-height: 25px;
         border-radius: 12.5px;
-        background: rgba(25, 25, 25, .5);
+        background: rgba(25, 25, 25, 0.5);
         text-align: center;
       }
     }
@@ -225,7 +221,7 @@ export default {
       .content-list__btn-link {
         .content-list__btn {
           display: block;
-          margin: .75rem auto;
+          margin: 0.75rem auto;
         }
       }
     }
@@ -249,5 +245,4 @@ export default {
     }
   }
 }
-
 </style>
